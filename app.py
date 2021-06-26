@@ -5,7 +5,7 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 
 import numpy as np
 import pandas as pd
-from number_parser import parse
+# from number_parser import parse
 import dateparser
 
 
@@ -14,12 +14,15 @@ def process_text(txt):
     Function for processing text and extracting key information.
     '''
     assert txt != ''
+    print("Hahah")
     
-    num_txt = parse(txt)
-    
-    number = 5
-    if num_txt != txt:
-        number = [int(s) for s in num_txt.split() if s.isdigit()][0]
+    # num_txt = parse(txt)
+    try:
+        number = [int(s) for s in txt.split() if s.isdigit()][0]
+    except:
+        st.warning('Please provide a time range.')
+    # if num_txt != txt:
+    #     number = [int(s) for s in num_txt.split() if s.isdigit()][0]
     
     if 'category' in txt:
         categories = show_category()
@@ -76,7 +79,7 @@ result = streamlit_bokeh_events(
 
 if result:
     if "GET_TEXT" in result:
-        st.write('I heard',result.get("GET_TEXT"))
+        st.write('I heard: "',result.get("GET_TEXT"),'"')
         speech = result.get("GET_TEXT")
         process_text(speech)
 
