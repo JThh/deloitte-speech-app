@@ -14,7 +14,6 @@ def process_text(txt):
     Function for processing text and extracting key information.
     '''
     assert txt != ''
-    print("Hahah")
     
     # num_txt = parse(txt)
     try:
@@ -42,7 +41,7 @@ def show_category():
     pass
 
 def show_revenue(number,cat='all'):
-    print("Revenue Report")
+    st.write("Revenue Report")
 
 def show_profit(number,cat='all'):
     pass
@@ -79,9 +78,8 @@ result = streamlit_bokeh_events(
 
 if result:
     if "GET_TEXT" in result:
-        st.write('I heard: "',result.get("GET_TEXT"),'"')
-        speech = result.get("GET_TEXT")
-        process_text(speech)
+        st.write(result.get("GET_TEXT"),'"')
+        process_text(result.get("GET_TEXT"))
 
             
                 
