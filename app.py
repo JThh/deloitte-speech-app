@@ -41,7 +41,7 @@ def show_category():
     pass
 
 def show_revenue(number,cat='all'):
-    st.write("Revenue Report")
+    st.write("Revenue Report for past",number,"years")
 
 def show_profit(number,cat='all'):
     pass
@@ -78,7 +78,8 @@ result = streamlit_bokeh_events(
 
 if result:
     if "GET_TEXT" in result:
-        st.write(result.get("GET_TEXT"),'"')
+        st.write("You said:")
+        st.write(result.get("GET_TEXT"))
         process_text(result.get("GET_TEXT"))
 
             
