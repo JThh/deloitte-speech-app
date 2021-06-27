@@ -233,7 +233,10 @@ def show_revenue(number):
 
 
 def show_meaning(key):
-    show_revenue(TIME_RANGE)
+    try:
+        show_revenue(TIME_RANGE)
+    except:
+        st.warning("You may have not queried the revenue or profit report. Please do that before checking the meanings.")
     st.info("Tips: Only a sample explanation below.")
     if key == 'curve':
         st.markdown(
@@ -256,7 +259,9 @@ def main():
         st.markdown(
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
     
+
     result = st.text_input(label="Manual text input",value="The revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
+
 
     st.write("Or you can speak by clicking the button below")
 
@@ -294,6 +299,8 @@ def main():
             # st.write("You said:")
             st.write("Recognized speech:", result.get("GET_TEXT"))
             process_text(result.get("GET_TEXT"))
+        else:
+            process_text(result)
 
 
 main()
