@@ -25,7 +25,7 @@ def process_text(txt):
         #st.warning('Please provide a time range.')
         pass
 
-    if 'mean' in txt:
+    if 'mean' in txt.lower():
         for x in EXPLAINABLE_TXT:
             if x in txt:
                 show_meaning(x)
@@ -33,14 +33,14 @@ def process_text(txt):
         st.warning(
             "This is not yet explainable. More comprehensive explanations are expected to be filled in soon.")
 
-    if 'catego' in txt:
+    if 'catego' in txt.lower():
         for cat in CATEGORIES:
             if cat in txt:
                 show_category(cat)
         show_category()
         return
 
-    if 'revenue' in txt or 'profit' in txt:
+    if 'revenue' in txt.lower() or 'profit' in txt.lower():
         show_revenue(TIME_RANGE)
 
     if 'thank' in txt.lower():
