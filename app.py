@@ -19,7 +19,7 @@ import numpy as np
 
 # data = pd.read_csv(DATA_URL)
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",initial_sidebar_state="hide")
 
 
 def process_text(txt):
@@ -231,6 +231,10 @@ def show_revenue(number):
         st.image(image)
 
     with col2:
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
         labels = CATEGORIES
         values = [4500, 2500, 1053, 500, 1000, 3500, 500, 6400]
 
