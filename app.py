@@ -220,7 +220,7 @@ def show_revenue(number):
         
         df_inc_gp.drop(df_inc_gp.index[-1],inplace=True)
 
-        fig = go.Figure([go.Bar(x=df_inc_gp['Date'], y=df_inc_gp['AAPL.High'], name="Revenue"), go.Bar(
+        fig = go.Figure([go.Line(x=df_inc_gp['Date'], y=df_inc_gp['AAPL.High'], name="Revenue"), go.Line(
             x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(df_inc_gp.shape[0],)),name="Profits")])
 
         fig.update_layout(
