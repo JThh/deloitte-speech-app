@@ -303,8 +303,8 @@ def main():
     
     with col2:
         st.write("")
-        # st.write("")
-        # st.write("")
+        st.write("")
+        st.write("")
         # st.write("")
         if st.button('Search'):
             process_text(result)
