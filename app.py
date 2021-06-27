@@ -207,11 +207,21 @@ def show_revenue(number):
         image = Image.open('./assets/map.png')
         st.image(image)
     
-    col1,col2 = st.beta_columns(2)
+    col1,col2 = st.beta_columns([1.8,1])
 
     with col1:
-        fig = go.Figure([go.Bar(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Bar(
-            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
+        df_inc = data_filter_year.copy()
+        df_inc.Date = df_inc.Date.apply(lambda x:x[:-3])
+        df_inc_gp = df_inc[['AAPL.High','AAPL.Low','Date']].groupby(['Date']).sum().reset_index()
+
+        for ind in df_inc_gp.index[:-1]:
+            df_inc_gp.loc[ind,'AAPL.High'] = (df_inc_gp.loc[ind+1,'AAPL.High'] - df_inc_gp.loc[ind,'AAPL.High']) / df_inc_gp.loc[ind,'AAPL.High']
+            df_inc_gp.loc[ind,'AAPL.Low'] = (df_inc_gp.loc[ind+1,'AAPL.Low'] - df_inc_gp.loc[ind,'AAPL.Low']) / df_inc_gp.loc[ind,'AAPL.Low']
+        
+        df_inc_gp.drop(df_inc_gp.index[-1],inplace=True)
+
+        fig = go.Figure([go.Line(x=df_inc_gp['Date'], y=df_inc_gp['AAPL.High'], name="Revenue"), go.Line(
+            x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
 
         fig.update_layout(
             title="Revenue & Profit Perc. Increase",
@@ -226,7 +236,7 @@ def show_revenue(number):
 
         # Use `hole` to create a donut-like pie chart
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
-        fig.show()
+        st.plotly_chart(fig,use_container_width=True)
             
 
 def show_category_revenue(years_ago, cat='category 1'):
@@ -283,49 +293,50 @@ def main():
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
 
     result = ''    
-    col1, col2 = st.beta_columns([1,2])
+    col1, col2 = st.beta_columns([6,1])
 
     with col1:
         result = st.text_input(label="Text input",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
-
+    
     with col2:
-        st.write("Or you can speak by clicking the button below")
+        if st.button('Search'):
+            process_text(result)
+    
+    st.write("Or you can speak by clicking the button below")
 
-        stt_button = Button(label="Click to Speak", width=120)
+    stt_button = Button(label="Click to Speak", width=120)
 
-        stt_button.js_on_event("button_click", CustomJS(code="""
-            var recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
-        
-            recognition.onresult = function (e) {
-                var value = "";
-                for (var i = e.resultIndex; i < e.results.length; ++i) {
-                    if (e.results[i].isFinal) {
-                        value += e.results[i][0].transcript;
-                    }
-                }
-                if ( value != "") {
-                    document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
+    stt_button.js_on_event("button_click", CustomJS(code="""
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+    
+        recognition.onresult = function (e) {
+            var value = "";
+            for (var i = e.resultIndex; i < e.results.length; ++i) {
+                if (e.results[i].isFinal) {
+                    value += e.results[i][0].transcript;
                 }
             }
-            recognition.start();
-            """))
+            if ( value != "") {
+                document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
+            }
+        }
+        recognition.start();
+        """))
 
-        result = streamlit_bokeh_events(
-            stt_button,
-            events="GET_TEXT",
-            key="listen",
-            refresh_on_update=False,
-            override_height=75,
-            debounce_time=0)
+    result = streamlit_bokeh_events(
+        stt_button,
+        events="GET_TEXT",
+        key="listen",
+        refresh_on_update=False,
+        override_height=75,
+        debounce_time=0)
 
     if result:
         if "GET_TEXT" in result:
             # st.write("You said:")
             st.write("Recognized speech:", result.get("GET_TEXT"))
             process_text(result.get("GET_TEXT"))
-        else:
-            process_text(result)
 
 main()
