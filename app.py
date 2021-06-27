@@ -198,7 +198,7 @@ def show_revenue(number):
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
         fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
-            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(df.shape[0],)),name="Profits")])
+            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
 
         fig.update_layout(
             title="Revenue Report for past "+str(number)+" years",
