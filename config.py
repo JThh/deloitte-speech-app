@@ -1,3 +1,5 @@
+import pandas as pd
+
 CURRENT_YEAR = 2021
 TIME_RANGE = 5
 EXPLAINABLE_TXT = ['curve', 'peak']

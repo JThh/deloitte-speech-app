@@ -11,7 +11,7 @@ from config import *
 
 
 import numpy as np
-import pandas as pd
+# import pandas as pd
 # from number_parser import parse
 # import dateparser
 
