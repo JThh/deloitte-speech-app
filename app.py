@@ -198,7 +198,7 @@ def show_category(cat='all'):
 def show_revenue(number):
 
         # st.subheader("Revenue Report for past "+str(number)+" years")
-    col1,col2 = st.beta_columns([1.5,1])
+    col1,col2 = st.beta_columns([1.8,1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
@@ -206,7 +206,7 @@ def show_revenue(number):
             x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
 
         fig.update_layout(
-            title="Revenue Report for past "+str(number)+" years",
+            title="Revenue & Profit Report for past "+str(number)+" years",
             xaxis_title="Quarters/Years",
             yaxis_title="Amount (Million ¥)",
         )
@@ -259,40 +259,42 @@ def main():
         st.markdown(
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
     
+    col1, col2 = st.beta_columns(2)
 
-    result = st.text_input(label="Manual text input",value="The revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
+    with col1:
+        result = st.text_input(label="Manual text input",value="The revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
 
+    with col2:
+        st.write("Or you can speak by clicking the button below")
 
-    st.write("Or you can speak by clicking the button below")
+        stt_button = Button(label="Click to Speak", width=120)
 
-    stt_button = Button(label="Click to Speak", width=120)
-
-    stt_button.js_on_event("button_click", CustomJS(code="""
-        var recognition = new webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-    
-        recognition.onresult = function (e) {
-            var value = "";
-            for (var i = e.resultIndex; i < e.results.length; ++i) {
-                if (e.results[i].isFinal) {
-                    value += e.results[i][0].transcript;
+        stt_button.js_on_event("button_click", CustomJS(code="""
+            var recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+        
+            recognition.onresult = function (e) {
+                var value = "";
+                for (var i = e.resultIndex; i < e.results.length; ++i) {
+                    if (e.results[i].isFinal) {
+                        value += e.results[i][0].transcript;
+                    }
+                }
+                if ( value != "") {
+                    document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
                 }
             }
-            if ( value != "") {
-                document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
-            }
-        }
-        recognition.start();
-        """))
+            recognition.start();
+            """))
 
-    result = streamlit_bokeh_events(
-        stt_button,
-        events="GET_TEXT",
-        key="listen",
-        refresh_on_update=False,
-        override_height=75,
-        debounce_time=0)
+        result = streamlit_bokeh_events(
+            stt_button,
+            events="GET_TEXT",
+            key="listen",
+            refresh_on_update=False,
+            override_height=75,
+            debounce_time=0)
 
     if result:
         if "GET_TEXT" in result:
