@@ -3,21 +3,12 @@ import streamlit as st
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
-import plotly.express as px
+# import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
 from config import *
-
-
 import numpy as np
-# import pandas as pd
-# from number_parser import parse
-# import dateparser
-
-# DATA_URL = "https://drive.google.com/uc?export=download&id=1lU52Rr6hf9d1H_kWPwQYQMaCwzLcbLFr"
-
-# data = pd.read_csv(DATA_URL)
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
@@ -28,14 +19,12 @@ def process_text(txt):
     '''
     assert txt != ''
 
-    # num_txt = parse(txt)
     try:
         TIME_RANGE = [int(s) for s in txt.split() if s.isdigit()][0]
     except:
         #st.warning('Please provide a time range.')
         pass
-    # if num_txt != txt:
-    #     number = [int(s) for s in num_txt.split() if s.isdigit()][0]
+
     if 'mean' in txt:
         for x in EXPLAINABLE_TXT:
             if x in txt:
@@ -50,17 +39,12 @@ def process_text(txt):
                 show_category(cat)
         show_category()
         return
-        # if 'revenue' in txt:
-        #     for cat in categories:
-        #         show_revenue(number,cat)
-        # if 'profit' in txt:
-        #     for cat in categories:
-        #         show_profit(number,cat)
 
     if 'revenue' in txt or 'profit' in txt:
         show_revenue(TIME_RANGE)
-    # if 'profit' in txt:
-    #     show_profit(TIME_RANGE)
+
+    if 'thank' in txt.lower():
+        st.write("You're welcome!")
 
 
 def show_category(cat='all'):
@@ -265,16 +249,6 @@ def show_category_revenue(years_ago, cat='category 1'):
         yaxis_title="Amount (Million ¥)",
     )
     st.plotly_chart(fig, use_container_width=True)
-
-
-# def show_profit(number):
-#     st.subheader("Profit Report for past "+str(number)+" years")
-
-#     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
-
-#     fig = go.Figure([go.Scatter(x=data_filter_year['Date'],
-#                     y=data_filter_year['AAPL.Low']*0.5)])
-#     st.plotly_chart(fig)
 
 
 def show_meaning(key):
