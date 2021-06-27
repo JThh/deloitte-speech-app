@@ -52,7 +52,7 @@ def show_category():
     pass
 
 def show_revenue(number,cat='all'):
-    st.subheader("Revenue Report for past",number,"years")
+    st.subheader("Revenue Report for past"+str(number)+"years")
 
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number),:]
 
@@ -60,7 +60,7 @@ def show_revenue(number,cat='all'):
     st.plotly_chart(fig)
 
 def show_profit(number,cat='all'):
-    st.subheader("Profit Report for past",number,"years")
+    st.subheader("Revenue Report for past"+str(number)+"years")
 
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number),:]
 
