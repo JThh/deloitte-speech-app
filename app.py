@@ -7,33 +7,19 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
+from config import *
 
 
 import numpy as np
 import pandas as pd
 # from number_parser import parse
-import dateparser
+# import dateparser
 
 # DATA_URL = "https://drive.google.com/uc?export=download&id=1lU52Rr6hf9d1H_kWPwQYQMaCwzLcbLFr"
 
 # data = pd.read_csv(DATA_URL)
 
 st.set_page_config(layout="wide")
-
-CURRENT_YEAR = 2021
-TIME_RANGE = 5
-EXPLAINABLE_TXT = ['curve', 'peak']
-
-data = pd.read_csv(
-    'https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
-data.loc[:, 'Date'] = data.loc[:, 'Date'].apply(
-    lambda x: str(int(x[:4])+4)+x[4:])
-
-PEAK_TIME = data.loc[data['AAPL.High'] ==
-                     data['AAPL.High'].max(), 'Date'].values[0]
-PEAK_VALUE = data['AAPL.High'].max()
-
-CATEGORIES = ["category "+str(n) for n in range(1,9)]
 
 
 def process_text(txt):
@@ -195,7 +181,7 @@ def show_category(cat='all'):
         show_revenue(TIME_RANGE)
 
 
-def show_revenue(number):
+def show_revenue(number=5):
 
      # st.subheader("Revenue Report for past "+str(number)+" years")
     col1,col2 = st.beta_columns([1.8,1])
