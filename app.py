@@ -214,6 +214,7 @@ def show_revenue(number):
 
     with col2:
         st.subheader("Geographical Report for Chinese Market")
+        st.write("")
         image = Image.open('./assets/map.png')
         st.image(image)
 
