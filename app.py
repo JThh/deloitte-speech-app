@@ -309,7 +309,7 @@ def main():
     col1, col2 = st.beta_columns(2)
 
     with col1:
-        result = st.text_input(help="Example: show me the revenue report for past 3 years", help="You can type in the search query or speack by clicking the button below", label="Text input", max_chars=100)
+        result = st.text_input(help="Example: show me the revenue report for past 3 years", label="Text input", max_chars=100)
 
     if result:
         process_text(result)
