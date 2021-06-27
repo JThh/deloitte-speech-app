@@ -199,7 +199,7 @@ def show_revenue(number):
         st.plotly_chart(fig,use_container_width=True)
 
     with col2:
-        st.subheader("Geographical Report for Chinese Market")
+        st.write("Geographical Report for Chinese Market")
         st.write("")
         st.write("")
         st.write("")
@@ -207,7 +207,7 @@ def show_revenue(number):
         image = Image.open('./assets/map.png')
         st.image(image)
     
-    col1,col2 = st.beta_columns([1.8,1])
+    col1,col2 = st.beta_columns([1,1])
 
     with col1:
         df_inc = data_filter_year.copy()
@@ -220,7 +220,7 @@ def show_revenue(number):
         
         df_inc_gp.drop(df_inc_gp.index[-1],inplace=True)
 
-        fig = go.Figure([go.Line(x=df_inc_gp['Date'], y=df_inc_gp['AAPL.High'], name="Revenue"), go.Line(
+        fig = go.Figure([go.Bar(x=df_inc_gp['Date'], y=df_inc_gp['AAPL.High'], name="Revenue"), go.Bar(
             x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(df_inc_gp.shape[0],)),name="Profits")])
 
         fig.update_layout(
@@ -236,6 +236,9 @@ def show_revenue(number):
 
         # Use `hole` to create a donut-like pie chart
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+        fig.update_layout(
+            title="Revenue Division for each category",
+        )
         st.plotly_chart(fig,use_container_width=True)
             
 
@@ -296,7 +299,7 @@ def main():
     # col1, col2 = st.beta_columns([6,1])
 
     # with col1:
-    result = st.text_input(label="Text input",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
+    result = st.text_area(label="Text input",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
     
     # with col2:
     if st.button('Search'):
