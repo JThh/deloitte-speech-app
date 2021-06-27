@@ -198,7 +198,7 @@ def show_category(cat='all'):
 def show_revenue(number):
 
         # st.subheader("Revenue Report for past "+str(number)+" years")
-    col1,col2 = st.beta_columns([2,1])
+    col1,col2 = st.beta_columns([1,1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
