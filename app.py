@@ -293,14 +293,14 @@ def main():
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
 
     result = ''    
-    col1, col2 = st.beta_columns([6,1])
+    # col1, col2 = st.beta_columns([6,1])
 
-    with col1:
-        result = st.text_input(label="Text input",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
+    # with col1:
+    result = st.text_input(label="Text input",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
     
-    with col2:
-        if st.button('Search'):
-            process_text(result)
+    # with col2:
+    if st.button('Search'):
+        process_text(result)
     
     st.write("Or you can speak by clicking the button below")
 
