@@ -20,6 +20,20 @@ import dateparser
 
 st.set_page_config(layout="wide")
 
+CURRENT_YEAR = 2021
+TIME_RANGE = 5
+EXPLAINABLE_TXT = ['curve', 'peak']
+
+data = pd.read_csv(
+    'https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
+data.loc[:, 'Date'] = data.loc[:, 'Date'].apply(
+    lambda x: str(int(x[:4])+4)+x[4:])
+
+PEAK_TIME = data.loc[data['AAPL.High'] ==
+                     data['AAPL.High'].max(), 'Date'].values[0]
+PEAK_VALUE = data['AAPL.High'].max()
+
+CATEGORIES = ["category "+str(n) for n in range(1,9)]
 
 
 def process_text(txt):
@@ -183,7 +197,7 @@ def show_category(cat='all'):
 
 def show_revenue(number):
 
-        # st.subheader("Revenue Report for past "+str(number)+" years")
+     # st.subheader("Revenue Report for past "+str(number)+" years")
     col1,col2 = st.beta_columns([1.8,1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
@@ -238,22 +252,6 @@ def show_meaning(key):
 
 
 def main():
-
-    CURRENT_YEAR = 2021
-    TIME_RANGE = 5
-    EXPLAINABLE_TXT = ['curve', 'peak']
-
-    data = pd.read_csv(
-        'https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
-    data.loc[:, 'Date'] = data.loc[:, 'Date'].apply(
-        lambda x: str(int(x[:4])+4)+x[4:])
-
-    PEAK_TIME = data.loc[data['AAPL.High'] ==
-                        data['AAPL.High'].max(), 'Date'].values[0]
-    PEAK_VALUE = data['AAPL.High'].max()
-
-    CATEGORIES = ["category "+str(n) for n in range(1,9)]
-    
     st.title("Speech Powered BI Dashboard")
     st.write("")
     st.sidebar.header("BI Dashboard")
