@@ -2,7 +2,7 @@ import pandas as pd
 
 CURRENT_YEAR = 2021
 TIME_RANGE = 5
-EXPLAINABLE_TXT = ['curve', 'peak']
+EXPLAINABLE_TXT = ['curve', 'peak', 'Curve']
 
 data = pd.read_csv(
     'https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')

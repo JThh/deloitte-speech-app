@@ -178,13 +178,12 @@ def show_category(cat='all'):
     if cat not in CATEGORIES:
         st.warning("Please select a category in the categories list.")
     else:
-        st.subheader('Detailed revenue & profit report for '+cat)
-        show_revenue(TIME_RANGE)
+        show_category_revenue(TIME_RANGE,cat)
 
 
-def show_revenue(number=5):
+def show_revenue(number):
 
-     # st.subheader("Revenue Report for past "+str(number)+" years")
+    # st.subheader("Revenue Report for past "+str(number)+" years")
     col1,col2 = st.beta_columns([1.8,1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
@@ -207,6 +206,42 @@ def show_revenue(number=5):
         st.write("")
         image = Image.open('./assets/map.png')
         st.image(image)
+    
+    col1,col2 = st.beta_columns(2)
+
+    with col1:
+        fig = go.Figure([go.Bar(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Bar(
+            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
+
+        fig.update_layout(
+            title="Revenue & Profit Perc. Increase",
+            xaxis_title="Quarters/Years",
+            yaxis_title="Amount (Million ¥)",
+        )
+        st.plotly_chart(fig,use_container_width=True)
+
+    with col2:
+        labels = CATEGORIES
+        values = [4500, 2500, 1053, 500, 1000, 3500, 500, 6400]
+
+        # Use `hole` to create a donut-like pie chart
+        fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+        fig.show()
+            
+
+def show_category_revenue(years_ago, cat='category 1'):
+    st.subheader('Detailed revenue & profit report for '+cat)
+    data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
+
+    fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
+        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.3*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
+
+    fig.update_layout(
+        title="Revenue & Profit Report for "+cat+" in past "+str(years_ago)+" years",
+        xaxis_title="Quarters/Years",
+        yaxis_title="Amount (Million ¥)",
+    )
+    st.plotly_chart(fig,use_container_width=True)
 
 
 # def show_profit(number):
@@ -248,10 +283,10 @@ def main():
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
 
     result = ''    
-    col1, col2 = st.beta_columns(2)
+    col1, col2 = st.beta_columns([1,2])
 
     with col1:
-        result = st.text_input(label="Text input",value="The revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
+        result = st.text_input(label="Text input",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
 
     with col2:
         st.write("Or you can speak by clicking the button below")
@@ -292,6 +327,5 @@ def main():
             process_text(result.get("GET_TEXT"))
         else:
             process_text(result)
-
 
 main()
