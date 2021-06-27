@@ -302,11 +302,10 @@ def main():
         result = st.text_area(label="Text input",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
     
     with col2:
-        st.write("""
-        
-        
-        
-        """)
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
         if st.button('Search'):
             process_text(result)
     
