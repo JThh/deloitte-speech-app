@@ -307,7 +307,7 @@ def main():
         st.markdown(
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
 
-    result = ''
+    result_audio = result_text = ''
     col1, col2 = st.beta_columns(2)
 
     with col1:
@@ -334,7 +334,7 @@ def main():
             recognition.start();
             """))
 
-        result = streamlit_bokeh_events(
+        result_audio = streamlit_bokeh_events(
             stt_button,
             events="GET_TEXT",
             key="listen",
@@ -343,19 +343,19 @@ def main():
             debounce_time=0)
 
     with col2:
-        result = st.text_input(help="Example: show me the revenue report for past 3 years", label="Text input", max_chars=100)
+        result_text = st.text_input(
+            help="Example: show me the revenue report for past 3 years", label="Text input", max_chars=100)
 
-
-    if result:
-        if "GET_TEXT" in result:
-            # st.write("You said:")
-            st.text("Recognized speech: "+result.get("GET_TEXT"))
-            st.write('')
-            st.write('')
-            process_text(result.get("GET_TEXT"))
-        else:
-            process_text(result)
-
+    if result_audio:
+        # st.write("You said:")
+        st.text("Recognized speech: "+result_audio.get("GET_TEXT"))
+        st.write('')
+        st.write('')
+        process_text(result_audio.get("GET_TEXT"))
+    elif result_text:
+        process_text(result_text)
+    else:
+        pass
 
 
 main()
