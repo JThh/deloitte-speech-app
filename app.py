@@ -184,7 +184,7 @@ def show_category(cat='all'):
 def show_revenue(number):
 
     # st.subheader("Revenue Report for past "+str(number)+" years")
-    col1,col2 = st.beta_columns([1,1])
+    col1,col2 = st.beta_columns([1.8,1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
@@ -199,17 +199,6 @@ def show_revenue(number):
         st.plotly_chart(fig,use_container_width=True)
 
     with col2:
-        st.write("Geographical Report for Chinese Market")
-        st.write("")
-        st.write("")
-        st.write("")
-        st.write("")
-        image = Image.open('./assets/map.png')
-        st.image(image)
-    
-    col1,col2 = st.beta_columns([1,1])
-
-    with col1:
         df_inc = data_filter_year.copy()
         df_inc.Date = df_inc.Date.apply(lambda x:x[:-3])
         df_inc_gp = df_inc[['AAPL.High','AAPL.Low','Date']].groupby(['Date']).sum().reset_index()
@@ -229,6 +218,17 @@ def show_revenue(number):
             yaxis_title="Percentage (%)",
         )
         st.plotly_chart(fig,use_container_width=True)
+    
+    col1,col2 = st.beta_columns([1,1])
+
+    with col1:
+        st.write("Geographical Report for Chinese Market")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        image = Image.open('./assets/map.png')
+        st.image(image)
 
     with col2:
         labels = CATEGORIES
