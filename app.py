@@ -301,12 +301,8 @@ def main():
     with col1:
         result = st.text_input(label="Text input",value="Example: show me the revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
     
-    with col2:
-        st.write("")
-        st.write("")
-
-        if st.button('Search'):
-            process_text(result)
+    if result:
+        process_text(result)
     
     st.write("Or you can speak by clicking the button below")
 
