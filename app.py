@@ -33,7 +33,7 @@ PEAK_TIME = data.loc[data['AAPL.High'] ==
                      data['AAPL.High'].max(), 'Date'].values[0]
 PEAK_VALUE = data['AAPL.High'].max()
 
-CATEGORIES = ["cat"+str(n) for n in range(1,9)]
+CATEGORIES = ["category "+str(n) for n in range(1,9)]
 
 
 def process_text(txt):
@@ -46,7 +46,8 @@ def process_text(txt):
     try:
         TIME_RANGE = [int(s) for s in txt.split() if s.isdigit()][0]
     except:
-        st.warning('Please provide a time range.')
+        #st.warning('Please provide a time range.')
+        pass
     # if num_txt != txt:
     #     number = [int(s) for s in num_txt.split() if s.isdigit()][0]
     if 'mean' in txt:
@@ -57,6 +58,9 @@ def process_text(txt):
             "This is not yet explainable. More comprehensive explanations are expected to be filled in soon.")
 
     if 'catego' in txt:
+        for cat in CATEGORIES:
+            if cat in txt:
+                show_category(cat)
         show_category()
         # if 'revenue' in txt:
         #     for cat in categories:
@@ -181,7 +185,7 @@ def show_category(cat='all'):
 
         return fig
     if cat == 'all':
-        st.plotly_chart(draw_fig())
+        st.plotly_chart(draw_fig(),use_container_width=True)
         return
     if cat not in CATEGORIES:
         st.warning("Please select a category in the categories list.")
@@ -191,26 +195,25 @@ def show_category(cat='all'):
 
 
 def show_revenue(number):
-    col1, col2 = st.beta_columns(2)
-    with col1:
+
         # st.subheader("Revenue Report for past "+str(number)+" years")
 
-        data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
+    data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
-        fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
-            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
+    fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
+        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
 
-        fig.update_layout(
-            title="Revenue Report for past "+str(number)+" years",
-            xaxis_title="Quarters/Years",
-            yaxis_title="Amount (Million ¥)",
-            legend_title="Legend Title",
-        )
-        st.plotly_chart(fig)
-    with col2:
-        st.subheader("Geographical Report for Chinese Market")
-        image = Image.open('./assets/map.png')
-        st.image(image)
+    fig.update_layout(
+        title="Revenue Report for past "+str(number)+" years",
+        xaxis_title="Quarters/Years",
+        yaxis_title="Amount (Million ¥)",
+        legend_title="Legend Title",
+    )
+    st.plotly_chart(fig)
+
+    st.subheader("Geographical Report for Chinese Market")
+    image = Image.open('./assets/map.png')
+    st.image(image)
 
 
 # def show_profit(number):
@@ -228,7 +231,8 @@ def show_meaning(key):
     st.info("Tips: Only a sample explanation below.")
     if key == 'curve':
         st.markdown(
-            "The curve stands for the _growth and dropdowns_ in revenue in the past "+str(TIME_RANGE)+" years.")
+            "The curve stands for the _growth and dropdowns_ in revenue and profits in the past "+str(TIME_RANGE)+" years.")
+        st.markdown("And *red curve* stands for profits; *blue curve* stands for revenues.")
     elif key == 'peak':
         st.markdown(
             "The peak value which occurred at " +
