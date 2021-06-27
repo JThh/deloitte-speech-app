@@ -351,6 +351,8 @@ def main():
         if "GET_TEXT" in result:
             # st.write("You said:")
             st.text("Recognized speech: "+result.get("GET_TEXT"))
+            st.write('')
+            st.write('')
             process_text(result.get("GET_TEXT"))
 
 
