@@ -16,8 +16,10 @@ import dateparser
 # data = pd.read_csv(DATA_URL)
 
 CURRENT_YEAR = 2021
+TIME_RANGE = 5
 
 data = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv')
+data.loc[:,'Date'] = data.loc[:,'Date'].apply(lambda x:str(int(x[:4])+4)+x[4:])
 
 def process_text(txt):
     '''
@@ -27,32 +29,33 @@ def process_text(txt):
     
     # num_txt = parse(txt)
     try:
-        number = [int(s) for s in txt.split() if s.isdigit()][0]
+        TIME_RANGE = [int(s) for s in txt.split() if s.isdigit()][0]
     except:
         st.warning('Please provide a time range.')
     # if num_txt != txt:
     #     number = [int(s) for s in num_txt.split() if s.isdigit()][0]
-    
+    if 'mean' in txt:
+        show_meaning(txt)
+
     if 'category' in txt:
-        categories = show_category()
-        if 'revenue' in txt:
-            for cat in categories:
-                show_revenue(number,cat)
-        if 'profit' in txt:
-            for cat in categories:
-                show_profit(number,cat)
+        show_category()
+        # if 'revenue' in txt:
+        #     for cat in categories:
+        #         show_revenue(number,cat)
+        # if 'profit' in txt:
+        #     for cat in categories:
+        #         show_profit(number,cat)
 
     if 'revenue' in txt:
-        show_revenue(number)
+        show_revenue(TIME_RANGE)
     if 'profit' in txt:
-        show_profit(number)
+        show_profit(TIME_RANGE)
 
 def show_category():
-    #return categories
     pass
 
 def show_revenue(number,cat='all'):
-    st.subheader("Revenue Report for past"+str(number)+"years")
+    st.subheader("Revenue Report for past "+str(number)+" years")
 
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number),:]
 
@@ -60,15 +63,18 @@ def show_revenue(number,cat='all'):
     st.plotly_chart(fig)
 
 def show_profit(number,cat='all'):
-    st.subheader("Revenue Report for past"+str(number)+"years")
+    st.subheader("Profit Report for past "+str(number)+" years")
 
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number),:]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.5)])
     st.plotly_chart(fig)
 
+
 def main():
-    st.title("Speech Enhanced Business Intelligence App")
+    st.title("Speech Enhanced BI App")
+    st.sidebar.header("Speech BI")
+    st.sidebar.write("The data is fake and only for demonstration purpose. The data was lastest updated in 2018.")
     stt_button = Button(label="Click to Speak", width=100)
 
     stt_button.js_on_event("button_click", CustomJS(code="""
@@ -101,7 +107,7 @@ def main():
     if result:
         if "GET_TEXT" in result:
             # st.write("You said:")
-            st.write(result.get("GET_TEXT"))
+            st.write("Recognized speech:",result.get("GET_TEXT"))
             process_text(result.get("GET_TEXT"))
 
 main()
