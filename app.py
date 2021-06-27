@@ -44,7 +44,7 @@ def process_text(txt):
         show_revenue(TIME_RANGE)
 
     if 'thank' in txt.lower():
-        st.write("You're welcome!")
+        st.write("You're welcome! ^-^")
 
 
 def show_category(cat='all'):
