@@ -19,7 +19,7 @@ import numpy as np
 
 # data = pd.read_csv(DATA_URL)
 
-st.set_page_config(layout="wide",initial_sidebar_state="hide")
+st.set_page_config(layout="wide",initial_sidebar_state="collapsed")
 
 
 def process_text(txt):
