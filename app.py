@@ -62,6 +62,7 @@ def process_text(txt):
             if cat in txt:
                 show_category(cat)
         show_category()
+        return
         # if 'revenue' in txt:
         #     for cat in categories:
         #         show_revenue(number,cat)
@@ -190,30 +191,32 @@ def show_category(cat='all'):
     if cat not in CATEGORIES:
         st.warning("Please select a category in the categories list.")
     else:
-        st.markdown('Detailed *revenue & profit* report for '+cat)
+        st.subheader('Detailed *revenue & profit* report for '+cat)
         show_revenue(TIME_RANGE)
 
 
 def show_revenue(number):
 
         # st.subheader("Revenue Report for past "+str(number)+" years")
+    col1,col2 = st.beta_columns([2,1])
+    with col1:
+        data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
-    data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
+        fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
+            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
 
-    fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
-        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
+        fig.update_layout(
+            title="Revenue Report for past "+str(number)+" years",
+            xaxis_title="Quarters/Years",
+            yaxis_title="Amount (Million ¥)",
+            legend_title="Legend Title",
+        )
+        st.plotly_chart(fig,use_container_width=True)
 
-    fig.update_layout(
-        title="Revenue Report for past "+str(number)+" years",
-        xaxis_title="Quarters/Years",
-        yaxis_title="Amount (Million ¥)",
-        legend_title="Legend Title",
-    )
-    st.plotly_chart(fig)
-
-    st.subheader("Geographical Report for Chinese Market")
-    image = Image.open('./assets/map.png')
-    st.image(image)
+    with col2:
+        st.subheader("Geographical Report for Chinese Market")
+        image = Image.open('./assets/map.png')
+        st.image(image)
 
 
 # def show_profit(number):
