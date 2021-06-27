@@ -311,41 +311,40 @@ def main():
     col1, col2 = st.beta_columns(2)
 
     with col1:
-        result = st.text_input(help="Example: show me the revenue report for past 3 years", label="Text input", max_chars=100)
+        st.write("Speak by clicking the button below")
 
-    if result:
-        process_text(result)
+        stt_button = Button(label="Click to Speak", width=120)
 
-    st.write("Or you can speak by clicking the button below")
-
-    stt_button = Button(label="Click to Speak", width=120)
-
-    stt_button.js_on_event("button_click", CustomJS(code="""
-        var recognition = new webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-    
-        recognition.onresult = function (e) {
-            var value = "";
-            for (var i = e.resultIndex; i < e.results.length; ++i) {
-                if (e.results[i].isFinal) {
-                    value += e.results[i][0].transcript;
+        stt_button.js_on_event("button_click", CustomJS(code="""
+            var recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+        
+            recognition.onresult = function (e) {
+                var value = "";
+                for (var i = e.resultIndex; i < e.results.length; ++i) {
+                    if (e.results[i].isFinal) {
+                        value += e.results[i][0].transcript;
+                    }
+                }
+                if ( value != "") {
+                    document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
                 }
             }
-            if ( value != "") {
-                document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
-            }
-        }
-        recognition.start();
-        """))
+            recognition.start();
+            """))
 
-    result = streamlit_bokeh_events(
-        stt_button,
-        events="GET_TEXT",
-        key="listen",
-        refresh_on_update=False,
-        override_height=75,
-        debounce_time=0)
+        result = streamlit_bokeh_events(
+            stt_button,
+            events="GET_TEXT",
+            key="listen",
+            refresh_on_update=False,
+            override_height=75,
+            debounce_time=0)
+
+    with col2:
+        result = st.text_input(help="Example: show me the revenue report for past 3 years", label="Text input", max_chars=100)
+
 
     if result:
         if "GET_TEXT" in result:
@@ -354,6 +353,9 @@ def main():
             st.write('')
             st.write('')
             process_text(result.get("GET_TEXT"))
+        else:
+            process_text(result)
+
 
 
 main()
