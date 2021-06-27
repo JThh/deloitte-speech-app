@@ -173,6 +173,8 @@ def show_category(cat='all'):
 
         return fig
     if cat == 'all':
+        st.info("Tips: Only a sample plot.")
+
         st.plotly_chart(draw_fig(), use_container_width=True)
         return
     if cat not in CATEGORIES:
@@ -348,7 +350,7 @@ def main():
     if result:
         if "GET_TEXT" in result:
             # st.write("You said:")
-            st.write("Recognized speech:", result.get("GET_TEXT"))
+            st.text("Recognized speech: "+result.get("GET_TEXT"))
             process_text(result.get("GET_TEXT"))
 
 
