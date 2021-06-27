@@ -191,7 +191,7 @@ def show_category(cat='all'):
     if cat not in CATEGORIES:
         st.warning("Please select a category in the categories list.")
     else:
-        st.subheader('Detailed *revenue & profit* report for '+cat)
+        st.subheader('Detailed revenue & profit report for '+cat)
         show_revenue(TIME_RANGE)
 
 
@@ -249,11 +249,13 @@ def show_meaning(key):
 
 
 def main():
-    st.title("Speech Enhanced BI App")
+    st.title("Speech Powered BI Dashboard")
     st.write("")
-    st.sidebar.header("Speech Powered BI")
-    st.sidebar.write(
-        "The data is fake and only for demonstration purpose. The data was lastest updated in Febuary, 2021.")
+    st.sidebar.header("BI Dashboard")
+    with st.sidebar.beta_expander("Notes",expanded=True):
+        st.write(
+            "The data is fake and only for demonstration purpose. The data was lastest updated in Febuary, 2021.")
+    
     stt_button = Button(label="Click to Speak", width=100)
 
     stt_button.js_on_event("button_click", CustomJS(code="""
