@@ -184,7 +184,7 @@ def show_category(cat='all'):
 def show_revenue(number):
 
     # st.subheader("Revenue Report for past "+str(number)+" years")
-    col1,col2 = st.beta_columns([1.8,1])
+    col1,col2 = st.beta_columns([1,1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
@@ -221,12 +221,12 @@ def show_revenue(number):
         df_inc_gp.drop(df_inc_gp.index[-1],inplace=True)
 
         fig = go.Figure([go.Line(x=df_inc_gp['Date'], y=df_inc_gp['AAPL.High'], name="Revenue"), go.Line(
-            x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(df_inc_gp.shape[0],)),name="Profits")])
+            x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.5, high=0.85, size=(df_inc_gp.shape[0],)),name="Profits")])
 
         fig.update_layout(
             title="Revenue & Profit Perc. Increase",
             xaxis_title="Quarters/Years",
-            yaxis_title="Amount (Million ¥)",
+            yaxis_title="Percentage (%)",
         )
         st.plotly_chart(fig,use_container_width=True)
 
