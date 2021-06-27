@@ -258,11 +258,12 @@ def main():
     with st.sidebar.beta_expander("Notes",expanded=True):
         st.markdown(
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
-    
+
+    result = ''    
     col1, col2 = st.beta_columns(2)
 
     with col1:
-        result = st.text_input(label="Manual text input",value="The revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
+        result = st.text_input(label="Text input",value="The revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
 
     with col2:
         st.write("Or you can speak by clicking the button below")
