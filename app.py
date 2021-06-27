@@ -253,8 +253,8 @@ def main():
     st.write("")
     st.sidebar.header("BI Dashboard")
     with st.sidebar.beta_expander("Notes",expanded=True):
-        st.write(
-            "The data is fake and only for demonstration purpose. The data was lastest updated in Febuary, 2021.")
+        st.markdown(
+            "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
     
     stt_button = Button(label="Click to Speak", width=100)
 
