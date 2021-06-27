@@ -19,7 +19,7 @@ import numpy as np
 
 # data = pd.read_csv(DATA_URL)
 
-st.set_page_config(layout="wide",initial_sidebar_state="collapsed")
+st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 
 def process_text(txt):
@@ -173,53 +173,56 @@ def show_category(cat='all'):
 
         return fig
     if cat == 'all':
-        st.plotly_chart(draw_fig(),use_container_width=True)
+        st.plotly_chart(draw_fig(), use_container_width=True)
         return
     if cat not in CATEGORIES:
         st.warning("Please select a category in the categories list.")
     else:
-        show_category_revenue(TIME_RANGE,cat)
+        show_category_revenue(TIME_RANGE, cat)
 
 
 def show_revenue(number):
 
     # st.subheader("Revenue Report for past "+str(number)+" years")
-    col1,col2 = st.beta_columns([1.8,1])
+    col1, col2 = st.beta_columns([1.8, 1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
         fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
-            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
+            x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
 
         fig.update_layout(
             title="Revenue & Profit Report for past "+str(number)+" years",
             xaxis_title="Quarters/Years",
             yaxis_title="Amount (Million ¥)",
         )
-        st.plotly_chart(fig,use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True)
 
     with col2:
         df_inc = data_filter_year.copy()
-        df_inc.Date = df_inc.Date.apply(lambda x:x[:-3])
-        df_inc_gp = df_inc[['AAPL.High','AAPL.Low','Date']].groupby(['Date']).sum().reset_index()
+        df_inc.Date = df_inc.Date.apply(lambda x: x[:-3])
+        df_inc_gp = df_inc[['AAPL.High', 'AAPL.Low', 'Date']
+                           ].groupby(['Date']).sum().reset_index()
 
         for ind in df_inc_gp.index[:-1]:
-            df_inc_gp.loc[ind,'AAPL.High'] = (df_inc_gp.loc[ind+1,'AAPL.High'] - df_inc_gp.loc[ind,'AAPL.High']) / df_inc_gp.loc[ind,'AAPL.High']
-            df_inc_gp.loc[ind,'AAPL.Low'] = (df_inc_gp.loc[ind+1,'AAPL.Low'] - df_inc_gp.loc[ind,'AAPL.Low']) / df_inc_gp.loc[ind,'AAPL.Low']
-        
-        df_inc_gp.drop(df_inc_gp.index[-1],inplace=True)
+            df_inc_gp.loc[ind, 'AAPL.High'] = (
+                df_inc_gp.loc[ind+1, 'AAPL.High'] - df_inc_gp.loc[ind, 'AAPL.High']) / df_inc_gp.loc[ind, 'AAPL.High']
+            df_inc_gp.loc[ind, 'AAPL.Low'] = (
+                df_inc_gp.loc[ind+1, 'AAPL.Low'] - df_inc_gp.loc[ind, 'AAPL.Low']) / df_inc_gp.loc[ind, 'AAPL.Low']
+
+        df_inc_gp.drop(df_inc_gp.index[-1], inplace=True)
 
         fig = go.Figure([go.Line(x=df_inc_gp['Date'], y=df_inc_gp['AAPL.High'], name="Revenue"), go.Line(
-            x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.5, high=0.85, size=(df_inc_gp.shape[0],)),name="Profits")])
+            x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.5, high=0.85, size=(df_inc_gp.shape[0],)), name="Profits")])
 
         fig.update_layout(
             title="Revenue & Profit Perc. Increase",
             xaxis_title="Quarters/Years",
             yaxis_title="Percentage (%)",
         )
-        st.plotly_chart(fig,use_container_width=True)
-    
-    col1,col2 = st.beta_columns([1,1])
+        st.plotly_chart(fig, use_container_width=True)
+
+    col1, col2 = st.beta_columns([1, 1])
 
     with col1:
         st.write("Geographical Report for Chinese Market")
@@ -243,22 +246,23 @@ def show_revenue(number):
         fig.update_layout(
             title="Revenue Division for each category",
         )
-        st.plotly_chart(fig,use_container_width=True)
-            
+        st.plotly_chart(fig, use_container_width=True)
+
 
 def show_category_revenue(years_ago, cat='category 1'):
     st.subheader('Detailed revenue & profit report for '+cat)
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
-        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.3*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)),name="Profits")])
+        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.3*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
 
     fig.update_layout(
-        title="Revenue & Profit Report for "+cat+" in past "+str(years_ago)+" years",
+        title="Revenue & Profit Report for "+cat +
+        " in past "+str(years_ago)+" years",
         xaxis_title="Quarters/Years",
         yaxis_title="Amount (Million ¥)",
     )
-    st.plotly_chart(fig,use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 # def show_profit(number):
@@ -276,7 +280,8 @@ def show_meaning(key):
     if key == 'curve':
         st.markdown(
             "The curve stands for the _growth and dropdowns_ in revenue and profits in the past "+str(TIME_RANGE)+" years.")
-        st.markdown("And *red curve* stands for profits; *blue curve* stands for revenues.")
+        st.markdown(
+            "And *red curve* stands for profits; *blue curve* stands for revenues.")
     elif key == 'peak':
         st.markdown(
             "The peak value which occurred at **" +
@@ -288,26 +293,27 @@ def show_meaning(key):
     try:
         show_revenue(TIME_RANGE)
     except:
-        st.warning("You may have not queried the revenue or profit report. Please do that before checking the meanings.")
+        st.warning(
+            "You may have not queried the revenue or profit report. Please do that before checking the meanings.")
 
 
 def main():
     st.title("Speech Powered BI Dashboard")
     st.write("")
     st.sidebar.header("BI Dashboard")
-    with st.sidebar.beta_expander("Notes",expanded=True):
+    with st.sidebar.beta_expander("Notes", expanded=True):
         st.markdown(
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
 
-    result = ''    
+    result = ''
     col1, col2 = st.beta_columns(2)
 
     with col1:
-        result = st.text_input(label="Text input",value="Example: show me the revenue report for past 3 years",help="You can type in the search query or speack by clicking the button below",max_chars=100,)
-    
+        result = st.text_input(help="Example: show me the revenue report for past 3 years", help="You can type in the search query or speack by clicking the button below", label="Text input", max_chars=100)
+
     if result:
         process_text(result)
-    
+
     st.write("Or you can speak by clicking the button below")
 
     stt_button = Button(label="Click to Speak", width=120)
@@ -344,5 +350,6 @@ def main():
             # st.write("You said:")
             st.write("Recognized speech:", result.get("GET_TEXT"))
             process_text(result.get("GET_TEXT"))
+
 
 main()
