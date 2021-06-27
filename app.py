@@ -220,10 +220,6 @@ def show_revenue(number=5):
 
 
 def show_meaning(key):
-    try:
-        show_revenue(TIME_RANGE)
-    except:
-        st.warning("You may have not queried the revenue or profit report. Please do that before checking the meanings.")
     st.info("Tips: Only a sample explanation below.")
     if key == 'curve':
         st.markdown(
@@ -236,6 +232,11 @@ def show_meaning(key):
         )
     else:
         pass
+
+    try:
+        show_revenue(TIME_RANGE)
+    except:
+        st.warning("You may have not queried the revenue or profit report. Please do that before checking the meanings.")
 
 
 def main():
