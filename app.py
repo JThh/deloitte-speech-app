@@ -40,6 +40,7 @@ def process_text(txt):
         for x in EXPLAINABLE_TXT:
             if x in txt:
                 show_meaning(x)
+                return
         st.warning(
             "This is not yet explainable. More comprehensive explanations are expected to be filled in soon.")
 
@@ -230,8 +231,8 @@ def show_meaning(key):
         st.markdown("And *red curve* stands for profits; *blue curve* stands for revenues.")
     elif key == 'peak':
         st.markdown(
-            "The peak value which occurred at " +
-            str(PEAK_TIME)+" reached "+str(PEAK_VALUE)
+            "The peak value which occurred at **" +
+            str(PEAK_TIME)+"** reached **"+str(PEAK_VALUE)+"**"
         )
     else:
         pass
