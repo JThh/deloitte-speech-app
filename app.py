@@ -404,42 +404,30 @@ def main():
     #     height=700, # try various values to see what works best (maybe use st.slider)
     # )
 
-    import SessionState
+    # import SessionState
 
 
-    state = SessionState.get(chat_list=[])
+    # state = SessionState.get(chat_list=[])
 
-    name = st.sidebar.text_input("Name")
-    message = st.sidebar.text_area("Message")
-    if st.sidebar.button("Post chat message"):
-        state.chat_list.append((name, message))
+    # name = st.sidebar.text_input("Name")
+    # message = st.sidebar.text_area("Message")
+    # if st.sidebar.button("Post chat message"):
+    #     state.chat_list.append((name, message))
 
-    if len(state.chat_list) > 10:
-        del (state.chat_list[0])
+    # if len(state.chat_list) > 10:
+    #     del (state.chat_list[0])
 
-    try:
-        names, messages = zip(*state.chat_list)
-        chat1 = dict(Name=names, Message=messages)
-        st.table(chat1)
-    except ValueError:
-        st.title("Enter your name and message into the sidebar, and post!")
+    # try:
+    #     names, messages = zip(*state.chat_list)
+    #     chat1 = dict(Name=names, Message=messages)
+    #     st.table(chat1)
+    # except ValueError:
+    #     st.title("Enter your name and message into the sidebar, and post!")
     
-    
-    st.title('Counter Example')
-    if 'count' not in st.session_state:
-        st.session_state.count = 0
-        st.session_state.last_updated = datetime.time(0,0)
-
-    def update_counter():
-        st.session_state.count += st.session_state.increment_value
-        st.session_state.last_updated = st.session_state.update_time
-
+        
+    # Forms can be declared using the 'with' syntax
     with st.form(key='my_form'):
-        st.time_input(label='Enter the time', value=datetime.datetime.now().time(), key='update_time')
-        st.number_input('Enter a value', value=0, step=1, key='increment_value')
-        submit = st.form_submit_button(label='Update', on_click=update_counter)
-
-    st.write('Current Count = ', st.session_state.count)
-    st.write('Last Updated = ', st.session_state.last_updated)
+        text_input = st.text_input(label='Enter your name')
+        submit_button = st.form_submit_button(label='Submit')
 
 main()
