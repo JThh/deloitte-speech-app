@@ -339,6 +339,7 @@ def main():
     else:
         pass
 
+    a = 1
     components.iframe("https://dash-gallery.plotly.host/dash-financial-report/news-and-reviews",height=500,scrolling=True)
     components.html(
         """
@@ -362,7 +363,7 @@ def main():
         $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
         data: {
           values: [
-            {a: 'C', b: 2},
+            {a: 'C', b: {a}},
             {a: 'C', b: 7},
             {a: 'C', b: 4},
             {a: 'D', b: 1},
