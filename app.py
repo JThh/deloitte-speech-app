@@ -393,15 +393,35 @@ def main():
     #     """,
     #     height=600,
     # )
-    components.html(
-        """
-        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-        <df-messenger
-            chat-title="Web-Search"
-            agent-id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-            language-code="en"></df-messenger>
-        """,
-        height=500, # try various values to see what works best (maybe use st.slider)
-    )
+    # components.html(
+    #     """
+    #     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    #     <df-messenger
+    #         chat-title="Web-Search"
+    #         agent-id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    #         language-code="en"></df-messenger>
+    #     """,
+    #     height=700, # try various values to see what works best (maybe use st.slider)
+    # )
+
+    import SessionState
+
+
+    state = SessionState.get(chat_list=[])
+
+    name = st.sidebar.text_input("Name")
+    message = st.sidebar.text_area("Message")
+    if st.sidebar.button("Post chat message"):
+        state.chat_list.append((name, message))
+
+    if len(state.chat_list) > 10:
+        del (state.chat_list[0])
+
+    try:
+        names, messages = zip(*state.chat_list)
+        chat1 = dict(Name=names, Message=messages)
+        st.table(chat1)
+    except ValueError:
+        st.title("Enter your name and message into the sidebar, and post!")
 
 main()
