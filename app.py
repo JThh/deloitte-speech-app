@@ -340,7 +340,7 @@ def main():
         pass
 
     
-    components.iframe("https://dash-gallery.plotly.host/dash-oil-and-gas/",height=1000,scrolling=True)
+    components.iframe("http://127.0.0.1:8050/",height=700,scrolling=True)
     # components.html(
     #     """
     # <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
