@@ -291,8 +291,9 @@ def main():
 
         stt_button.js_on_event("button_click", CustomJS(code="""
             var recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;
+            recognition.continuous = false;
             recognition.interimResults = true;
+            recognition.lang = 'cmn-Hans-CN';
         
             recognition.onresult = function (e) {
                 var value = "";
