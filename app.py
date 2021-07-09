@@ -340,7 +340,7 @@ def main():
         pass
 
     
-    components.iframe("https://dash-gallery.plotly.host/dash-oil-and-gas/",height=800,scrolling=True)
+    components.iframe("https://dash-gallery.plotly.host/dash-oil-and-gas/",height=1000,scrolling=True)
     # components.html(
     #     """
     # <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
@@ -401,7 +401,7 @@ def main():
             agent-id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
             language-code="en"></df-messenger>
         """,
-        height=700, # try various values to see what works best (maybe use st.slider)
+        height=500, # try various values to see what works best (maybe use st.slider)
     )
 
 main()
