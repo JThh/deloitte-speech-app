@@ -253,12 +253,12 @@ def show_category_revenue(years_ago, cat='category 1'):
 
 def show_meaning(key):
     st.info("Tips: Only a sample explanation below.")
-    if key == 'curve':
+    if key.lower() == 'curve':
         st.markdown(
             "The curve stands for the _growth and dropdowns_ in revenue and profits in the past "+str(TIME_RANGE)+" years.")
         st.markdown(
             "And *red curve* stands for profits; *blue curve* stands for revenues.")
-    elif key == 'peak':
+    elif key.lower() == 'peak':
         st.markdown(
             "The peak value which occurred at **" +
             str(PEAK_TIME)+"** reached **"+str(PEAK_VALUE)+"**"
