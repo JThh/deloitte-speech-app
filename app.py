@@ -339,7 +339,7 @@ def main():
     else:
         pass
 
-    components.iframe("https://dash-gallery.plotly.host/Portal/?search=nlp",height=500)
+    components.iframe("https://dash-gallery.plotly.host/Portal/?search=nlp",height=500,scrolling=True)
 
 
 main()
