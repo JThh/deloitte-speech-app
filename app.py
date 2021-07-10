@@ -337,6 +337,13 @@ def main():
 
     state = SessionState.get(chat_list=[])
 
+    try:
+        names, messages = zip(*state.chat_list)
+        chat1 = dict(Name=names, Message=messages)
+        st.sidebartable(chat1)
+    except ValueError:
+        pass
+
     name = st.sidebar.text_input("Name")
     message = st.sidebar.text_area("Message")
     if st.sidebar.button("Post chat message"):
@@ -345,17 +352,6 @@ def main():
     if len(state.chat_list) > 10:
         del (state.chat_list[0])
 
-    try:
-        names, messages = zip(*state.chat_list)
-        chat1 = dict(Name=names, Message=messages)
-        st.table(chat1)
-    except ValueError:
-        st.title("Enter your name and message into the sidebar, and post!")
     
-        
-    # Forms can be declared using the 'with' syntax
-    with st.form(key='my_form'):
-        text_input = st.text_input(label='Enter your name')
-        submit_button = st.form_submit_button(label='Submit')
 
 main()
