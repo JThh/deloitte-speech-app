@@ -288,12 +288,6 @@ def main():
     with col1:
         st.write("Speak by clicking the button below")
 
-        # menu = [("普通话", "cmn-Hans-CN"), ("粵語", "yue-Hant-HK"), ("English", "en-US")]
-
-        # dropdown = Dropdown(label="select language", margin=(0,0,0,0), menu=menu)
-
-        # dropdown.js_on_event("menu_item_click", CustomJS(code="var selected_lang = "))
-
         stt_button = Button(label="Click to Speak", width=120)
 
         stt_button.js_on_event("button_click", CustomJS(code="""
@@ -339,90 +333,24 @@ def main():
     else:
         pass
 
-    
-    components.iframe("http://127.0.0.1:8050/",height=700,scrolling=True)
-    # components.html(
-    #     """
-    # <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-    # <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-    # <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    import SessionState
 
-    # <style media="screen">
-    #   /* Add space between Vega-Embed links  */
-    #   .vega-actions a {
-    #     margin-right: 5px;
-    #   }
-    # </style>
+    state = SessionState.get(chat_list=[])
 
-    # <h1>Template for Embedding Vega-Lite Visualization</h1>
-    # <!-- Container for the visualization -->
-    # <div id="vis"></div>
+    name = st.sidebar.text_input("Name")
+    message = st.sidebar.text_area("Message")
+    if st.sidebar.button("Post chat message"):
+        state.chat_list.append((name, message))
 
-    # <script>
-    #   var vlSpec = {
-    #     $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-    #     data: {
-    #       values: [
-    #         {a: 'C', b: 2},
-    #         {a: 'C', b: 7},
-    #         {a: 'C', b: 4},
-    #         {a: 'D', b: 1},
-    #         {a: 'D', b: 2},
-    #         {a: 'D', b: 6},
-    #         {a: 'E', b: 8},
-    #         {a: 'E', b: 4},
-    #         {a: 'E', b: 7}
-    #       ]
-    #     },
-    #     mark: 'bar',
-    #     encoding: {
-    #       y: {field: 'a', type: 'nominal'},
-    #       x: {
-    #         aggregate: 'average',
-    #         field: 'b',
-    #         type: 'quantitative',
-    #         axis: {
-    #           title: 'Average of b'
-    #         }
-    #       }
-    #     }
-    #   };
+    if len(state.chat_list) > 10:
+        del (state.chat_list[0])
 
-    #   vegaEmbed('#vis', vlSpec);
-    # </script>
-    #     """,
-    #     height=600,
-    # )
-    # components.html(
-    #     """
-    #     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    #     <df-messenger
-    #         chat-title="Web-Search"
-    #         agent-id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-    #         language-code="en"></df-messenger>
-    #     """,
-    #     height=700, # try various values to see what works best (maybe use st.slider)
-    # )
-
-    # import SessionState
-
-
-    # state = SessionState.get(chat_list=[])
-
-    # name = st.sidebar.text_input("Name")
-    # message = st.sidebar.text_area("Message")
-    # if st.sidebar.button("Post chat message"):
-    #     state.chat_list.append((name, message))
-
-    # if len(state.chat_list) > 10:
-    #     del (state.chat_list[0])
-
-    # try:
-    #     names, messages = zip(*state.chat_list)
-    #     chat1 = dict(Name=names, Message=messages)
-    #     st.table(chat1)
-    # except ValueError:
-    #     st.title("Enter your name and message into the sidebar, and post!")
+    try:
+        names, messages = zip(*state.chat_list)
+        chat1 = dict(Name=names, Message=messages)
+        st.table(chat1)
+    except ValueError:
+        st.title("Enter your name and message into the sidebar, and post!")
     
         
     # Forms can be declared using the 'with' syntax
