@@ -1,6 +1,6 @@
 import sys
 import json  
-import jsonurl
+import jsonurl 
 import jieba
 import jieba.posseg as pseg
 import jieba.analyse
