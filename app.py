@@ -9,7 +9,10 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
 from config import *
+from config_prev import *
+from utils import TextAnalyzer
 import numpy as np
+
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
@@ -327,9 +330,16 @@ def main():
         st.text("Recognized speech: "+result_audio.get("GET_TEXT"))
         st.write('')
         st.write('')
-        process_text(result_audio.get("GET_TEXT"))
+        analyzer = TextAnalyzer(result_audio,KGB,False)
+
+        queries = analyzer.run()
+
+        for q in queries:
+            st.text(q)
+        # process_text(result_audio.get("GET_TEXT"))
     elif result_text:
-        process_text(result_text)
+        # process_text(result_text)
+        pass
     else:
         pass
 

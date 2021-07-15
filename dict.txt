@@ -1,0 +1,213 @@
+一、营业总收入
+Total revenue
+总营收
+创收
+收入
+Total operating income
+Gross revenue
+营业收入
+Revenue
+营收
+Sales
+运营收入
+经营收入
+Operating income
+Turnover
+Operating Revenue 
+营业额
+Sales revenue
+二、营业总成本
+Total cost
+Total Operating Cost
+营业成本
+Operating cost
+Cost of goods sold
+Cost of sales
+营业税金及附加
+Business taxes and levies
+税金及附加
+Sales taxes and surcharges
+销售费用
+Selling Expenses
+管理费用
+General & Administrative expenses
+Administrative expenses
+财务费用
+Financial expenses
+Finance costs
+研发费用
+Research and development expense
+R&D expenses
+R&D
+研发成本
+资产减值损失
+Impairment loss of assets
+Asset Impairment Loss
+Asset Devaluation
+公允价值变动收益
+Gain from change in fair values
+投资收益
+Investment income
+Income from investments
+投资收入
+其中:对联营企业和合营企业的投资收益
+对联营企业和合营企业的投资收益
+Income from investments in associates and joint ventures
+汇兑收益
+Exchange gains
+汇兑差额
+三、营业利润
+Operating profit
+营业利润
+加:营业外收入
+Non-operating income
+营业外收益
+减：营业外支出
+Non-operating expenses
+其中：非流动资产处置损失
+disposal loss on non-current assets
+Loss from non-currunt assets disposal
+四、利润总额
+Total profit
+利润总额
+税前利润
+减：所得税费用
+Less: Income tax expenses
+所得税
+Income tax expenses
+五、净利润
+Net profit
+净利润
+Net Income
+利润
+Earnings
+归属于母公司所有者的净利润
+归母净利润
+Profit attributable to shareholders
+Net Income Attributable to Shareholders
+少数股东损益
+Minority shareholder's profit
+基本每股收益(元/股)
+EPS
+Basic earnings per share
+稀释每股收益(元/股)
+DPS
+Diluted earnings per share
+七、其他综合收益
+Other Comprehensive Income
+OCI
+八、综合收益总额
+Total comprehensive income
+Accumulated Other Comprehensive Income
+归属于母公司所有者的综合收益总额
+Attributable to owners of parent company
+归属于少数股东的综合收益总额
+Attributable to Minority shareholders'
+营业净利率
+Net Margin
+净利率
+息税前利润
+Earnings Before Interest and Tax
+EBIT
+息前税前利润
+毛利率
+Gross Profit Margin
+销售毛利率
+Gross margin
+Gross profit ratio
+年度
+年
+月度
+月
+季度
+季
+分公司
+公司
+A公司
+A分公司
+B公司
+B分公司
+C公司
+C分公司
+D公司
+D分公司
+E公司
+E分公司
+F公司
+F分公司
+G公司
+G分公司
+H公司
+H分公司
+I公司
+I分公司
+J公司
+J分公司
+K公司
+K分公司
+L公司
+L分公司
+M公司
+M分公司
+N公司
+N分公司
+O公司
+O分公司
+P公司
+P分公司
+Q公司
+Q分公司
+R公司
+R分公司
+S公司
+S分公司
+T公司
+T分公司
+U公司
+U分公司
+V公司
+V分公司
+W公司
+W分公司
+X公司
+X分公司
+Y公司
+Y分公司
+Z公司
+Z分公司
+1
+一
+2
+二
+3
+三
+4
+四
+5
+五
+6
+六
+7
+七
+8
+八
+9
+九
+10
+十
+折线图
+趋势
+变化趋势
+走势
+饼图/圆环图
+构成
+组成
+成分
+比例
+财务指标
+指标
+是多少
+对比
+瀑布图
+增减变化
+加减关系
