@@ -1,4 +1,4 @@
-import pickle
+import pickle5 as pickle
 
 DICT_PATH = './dict.txt'
 PICKLE_PATH = './kg_base.p'
