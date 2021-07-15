@@ -1,4 +1,4 @@
-import pickle
+import pickle5 as pickle
 
 DICT_PATH = './dict.txt'
 PICKLE_PATH = './kg_base.p'
@@ -7,7 +7,7 @@ PICKLE_PATH = './kg_base.p'
 STOP_WORDS = ['a','the','report','show','me','you','for','last']
 
 with open(PICKLE_PATH, 'rb') as handle:
-    KGB = pickle.load(handle,protocol=pickle.HIGHEST_PROTOCOL)
+    KGB = pickle.load(handle)
     
 
 # CHINESE_NUMBERS = ['一','二','三','四','五','六','七','八','九','十']
