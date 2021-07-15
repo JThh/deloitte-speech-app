@@ -15,7 +15,7 @@ class TextAnalyzer():
         self.KGB = KGB
         self.followup = followup
 
-    def run(self) -> list(str):
+    def run(self) -> list:
         if not self.followup:
             kept_entities, kept_nouns, kept_time = self.split_entities()
             entities, attrs = self.process_entities(kept_entities, kept_nouns, kept_time)
