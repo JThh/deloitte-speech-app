@@ -335,7 +335,7 @@ def main():
         queries = analyzer.run()
 
         for q in queries:
-            st.text(q)
+            st.write(q)
         # process_text(result_audio.get("GET_TEXT"))
     elif result_text:
         # process_text(result_text)

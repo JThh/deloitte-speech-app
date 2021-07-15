@@ -1,6 +1,6 @@
 import sys
 import json  
-import jsonurl 
+# import jsonurl 
 import jieba
 import jieba.posseg as pseg
 import jieba.analyse
@@ -147,7 +147,7 @@ class TextAnalyzer():
         queries = []
 
         for json in jsons:
-            queries.append(jsonurl.query_string(json))
+            queries.append(json)
 
         return queries
 
