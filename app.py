@@ -330,7 +330,7 @@ def main():
         st.text("Recognized speech: "+result_audio.get("GET_TEXT"))
         st.write('')
         st.write('')
-        analyzer = TextAnalyzer(result_audio,KGB,False)
+        analyzer = TextAnalyzer(result_audio.get("GET_TEXT"),KGB,False)
 
         queries = analyzer.run()
 

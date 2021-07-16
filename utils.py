@@ -62,7 +62,7 @@ class TextAnalyzer():
                 eng_entity += ' '+word
 
         if not eng_entity:
-            kept_entities.append(eng_entity.lower())
+            kept_nouns.append(eng_entity[1:].lower())
         
         # 提取数量词、名词以及事先保存好的实体名词
         for w in segments:
