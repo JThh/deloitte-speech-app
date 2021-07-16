@@ -108,13 +108,12 @@ class TextAnalyzer():
 
         for ent in entities['chart']:
             if ent.lower() in self.KGB['chart_relations']:
-                attrs['chart_relations'] = self.KGB['chart_relations'][ent]
-        
-
+                attrs['chart_relations'] = self.KGB['chart_relations'][ent.lower()]
+    
 
         for ent in entities['company']:
             if ent.lower() in self.KGB['company_relations']:
-                attrs['company'] = self.KGB['company_relations'][ent]
+                attrs['company'] = self.KGB['company_relations'][ent.lower()]
 
 
         #最后处理名词
