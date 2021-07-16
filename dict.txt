@@ -1,120 +1,120 @@
 一、营业总收入
-Total revenue
+total revenue
 总营收
 创收
 收入
-Total operating income
-Gross revenue
+total operating income
+gross revenue
 营业收入
-Revenue
+revenue
 营收
-Sales
+sales
 运营收入
 经营收入
-Operating income
-Turnover
-Operating Revenue 
+operating income
+turnover
+operating revenue 
 营业额
-Sales revenue
+sales revenue
 二、营业总成本
-Total cost
-Total Operating Cost
+total cost
+total operating cost
 营业成本
-Operating cost
-Cost of goods sold
-Cost of sales
+operating cost
+cost of goods sold
+cost of sales
 营业税金及附加
-Business taxes and levies
+business taxes and levies
 税金及附加
-Sales taxes and surcharges
+sales taxes and surcharges
 销售费用
-Selling Expenses
+selling expenses
 管理费用
-General & Administrative expenses
-Administrative expenses
+general & administrative expenses
+administrative expenses
 财务费用
-Financial expenses
-Finance costs
+financial expenses
+finance costs
 研发费用
-Research and development expense
-R&D expenses
-R&D
+research and development expense
+r&d expenses
+r&d
 研发成本
 资产减值损失
-Impairment loss of assets
-Asset Impairment Loss
-Asset Devaluation
+impairment loss of assets
+asset impairment loss
+asset devaluation
 公允价值变动收益
-Gain from change in fair values
+gain from change in fair values
 投资收益
-Investment income
-Income from investments
+investment income
+income from investments
 投资收入
 其中:对联营企业和合营企业的投资收益
 对联营企业和合营企业的投资收益
-Income from investments in associates and joint ventures
+income from investments in associates and joint ventures
 汇兑收益
-Exchange gains
+exchange gains
 汇兑差额
 三、营业利润
-Operating profit
+operating profit
 营业利润
 加:营业外收入
-Non-operating income
+non-operating income
 营业外收益
 减：营业外支出
-Non-operating expenses
+non-operating expenses
 其中：非流动资产处置损失
 disposal loss on non-current assets
-Loss from non-currunt assets disposal
+loss from non-currunt assets disposal
 四、利润总额
-Total profit
+total profit
 利润总额
 税前利润
 减：所得税费用
-Less: Income tax expenses
+less: income tax expenses
 所得税
-Income tax expenses
+income tax expenses
 五、净利润
-Net profit
+net profit
 净利润
-Net Income
+net income
 利润
-Earnings
+earnings
 归属于母公司所有者的净利润
 归母净利润
-Profit attributable to shareholders
-Net Income Attributable to Shareholders
+profit attributable to shareholders
+net income attributable to shareholders
 少数股东损益
-Minority shareholder's profit
+minority shareholder's profit
 基本每股收益(元/股)
-EPS
-Basic earnings per share
+eps
+basic earnings per share
 稀释每股收益(元/股)
-DPS
-Diluted earnings per share
+dps
+diluted earnings per share
 七、其他综合收益
-Other Comprehensive Income
-OCI
+other comprehensive income
+oci
 八、综合收益总额
-Total comprehensive income
-Accumulated Other Comprehensive Income
+total comprehensive income
+accumulated other comprehensive income
 归属于母公司所有者的综合收益总额
-Attributable to owners of parent company
+attributable to owners of parent company
 归属于少数股东的综合收益总额
-Attributable to Minority shareholders'
+attributable to minority shareholders'
 营业净利率
-Net Margin
+net margin
 净利率
 息税前利润
-Earnings Before Interest and Tax
-EBIT
+earnings before interest and tax
+ebit
 息前税前利润
 毛利率
-Gross Profit Margin
+gross profit margin
 销售毛利率
-Gross margin
-Gross profit ratio
+gross margin
+gross profit ratio
 年度
 年
 月度
@@ -123,58 +123,58 @@ Gross profit ratio
 季
 分公司
 公司
-A公司
-A分公司
-B公司
-B分公司
-C公司
-C分公司
-D公司
-D分公司
-E公司
-E分公司
-F公司
-F分公司
-G公司
-G分公司
-H公司
-H分公司
-I公司
-I分公司
-J公司
-J分公司
-K公司
-K分公司
-L公司
-L分公司
-M公司
-M分公司
-N公司
-N分公司
-O公司
-O分公司
-P公司
-P分公司
-Q公司
-Q分公司
-R公司
-R分公司
-S公司
-S分公司
-T公司
-T分公司
-U公司
-U分公司
-V公司
-V分公司
-W公司
-W分公司
-X公司
-X分公司
-Y公司
-Y分公司
-Z公司
-Z分公司
+a公司
+a分公司
+b公司
+b分公司
+c公司
+c分公司
+d公司
+d分公司
+e公司
+e分公司
+f公司
+f分公司
+g公司
+g分公司
+h公司
+h分公司
+i公司
+i分公司
+j公司
+j分公司
+k公司
+k分公司
+l公司
+l分公司
+m公司
+m分公司
+n公司
+n分公司
+o公司
+o分公司
+p公司
+p分公司
+q公司
+q分公司
+r公司
+r分公司
+s公司
+s分公司
+t公司
+t分公司
+u公司
+u分公司
+v公司
+v分公司
+w公司
+w分公司
+x公司
+x分公司
+y公司
+y分公司
+z公司
+z分公司
 1
 一
 2

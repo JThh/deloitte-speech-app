@@ -96,16 +96,16 @@ class TextAnalyzer():
         attrs['company'] = 'default'
 
         for noun in nouns:
-            if noun in self.KGB['chart_relations']:
+            if noun.lower() in self.KGB['chart_relations']:
                 attrs['chart_relations'] = self.KGB['chart_relations'][noun]
-            elif noun in self.KGB['companies_relations']:
-                attrs['company'] = self.KGB['companies_relations'][noun]
+            elif noun.upper() in self.KGB['company_relations']:
+                attrs['company'] = self.KGB['company_relations'][noun]
             else:
                 pass
             
             if not entities:
                 for ent in self.KGB['entity_relations']:
-                    if noun in ent or ent in noun:
+                    if noun.lower() in ent or ent in noun.lower():
                         entities.append(self.KGB['entity_relations'][ent]['entity_name'])
 
         # 最后返回独立实体及附属特征
@@ -154,7 +154,7 @@ class TextAnalyzer():
     def send_message(self, message_type):
         if message_type == 'NoEntity':
             return_msg = "没找到合适的请求。您想看的是否是："
-            for ent in sample(self.KGB['entities'],3):
+            for ent in sample(self.KGB['entity_relations'].keys(),3):
                 return_msg += ' ' + ent
             return_msg += '?'
             return return_msg
