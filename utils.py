@@ -66,10 +66,16 @@ class TextAnalyzer():
         
         # 提取数量词、名词以及事先保存好的实体名词
         for w in segments:
-            if w.flag == 'x' and w.word in self.KGB['entity_relations']:
-                kept_entities.append(self.KGB['entity_relations'][w.word]['entity_name'])
-            elif not w.word and w.flag in ['x','n']:
-                kept_nouns.append(w.word)
+            if w.flag == 'x':
+                if w.word in self.KGB['entity_relations']:
+                    kept_entities.append(self.KGB['entity_relations'][w.word]['entity_name'])
+                elif w.word in self.KGB['chart_relations']:
+                    kept_entities.append(self.KGB['chart_relations'][w.word])
+                elif w.word in self.KGB['company_relations']:
+                    kept_entities.append(self.KGB['company_relations'][w.word])
+                else:
+                    pass
+           
             elif w.flag == 'n':
                 kept_nouns.append(w.word)
             elif w.flag in ['m', 't']:
@@ -92,19 +98,25 @@ class TextAnalyzer():
                 attrs['period'] = self.KGB['number_relations'][char_]
             else:
                 pass
-        
-        #再处理名词
+
+        #再处理实体
         attrs['visual_type'] = 'default'
         attrs['company'] = 'default'
 
-        for noun in nouns:
-            if noun.lower() in self.KGB['chart_relations']:
-                attrs['chart_relations'] = self.KGB['chart_relations'][noun]
-            elif noun.upper() in self.KGB['company_relations']:
-                attrs['company'] = self.KGB['company_relations'][noun]
+        entities_cp = entities.copy()
+
+        for ent in entities_cp:
+            if ent.lower() in self.KGB['chart_relations']:
+                attrs['chart_relations'] = self.KGB['chart_relations'][ent]
+                entities.remove(ent)
+            elif ent.upper() in self.KGB['company_relations']:
+                attrs['company'] = self.KGB['company_relations'][ent]
+                entities.remove(ent)
             else:
                 pass
-            
+
+        #最后处理名词
+        for noun in nouns:      
             if not entities:
                 for ent in self.KGB['entity_relations']:
                     if noun.lower() in ent or ent in noun.lower():
