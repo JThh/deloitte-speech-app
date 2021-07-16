@@ -80,7 +80,7 @@ class TextAnalyzer():
                         elif relation.startswith('company'):
                             kept_entities['company'].append(self.KGB[relation][word])
            
-            elif w.flag == 'n':
+            elif w.flag in ['n','v','l']:
                 kept_nouns.append(w.word.lower())
             elif w.flag in ['m', 't']:
                 kept_time.append(w.word)
@@ -117,10 +117,17 @@ class TextAnalyzer():
 
         #最后处理名词
         for noun in nouns:     
-            if not attrs['visual_type'] and noun in self.KGB['chart_relations']:
-                attrs['visual_type'] = self.KGB['chart_relations'][noun]
+            #模糊查找
+            if not attrs['visual_type']:
+                for chart in self.KGB['chart_relations']:
+                    if noun in chart or chart in noun:
+                        attrs['visual_type'] = self.KGB['chart_relations'][chart]
+                        break
             if not attrs['company'] and noun in self.KGB['company_relations']:
-                attrs['company'] = self.KGB['company_relations'][noun]
+                for comp in self.KGB['company_relations']:
+                    if noun in comp or comp in noun:
+                        attrs['company'] = self.KGB['company_relations'][comp]
+                        break
             if not entities['entity']:
                 for ent in self.KGB['entity_relations']:
                     if noun.lower() in ent or ent in noun.lower():
