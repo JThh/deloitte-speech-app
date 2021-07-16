@@ -61,7 +61,7 @@ class TextAnalyzer():
             if isEnglish(word) and not isStopWord(word):
                 eng_entity += ' '+word
 
-        if not eng_entity:
+        if eng_entity:
             kept_nouns.append(eng_entity[1:].lower())
         
         # 提取数量词、名词以及事先保存好的实体名词
