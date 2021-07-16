@@ -103,17 +103,15 @@ class TextAnalyzer():
                 pass
 
         #再处理实体
-        attrs['visual_type'] = 'default'
-        attrs['company'] = 'default'
+        if entities['chart']:
+             attrs['visual_type'] = entities['chart']
+        else:
+            attrs['visual_type'] = 'default'
 
-        for ent in entities['chart']:
-            if ent.lower() in self.KGB['chart_relations']:
-                attrs['chart_relations'] = self.KGB['chart_relations'][ent.lower()]
-    
-
-        for ent in entities['company']:
-            if ent.lower() in self.KGB['company_relations']:
-                attrs['company'] = self.KGB['company_relations'][ent.lower()]
+        if entities['company']:
+             attrs['company'] = entities['company']
+        else:
+            attrs['company'] = 'default'
 
 
         #最后处理名词
