@@ -104,12 +104,12 @@ class TextAnalyzer():
 
         #再处理实体
         if entities['chart']:
-             attrs['visual_type'] = entities['chart']
+             attrs['visual_type'] = entities['chart'][0]
         else:
             attrs['visual_type'] = 'default'
 
         if entities['company']:
-             attrs['company'] = entities['company']
+             attrs['company'] = entities['company'][0]
         else:
             attrs['company'] = 'default'
 
