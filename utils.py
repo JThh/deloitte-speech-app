@@ -154,9 +154,9 @@ class TextAnalyzer():
     def send_message(self, message_type):
         if message_type == 'NoEntity':
             return_msg = "没找到合适的请求。您想看的是否是："
-            for ent in sample(self.KGB['entity_relations'].keys(),3):
-                return_msg += '或' + ent
-            return_msg += '?'
+            for ent in sample(self.KGB['example_entities'].keys(),3):
+                return_msg += ent + ' 或 '
+            return_msg = return_msg[:-3] + '?'
             return return_msg, False
         else: # TODO: Messages for follow-up questions
             return '', False
