@@ -25,7 +25,7 @@ class TextAnalyzer():
             json_results = self.trigger_json(entities, attrs)
             web_queries = self.json_to_web_query(json_results)
 
-            return web_queries, True
+            return web_queries[:1], True
         else:
             return [''], True
 
@@ -37,7 +37,9 @@ class TextAnalyzer():
         segments = pseg.cut(self.raw_text)
 
         kept_entities = dict()
-        kept_entities['chart'] = kept_entities['company'] = kept_entities['entity'] = list()
+        kept_entities['chart'] = []
+        kept_entities['company'] = []
+        kept_entities['entity'] = []
         kept_nouns = list()
         kept_time = list()
 
