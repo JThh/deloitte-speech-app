@@ -332,10 +332,14 @@ def main():
         st.write('')
         analyzer = TextAnalyzer(result_audio.get("GET_TEXT"),KGB,False)
 
-        queries = analyzer.run()
+        queries, success = analyzer.run()
 
-        for q in queries:
-            st.write(q)
+        if success:
+            for q in queries:
+                st.write(q)
+        else:
+            msg = queries
+            st.write(msg)
         # process_text(result_audio.get("GET_TEXT"))
     elif result_text:
         # process_text(result_text)

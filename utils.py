@@ -25,9 +25,9 @@ class TextAnalyzer():
             json_results = self.trigger_json(entities, attrs)
             web_queries = self.json_to_web_query(json_results)
 
-            return web_queries
+            return web_queries, True
         else:
-            return ['']
+            return [''], True
 
     def split_entities(self):
         # 初始化Jiaba分词器
@@ -157,9 +157,9 @@ class TextAnalyzer():
             for ent in sample(self.KGB['entity_relations'].keys(),3):
                 return_msg += ' ' + ent
             return_msg += '?'
-            return return_msg
+            return return_msg, False
         else: # TODO: Messages for follow-up questions
-            return ''
+            return '', False
 
 
         
