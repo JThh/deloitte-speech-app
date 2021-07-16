@@ -92,8 +92,8 @@ class TextAnalyzer():
         
         #先处理时间
         concat_time = ''.join(time)
-        attrs['time_unit'] = 'default'
-        attrs['period'] = 'default'
+        attrs['time_unit'] = ''
+        attrs['period'] = ''
 
         for char_ in concat_time:
             if char_ in self.KGB['time_unit_relations']:
@@ -107,16 +107,20 @@ class TextAnalyzer():
         if entities['chart']:
              attrs['visual_type'] = entities['chart'][0]
         else:
-            attrs['visual_type'] = 'default'
+            attrs['visual_type'] = ''
 
         if entities['company']:
              attrs['company'] = entities['company'][0]
         else:
-            attrs['company'] = 'default'
+            attrs['company'] = ''
 
 
         #最后处理名词
-        for noun in nouns:      
+        for noun in nouns:     
+            if not attrs['visual_type'] and noun in self.KGB['chart_relations']:
+                attrs['visual_type'] = self.KGB['chart_relations'][noun]
+            if not attrs['company'] and noun in self.KGB['company_relations']:
+                attrs['company'] = self.KGB['company_relations'][noun]
             if not entities['entity']:
                 for ent in self.KGB['entity_relations']:
                     if noun.lower() in ent or ent in noun.lower():
@@ -144,7 +148,7 @@ class TextAnalyzer():
 
             for req in reqs:
                 if req in attrs:
-                    if attrs[req] == 'default':
+                    if not attrs[req]:
                         result[req] = self.KGB['entity_relations'][ent]['requirement'][req]
                     else:
                         result[req] = attrs[req]
