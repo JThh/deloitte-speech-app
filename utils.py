@@ -68,7 +68,7 @@ class TextAnalyzer():
         for w in segments:
             if w.flag == 'x' and w.word in self.KGB['entity_relations']:
                 kept_entities.append(self.KGB['entity_relations'][w.word]['entity_name'])
-            elif not w and w.flag == 'n':
+            elif not w.word and w.flag == 'n':
                 kept_nouns.append(w.word)
             elif w.flag in ['m', 't']:
                 kept_time.append(w.word)
