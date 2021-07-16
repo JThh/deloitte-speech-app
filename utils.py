@@ -70,7 +70,7 @@ class TextAnalyzer():
                 kept_entities.append(self.KGB['entity_relations'][w.word]['entity_name'])
             elif w.flag == 'n':
                 kept_nouns.append(w.word)
-            elif w.flag in ['m',' t']:
+            elif w.flag in ['m', 't']:
                 kept_time.append(w.word)
             
         return kept_entities, kept_nouns, kept_time
