@@ -98,10 +98,10 @@ class TextAnalyzer():
         for char_ in concat_time:
             if char_ in self.KGB['time_unit_relations']:
                 attrs['time_unit'] = self.KGB['time_unit_relations'][char_]
-            elif char_ in self.KGB['number_relations']:
+                break
+            if char_ in self.KGB['number_relations']:
                 attrs['period'] = self.KGB['number_relations'][char_]
-            else:
-                pass
+                break
 
         #再处理实体
         if entities['chart']:
