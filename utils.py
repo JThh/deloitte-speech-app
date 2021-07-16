@@ -71,16 +71,17 @@ class TextAnalyzer():
         for w in segments:
             if w.flag == 'x':
                 for relation in self.KGB['kept_relations']:
-                    if w.word in self.KGB[relation]:
+                    word = w.word.lower()
+                    if word in self.KGB[relation]:
                         if relation.startswith('entity'):
-                            kept_entities['entity'].append(self.KGB[relation][w.word]['entity_name'])
+                            kept_entities['entity'].append(self.KGB[relation][word]['entity_name'])
                         elif relation.startswith('chart'):
-                            kept_entities['chart'].append(self.KGB[relation][w.word])
+                            kept_entities['chart'].append(self.KGB[relation][word])
                         elif relation.startswith('company'):
-                            kept_entities['company'].append(self.KGB[relation][w.word])
+                            kept_entities['company'].append(self.KGB[relation][word])
            
             elif w.flag == 'n':
-                kept_nouns.append(w.word)
+                kept_nouns.append(w.word.lower())
             elif w.flag in ['m', 't']:
                 kept_time.append(w.word)
             
