@@ -36,7 +36,8 @@ class TextAnalyzer():
         # 词性提取
         segments = pseg.cut(self.raw_text)
 
-        kept_entities = list()
+        kept_entities = dict()
+        kept_entities['chart'] = kept_entities['company'] = kept_entities['entity'] = list()
         kept_nouns = list()
         kept_time = list()
 
@@ -67,14 +68,14 @@ class TextAnalyzer():
         # 提取数量词、名词以及事先保存好的实体名词
         for w in segments:
             if w.flag == 'x':
-                if w.word in self.KGB['entity_relations']:
-                    kept_entities.append(self.KGB['entity_relations'][w.word]['entity_name'])
-                elif w.word in self.KGB['chart_relations']:
-                    kept_entities.append(self.KGB['chart_relations'][w.word])
-                elif w.word in self.KGB['company_relations']:
-                    kept_entities.append(self.KGB['company_relations'][w.word])
-                else:
-                    pass
+                for relation in self.KGB['kept_relations']:
+                    if w.word in self.KGB[relation]:
+                        if relation.startswith('entity'):
+                            kept_entities['entity'].append(self.KGB[relation][w.word]['entity_name'])
+                        elif relation.startswith('chart'):
+                            kept_entities['chart'].append(self.KGB[relation][w.word])
+                        elif relation.startswith('company'):
+                            kept_entities['company'].append(self.KGB[relation][w.word])
            
             elif w.flag == 'n':
                 kept_nouns.append(w.word)
@@ -83,7 +84,7 @@ class TextAnalyzer():
             
         return kept_entities, kept_nouns, kept_time
 
-    def process_entities(self, entities: list, nouns: list, time: list):
+    def process_entities(self, entities: dict, nouns: list, time: list):
         attrs = dict()
         
         #先处理时间
@@ -103,28 +104,27 @@ class TextAnalyzer():
         attrs['visual_type'] = 'default'
         attrs['company'] = 'default'
 
-        entities_cp = entities.copy()
-
-        for ent in entities_cp:
+        for ent in entities['chart']:
             if ent.lower() in self.KGB['chart_relations']:
                 attrs['chart_relations'] = self.KGB['chart_relations'][ent]
-                entities.remove(ent)
-            elif ent.upper() in self.KGB['company_relations']:
+        
+
+
+        for ent in entities['company']:
+            if ent.lower() in self.KGB['company_relations']:
                 attrs['company'] = self.KGB['company_relations'][ent]
-                entities.remove(ent)
-            else:
-                pass
+
 
         #最后处理名词
         for noun in nouns:      
-            if not entities:
+            if not entities['entity']:
                 for ent in self.KGB['entity_relations']:
                     if noun.lower() in ent or ent in noun.lower():
-                        entities.append(self.KGB['entity_relations'][ent]['entity_name'])
+                        entities['entity'].append(self.KGB['entity_relations'][ent]['entity_name'])
 
 
         # 最后返回独立实体及附属特征
-        return list(set(entities)), attrs
+        return list(set(entities['entity'])), attrs
 
         # if not entities:
         #     return send_message('NoEntity')
