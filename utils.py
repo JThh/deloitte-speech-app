@@ -137,9 +137,10 @@ class TextAnalyzer():
                     result[req] = self.KGB['entity_relations'][ent]['requirement'][req]
 
             # Convert dict to json
-            json_result = json.dumps(result, indent = 4)
+            # json_result = json.dumps(result, indent = 4)
         
-            json_results.append(json_result)
+            # json_results.append(json_result)
+            json_results.append(result)
 
         return json_results
     
