@@ -118,12 +118,12 @@ class TextAnalyzer():
             #模糊查找
             noun = noun.lower()
             if not attrs['visual_type']:
-                for chart in self.KGB['chart_relations']:
+                for chart in self.KGB['chart_relations'].keys():
                     if noun in chart or chart in noun:
                         attrs['visual_type'] = self.KGB['chart_relations'][chart]
                         break
             if not attrs['company'] and noun in self.KGB['company_relations']:
-                for comp in self.KGB['company_relations']:
+                for comp in self.KGB['company_relations'].keys():
                     if noun in comp or comp in noun:
                         attrs['company'] = self.KGB['company_relations'][comp]
                         break
