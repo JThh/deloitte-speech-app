@@ -99,7 +99,7 @@ class TextAnalyzer():
             if char_ in self.KGB['time_unit_relations']:
                 attrs['time_unit'] = self.KGB['time_unit_relations'][char_]
                 break
-            if char_ in self.KGB['number_relations']:
+            elif char_ in self.KGB['number_relations']:
                 attrs['period'] = self.KGB['number_relations'][char_]
                 break
 
