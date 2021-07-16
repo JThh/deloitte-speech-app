@@ -116,6 +116,7 @@ class TextAnalyzer():
         #最后处理名词
         for noun in nouns:     
             #模糊查找
+            noun = noun.lower()
             if not attrs['visual_type']:
                 for chart in self.KGB['chart_relations']:
                     if noun in chart or chart in noun:
@@ -128,7 +129,7 @@ class TextAnalyzer():
                         break
             if not entities['entity']:
                 for ent in self.KGB['entity_relations']:
-                    if noun.lower() in ent or ent in noun.lower():
+                    if noun in ent or ent in noun:
                         entities['entity'].append(self.KGB['entity_relations'][ent]['entity_name'])
 
 
