@@ -68,7 +68,9 @@ class TextAnalyzer():
         for w in segments:
             if w.flag == 'x' and w.word in self.KGB['entity_relations']:
                 kept_entities.append(self.KGB['entity_relations'][w.word]['entity_name'])
-            elif not w.word and w.flag == 'n':
+            elif not w.word and w.flag in ['x','n']:
+                kept_nouns.append(w.word)
+            elif w.flag == 'n':
                 kept_nouns.append(w.word)
             elif w.flag in ['m', 't']:
                 kept_time.append(w.word)
@@ -107,6 +109,7 @@ class TextAnalyzer():
                 for ent in self.KGB['entity_relations']:
                     if noun.lower() in ent or ent in noun.lower():
                         entities.append(self.KGB['entity_relations'][ent]['entity_name'])
+
 
         # 最后返回独立实体及附属特征
         return list(set(entities)), attrs
