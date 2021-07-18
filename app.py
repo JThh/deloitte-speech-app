@@ -98,7 +98,7 @@ def main():
     try:
         names, messages = zip(*state.chat_list)
         chat1 = dict(Name=names, Message=messages)
-        st.sidebar.table(chat1)
+        st.sidebar.markdown(chat1)
     except ValueError:
         pass
 
