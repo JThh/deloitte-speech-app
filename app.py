@@ -32,22 +32,19 @@ def month_year_iter( start_month, start_year, end_month, end_year ):
 
 def show_category(cat='all'):
     chart_data = pd.DataFrame(
-        np.random.randn(35, 8),
+        np.random.randn(35, 4),
         index=month_year_iter(8,2018,7,2021),
-        columns=['品类'+str(x) for x in range(1,9)]
+        columns=['品类'+str(x) for x in range(1,5)]
         )
     st.area_chart(chart_data)
     
     def draw_fig():
 
-        y_saving = [1.3586, 2.2623000000000002, 4.9821999999999997, 6.5096999999999996,
-                    7.4812000000000003, 7.5133000000000001, 15.2148, 17.520499999999998
+        y_saving = [1.3586, 2.2623000000000002, 4.9821999999999997, 6.5096999999999996
                     ]
         y_net_worth = [9345.919999999998, 8166.570000000007, 6988.619999999995,
-                       7838.529999999999, 14139.29999999999, 9296.020000000004,
-                       6609.179999999993, 12237.3]
-        x = ['品类一', '品类二', '品类三', '品类四',
-             '品类五', '品类六', '品类七', '品类八']
+                       7838.529999999999]
+        x = ['品类一', '品类二', '品类三', '品类四']
 
         # Creating two subplots
         fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=True,
@@ -74,7 +71,7 @@ def show_category(cat='all'):
         ), 1, 2)
 
         fig.update_layout(
-            title='八大品类的销售收入百分比与净值',
+            title='四大品类的销售收入百分比与净值',
             yaxis=dict(
                 showgrid=False,
                 showline=False,
@@ -344,7 +341,7 @@ def process_text_v2(txt):
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.info('''
-            从图像中可以看到，品类八的销售额占比最高，为17.52%, 
+            从图像中可以看到，品类四在过去三年中的销售额占比最高，为17.52%，四种产品在过去的三个月中均有不同程度的上涨。 
             ''')
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
