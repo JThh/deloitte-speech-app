@@ -16,6 +16,17 @@ import numpy as np
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
+def process_text_v2(txt):
+    analyzer = TextAnalyzer(txt,KGB,False)
+
+    queries, success = analyzer.run()
+
+    if success:
+        for q in queries:
+            st.write(q)
+    else:
+        msg = queries
+        st.write(msg)
 
 def process_text(txt):
     '''
@@ -330,22 +341,12 @@ def main():
         st.text("Recognized speech: "+result_audio.get("GET_TEXT"))
         st.write('')
         st.write('')
-        analyzer = TextAnalyzer(result_audio.get("GET_TEXT"),KGB,False)
-
-        queries, success = analyzer.run()
-
-        if success:
-            for q in queries:
-                st.write(q)
-        else:
-            msg = queries
-            st.write(msg)
-        # process_text(result_audio.get("GET_TEXT"))
+        process_text_v2(result_audio.get("GET_TEXT"))
     elif result_text:
-        # process_text(result_text)
-        pass
+        process_text_v2(result_text)
     else:
         pass
+    
 
     import SessionState
 
