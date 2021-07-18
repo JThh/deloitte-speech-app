@@ -44,13 +44,13 @@ def visualize(string):
             image = Image.open('./assets/cost_year.png')
             st.image(image)
         with col2:
-            image = Image.open('./assets/cost_quarter.png')
-            st.image(image)   
-
-        image = Image.open('./assets/cost_component.png')
-        st.image(image)         
+            image = Image.open('./assets/cost_component.png')
+            st.image(image)    
+        image = Image.open('./assets/cost_quarter.png')
+        st.image(image)   
+     
     elif string == '利润':
-        col1, col2 = st.beta_columns([1,2])
+        col1, col2 = st.beta_columns(2)
         with col1:
             image = Image.open('./assets/profit_year.png')
             st.image(image)
