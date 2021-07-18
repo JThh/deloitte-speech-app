@@ -346,7 +346,7 @@ def process_text_v2(txt):
         visualize('销售')
 
     elif '意义' in txt:
-
+        visualize('意义')
 
     elif '季度' in txt:
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
