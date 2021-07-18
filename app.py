@@ -101,12 +101,12 @@ def main():
     st.sidebar.markdown('聊天记录：')
 
     try:
-        names, messages, times = zip(*state.chat_list)
+        # names, messages, times = zip(*state.chat_list)
         df = pd.DataFrame(
-            [names,messages,times],
+            state.chat_list,
             columns=['讲话者','内容','时间点']
         )
-        st.sidebar.table(df)
+        st.sidebar.dataframe(df)
     except ValueError:
         pass
 
