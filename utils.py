@@ -4,7 +4,7 @@ import jieba.analyse
 
 from random import sample
 
-# from config import *
+from config import *
 
 class TextAnalyzer():
     def __init__(self, raw_text: str, KGB: dict, followup: bool):
