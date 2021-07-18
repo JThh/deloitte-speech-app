@@ -22,27 +22,58 @@ st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 state = SessionState.get(chat_list=[])
 
 
-def process_text_v2(txt):
-    analyzer = TextAnalyzer(txt,KGB,False)
-
-    queries, success = analyzer.run()
-
+def addRecord(user,txt):
     time_string = time.strftime('%H:%M:%S')
+    state.chat_list.append((user,txt, time_string))  
 
-    state.chat_list.append(('Alex',txt,time_string))
-
-    if success:
-        for q in queries:
-            st.write(q)
-            state.chat_list.append(('勤答',q, time_string))
-            visualize(q)
-    else:
-        msg = queries
-        st.write(msg)
-        state.chat_list.append(('勤答',msg, time_string))
 
 def visualize(query):
-    pass
+    if query == '营收':
+        col1, col2 = st.beta_columns([1,2])
+        with col1:
+            image = Image.open('./assets/revenue_year.png')
+            st.image(image)
+        with col2:
+            image = Image.open('./assets/revenue_quarter.png')
+            st.image(image)
+
+
+def process_text_v2(txt):
+    # analyzer = TextAnalyzer(txt,KGB,False)
+
+    # queries, success = analyzer.run()
+
+    addRecord('Alex',txt)
+
+    # if success:
+    #     for q in queries:
+    #         st.write(q)
+    #         state.chat_list.append(('勤答',q, time_string))
+    #         visualize(q)
+    # else:
+    #     msg = queries
+    #     st.write(msg)
+    #     state.chat_list.append(('勤答',msg, time_string))
+
+
+    if '财务情况' in txt:
+        addRecord('勤答','选项选择')
+        col1, col2, col3 = st.beta_columns(3)
+
+        selection = ''
+        with col1:
+            selection = st.button('营收趋势图',on_click=visualize,args=('营收'))
+            addRecord('Alex',selection)
+        with col2:
+            selection = st.button('总利润表',on_click=visualize,args=('利润'))
+            addRecord('Alex',selection)
+        with col3:
+            selection = st.button('营业总成本构成',on_click=visualize,args=('成本')) 
+            addRecord('Alex',selection)       
+
+    elif '销售数据' in txt:
+        pass
+    
 
 def main():
     st.title("勤答：便携式数据交互平台")
@@ -110,7 +141,7 @@ def main():
     except ValueError:
         pass
 
-    if len(state.chat_list) > 5:
+    if len(state.chat_list) > 10:
         del (state.chat_list[0])
     
 
