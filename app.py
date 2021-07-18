@@ -224,7 +224,7 @@ def show_category_revenue(years_ago, cat='品类一'):
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
-        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.3*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
+        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.8*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
 
     fig.update_layout(
         xaxis_title="季度/年份",
@@ -266,13 +266,13 @@ def visualize(string):
         pass
     elif string == '营收':
         show_revenue(5)
-        col1, col2 = st.beta_columns([1,2])
-        with col1:
-            image = Image.open('./assets/revenue_year.png')
-            st.image(image)
-        with col2:
-            image = Image.open('./assets/revenue_quarter.png')
-            st.image(image)
+        # col1, col2 = st.beta_columns([1,2])
+        # with col1:
+        #     image = Image.open('./assets/revenue_year.png')
+        #     st.image(image)
+        # with col2:
+        #     image = Image.open('./assets/revenue_quarter.png')
+        #     st.image(image)
     elif string == '成本':
         col1, col2 = st.beta_columns(2)
         with col1:
@@ -347,11 +347,11 @@ def process_text_v2(txt):
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
         visualize('销售')
 
-    elif '年' in txt:
+    elif '季度' in txt:
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.markdown('''
-            
+            A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。"
             ''')       
         visualize('销售细节')
 
