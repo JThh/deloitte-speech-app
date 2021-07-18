@@ -39,7 +39,7 @@ def visualize(string):
             image = Image.open('./assets/revenue_quarter.png')
             st.image(image)
     elif string == '成本':
-        col1, col2 = st.beta_columns([1.5,1])
+        col1, col2 = st.beta_columns(2)
         with col1:
             image = Image.open('./assets/cost_year.png')
             st.image(image)
@@ -78,7 +78,7 @@ def process_text_v2(txt):
 
 
     if '财务情况' in txt:
-        addRecord('勤答','选项选择')
+        addRecord('勤答','模糊提问')
         col1, col2, col3 = st.beta_columns(3)
 
         selection = ''
