@@ -81,17 +81,14 @@ def process_text_v2(txt):
         selection = ''
         with col1:
             if st.button('营收趋势图'):
-                addRecord('勤答','模糊提问')
                 addRecord('Alex','营收趋势图')
                 selection = '营收'
         with col2:
             if st.button('总利润表'):
-                addRecord('勤答','模糊提问')
                 addRecord('Alex','总利润表')
                 selection = '利润'
         with col3:
             if st.button('营业总成本'): 
-                addRecord('勤答','模糊提问')
                 addRecord('Alex','营业总成本')  
                 selection = '成本'
         visualize(selection)     
