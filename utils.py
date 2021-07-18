@@ -82,8 +82,8 @@ class TextAnalyzer():
                 kept_nouns.append(w.word.lower())
             elif w.flag in ['m', 't']:
                 kept_time.append(w.word)
-            elif w.flag == 'eng' and w not in STOP_WORDS:
-                kept_english.append(w)
+            elif w.flag == 'eng' and w.word not in STOP_WORDS:
+                kept_english.append(w.word)
             
         return kept_entities, kept_nouns, kept_time, kept_english
 
