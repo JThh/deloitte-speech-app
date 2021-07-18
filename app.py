@@ -39,7 +39,7 @@ def visualize(string):
             image = Image.open('./assets/revenue_quarter.png')
             st.image(image)
     elif string == '成本':
-        col1, col2 = st.beta_columns([1,2])
+        col1, col2 = st.beta_columns([1.5,1])
         with col1:
             image = Image.open('./assets/cost_year.png')
             st.image(image)
