@@ -27,8 +27,8 @@ def addRecord(user,txt):
     state.chat_list.append((user,txt, time_string))  
 
 
-def visualize(query):
-    if query == '营收':
+def visualize(query, string):
+    if string == '营收':
         col1, col2 = st.beta_columns([1,2])
         with col1:
             image = Image.open('./assets/revenue_year.png')
