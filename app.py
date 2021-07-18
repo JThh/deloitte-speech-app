@@ -13,7 +13,6 @@ from config_prev import *
 from utils import TextAnalyzer
 import numpy as np
 
-
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 def process_text_v2(txt):
@@ -289,9 +288,9 @@ def show_meaning(key):
 
 
 def main():
-    st.title("Speech Powered BI Dashboard")
+    st.title("勤答：便携式数据交互平台")
     st.write("")
-    st.sidebar.header("BI Dashboard")
+    st.sidebar.header("勤答")
     with st.sidebar.beta_expander("Notes", expanded=True):
         st.markdown(
             "The data is **fake and only for demonstration purpose**. The data was latest updated in _February, 2021_.")
