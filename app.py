@@ -8,7 +8,7 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
-from config import *
+# from config import *
 from config_prev import *
 from utils import TextAnalyzer
 import numpy as np
