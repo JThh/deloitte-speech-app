@@ -135,7 +135,7 @@ class TextAnalyzer():
         # 最后处理英语
         if not entities['entity']:
             for word in english:
-                for ent in self.KGB['entity_relations']:
+                for ent in self.KGB['entity_relations'].keys():
                     if word in ent or ent in word:
                         entities['entity'].append(self.KGB['entity_relations'][ent]['entity_name'])
                         break
