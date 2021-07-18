@@ -17,7 +17,7 @@ import numpy as np
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 def process_text_v2(txt):
-    analyzer = TextAnalyzer(txt,KGB,False)
+    analyzer = TextAnalyzer(txt,followup=False)
 
     queries, success = analyzer.run()
 
