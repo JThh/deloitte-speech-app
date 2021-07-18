@@ -176,12 +176,12 @@ class TextAnalyzer():
 
         return dict_results
     
-    def dict_to_web_query(self, jsons):
+    def dict_to_web_query(self, dicts):
         queries = []
 
-        for json in jsons:
+        for _dict in dicts:
             url = ''
-            for (key,value) in json:
+            for (key,value) in _dict.items():
                 url += f'{key}={value}' + '&'
             queries.append(url[:-1])
 
