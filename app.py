@@ -149,12 +149,9 @@ def show_category(cat='all'):
     # if cat == 'all':
     #     st.info("Tips: Only a sample plot.")
 
-        st.plotly_chart(draw_fig(), use_container_width=True)
-        return
-    if cat not in CATEGORIES:
-        st.warning("Please select a category in the categories list.")
-    else:
-        show_category_revenue(TIME_RANGE, cat)
+    st.plotly_chart(draw_fig(), use_container_width=True)
+    #     return
+    # show_category_revenue(TIME_RANGE, cat)
 
 
 def show_revenue(number):
@@ -300,7 +297,7 @@ def visualize(string):
             st.image(image)           
 
     elif string == '销售':
-        show_category()
+        show_category('all')
 
     elif string == '销售细节':
         show_category_revenue(3)
@@ -346,8 +343,8 @@ def process_text_v2(txt):
     elif '销售' in txt:
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
-            st.markdown('''
-            从图像中可以看到，品类八的销售额占比最高，为17.52%, ...
+            st.info('''
+            从图像中可以看到，品类八的销售额占比最高，为17.52%, 
             ''')
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
