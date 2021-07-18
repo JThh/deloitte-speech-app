@@ -9,8 +9,8 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 # import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
 from PIL import Image
+import time
 
 from config import *
 from config_prev import *
@@ -21,20 +21,25 @@ st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 state = SessionState.get(chat_list=[])
 
+
 def process_text_v2(txt):
     analyzer = TextAnalyzer(txt,KGB,False)
 
     queries, success = analyzer.run()
 
+    time_string = time.strftime('%H:%M:%S')
+
+    state.chat_list.append(('Alex',txt,time_string))
+
     if success:
         for q in queries:
             st.write(q)
-            state.chat_list.append(('勤答',q))
+            state.chat_list.append(('勤答',q, time_string))
             visualize(q)
     else:
         msg = queries
         st.write(msg)
-        state.chat_list.append(('勤答',msg))
+        state.chat_list.append(('勤答',msg, time_string))
 
 def visualize(query):
     pass
@@ -96,9 +101,12 @@ def main():
     st.sidebar.markdown('聊天记录：')
 
     try:
-        names, messages = zip(*state.chat_list)
-        chat1 = dict(Name=names, Message=messages)
-        st.sidebar.markdown(chat1)
+        names, messages, times = zip(*state.chat_list)
+        df = pd.DataFrame(
+            [names,messages,times],
+            columns=['讲话者','内容','时间点']
+        )
+        st.sidebar.table(df)
     except ValueError:
         pass
 
