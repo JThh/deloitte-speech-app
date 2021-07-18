@@ -11,6 +11,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
 import time
+import numpy as np
+import pandas as pd
 
 from config import *
 from config_prev import *
