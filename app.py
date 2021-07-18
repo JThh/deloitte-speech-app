@@ -28,7 +28,9 @@ def addRecord(user,txt):
 
 
 def visualize(string):
-    if string == '营收':
+    if string == '':
+        pass
+    elif string == '营收':
         col1, col2 = st.beta_columns([1,2])
         with col1:
             image = Image.open('./assets/revenue_year.png')
@@ -60,18 +62,20 @@ def process_text_v2(txt):
         addRecord('勤答','选项选择')
         col1, col2, col3 = st.beta_columns(3)
 
+        selection = ''
         with col1:
             if st.button('营收趋势图'):
                 addRecord('Alex','营收趋势图')
-                visualize('营收')
+                selection = '营收'
         with col2:
             if st.button('总利润表'):
                 addRecord('Alex','总利润表')
-                visualize('利润')
+                selection = '利润'
         with col3:
             if st.button('营业总成本构成'): 
                 addRecord('Alex','营业总成本构成')  
-                visualize('成本')     
+                selection = '成本'
+        visualize(selection)     
 
     elif '销售数据' in txt:
         pass
