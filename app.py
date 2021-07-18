@@ -21,205 +21,6 @@ st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 state = SessionState.get(chat_list=[])
 
-
-def addRecord(user,txt):
-    time_string = time.strftime('%H:%M:%S')
-    state.chat_list.append((user,txt, time_string))  
-
-
-def visualize(string):
-    if string == '':
-        pass
-    elif string == '营收':
-        show_revenue(5)
-        col1, col2 = st.beta_columns([1,2])
-        with col1:
-            image = Image.open('./assets/revenue_year.png')
-            st.image(image)
-        with col2:
-            image = Image.open('./assets/revenue_quarter.png')
-            st.image(image)
-    elif string == '成本':
-        col1, col2 = st.beta_columns(2)
-        with col1:
-            image = Image.open('./assets/cost_year.png')
-            st.image(image)
-        with col2:
-            image = Image.open('./assets/cost_component.png')
-            st.image(image)    
-        image = Image.open('./assets/cost_quarter.png')
-        st.image(image)   
-     
-    elif string == '利润':
-        col1, col2 = st.beta_columns(2)
-        with col1:
-            image = Image.open('./assets/profit_year.png')
-            st.image(image)
-        with col2:
-            image = Image.open('./assets/profit_quarter.png')
-            st.image(image)           
-
-    elif string == '销售':
-        show_category()
-
-
-def process_text_v2(txt):
-    # analyzer = TextAnalyzer(txt,KGB,False)
-
-    # queries, success = analyzer.run()
-
-    # if success:
-    #     for q in queries:
-    #         st.write(q)
-    #         state.chat_list.append(('勤答',q, time_string))
-    #         visualize(q)
-    # else:
-    #     msg = queries
-    #     st.write(msg)
-    #     state.chat_list.append(('勤答',msg, time_string))
-
-
-    if '财务' in txt:
-        col1, col2, col3 = st.beta_columns(3)
-
-        selection = ''
-        with col1:
-            if st.button('营收趋势图'):
-                addRecord('勤答','模糊提问')
-                addRecord('Alex','营收趋势图')
-                selection = '营收'
-        with col2:
-            if st.button('总利润表'):
-                addRecord('勤答','模糊提问')
-                addRecord('Alex','总利润表')
-                selection = '利润'
-        with col3:
-            if st.button('营业总成本'): 
-                addRecord('勤答','模糊提问')
-                addRecord('Alex','营业总成本')  
-                selection = '成本'
-        visualize(selection)     
-
-    elif '销售' in txt:
-        st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
-        if st.checkbox('启用'):
-            st.markdown('''
-            
-            ''')
-        st.subheader('默认显示所有分公司最近三年的销售额')
-        visualize('销售')
-
-
-    
-def main():
-    st.title("勤答：便携式数据交互平台")
-    st.write("")
-    st.sidebar.header("勤答")
-
-    result_audio = result_text = ''
-    col1, col2 = st.beta_columns(2)
-
-    with col1:
-        st.write("语音输入按键")
-
-        stt_button = Button(label="点击说话", width=120)
-
-        stt_button.js_on_event("button_click", CustomJS(code="""
-            var recognition = new webkitSpeechRecognition();
-            recognition.continuous = false;
-            recognition.interimResults = true;
-            recognition.lang = 'cmn-Hans-CN';
-        
-            recognition.onresult = function (e) {
-                var value = "";
-                for (var i = e.resultIndex; i < e.results.length; ++i) {
-                    if (e.results[i].isFinal) {
-                        value += e.results[i][0].transcript;
-                    }
-                }
-                if ( value != "") {
-                    document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
-                }
-            }
-            recognition.start();
-            """))
-
-        result_audio = streamlit_bokeh_events(
-            stt_button,
-            events="GET_TEXT",
-            key="listen",
-            refresh_on_update=False,
-            override_height=75,
-            debounce_time=0)
-
-    with col2:
-        result_text = st.text_input(
-            help="示例：请展示最近三年的营收情况", label="文本输入", max_chars=100)
-
-    if result_audio:
-        # st.write("You said:")
-        st.text("识别结果: "+result_audio.get("GET_TEXT"))
-        st.write('')
-        st.write('')
-        addRecord('Alex',result_audio.get("GET_TEXT"))
-        process_text_v2(result_audio.get("GET_TEXT"),)
-    elif result_text:
-        addRecord('Alex',result_text)
-        process_text_v2(result_text)
-
-    st.sidebar.markdown('聊天记录：')
-
-    try:
-        # names, messages, times = zip(*state.chat_list)
-        df = pd.DataFrame(
-            state.chat_list,
-            columns=['讲话者','内容','时间点']
-        )
-        st.sidebar.dataframe(df)
-    except ValueError:
-        pass
-
-    if len(state.chat_list) > 10:
-        del (state.chat_list[0])
-    
-
-main()
-
-
-# def process_text(txt):
-#     '''
-#     Function for processing text and extracting key information.
-#     '''
-#     assert txt != ''
-
-#     try:
-#         TIME_RANGE = [int(s) for s in txt.split() if s.isdigit()][0]
-#     except:
-#         #st.warning('Please provide a time range.')
-#         pass
-
-#     if 'mean' in txt.lower():
-#         for x in EXPLAINABLE_TXT:
-#             if x in txt:
-#                 show_meaning(x)
-#                 return
-#         st.warning(
-#             "This is not yet explainable. More comprehensive explanations are expected to be filled in soon.")
-
-#     if 'catego' in txt.lower():
-#         for cat in CATEGORIES:
-#             if cat in txt:
-#                 show_category(cat)
-#         show_category()
-#         return
-
-#     if 'revenue' in txt.lower() or 'profit' in txt.lower():
-#         show_revenue(TIME_RANGE)
-
-#     if 'thank' in txt.lower():
-#         st.write("You're welcome! ^-^")
-
-
 def show_category(cat='all'):
     def draw_fig():
 
@@ -444,4 +245,204 @@ def show_meaning(key):
     except:
         st.warning(
             "You may have not queried the revenue or profit report. Please do that before checking the meanings.")
+
+
+
+def addRecord(user,txt):
+    time_string = time.strftime('%H:%M:%S')
+    state.chat_list.append((user,txt, time_string))  
+
+
+def visualize(string):
+    if string == '':
+        pass
+    elif string == '营收':
+        show_revenue(5)
+        col1, col2 = st.beta_columns([1,2])
+        with col1:
+            image = Image.open('./assets/revenue_year.png')
+            st.image(image)
+        with col2:
+            image = Image.open('./assets/revenue_quarter.png')
+            st.image(image)
+    elif string == '成本':
+        col1, col2 = st.beta_columns(2)
+        with col1:
+            image = Image.open('./assets/cost_year.png')
+            st.image(image)
+        with col2:
+            image = Image.open('./assets/cost_component.png')
+            st.image(image)    
+        image = Image.open('./assets/cost_quarter.png')
+        st.image(image)   
+     
+    elif string == '利润':
+        col1, col2 = st.beta_columns(2)
+        with col1:
+            image = Image.open('./assets/profit_year.png')
+            st.image(image)
+        with col2:
+            image = Image.open('./assets/profit_quarter.png')
+            st.image(image)           
+
+    elif string == '销售':
+        show_category()
+
+
+def process_text_v2(txt):
+    # analyzer = TextAnalyzer(txt,KGB,False)
+
+    # queries, success = analyzer.run()
+
+    # if success:
+    #     for q in queries:
+    #         st.write(q)
+    #         state.chat_list.append(('勤答',q, time_string))
+    #         visualize(q)
+    # else:
+    #     msg = queries
+    #     st.write(msg)
+    #     state.chat_list.append(('勤答',msg, time_string))
+
+
+    if '财务' in txt:
+        col1, col2, col3 = st.beta_columns(3)
+
+        selection = ''
+        with col1:
+            if st.button('营收趋势图'):
+                addRecord('勤答','模糊提问')
+                addRecord('Alex','营收趋势图')
+                selection = '营收'
+        with col2:
+            if st.button('总利润表'):
+                addRecord('勤答','模糊提问')
+                addRecord('Alex','总利润表')
+                selection = '利润'
+        with col3:
+            if st.button('营业总成本'): 
+                addRecord('勤答','模糊提问')
+                addRecord('Alex','营业总成本')  
+                selection = '成本'
+        visualize(selection)     
+
+    elif '销售' in txt:
+        st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
+        if st.checkbox('启用'):
+            st.markdown('''
+            
+            ''')
+        st.subheader('默认显示所有分公司最近三年的销售额')
+        visualize('销售')
+
+
+    
+def main():
+    st.title("勤答：便携式数据交互平台")
+    st.write("")
+    st.sidebar.header("勤答")
+
+    result_audio = result_text = ''
+    col1, col2 = st.beta_columns(2)
+
+    with col1:
+        st.write("语音输入按键")
+
+        stt_button = Button(label="点击说话", width=120)
+
+        stt_button.js_on_event("button_click", CustomJS(code="""
+            var recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = true;
+            recognition.lang = 'cmn-Hans-CN';
+        
+            recognition.onresult = function (e) {
+                var value = "";
+                for (var i = e.resultIndex; i < e.results.length; ++i) {
+                    if (e.results[i].isFinal) {
+                        value += e.results[i][0].transcript;
+                    }
+                }
+                if ( value != "") {
+                    document.dispatchEvent(new CustomEvent("GET_TEXT", {detail: value}));
+                }
+            }
+            recognition.start();
+            """))
+
+        result_audio = streamlit_bokeh_events(
+            stt_button,
+            events="GET_TEXT",
+            key="listen",
+            refresh_on_update=False,
+            override_height=75,
+            debounce_time=0)
+
+    with col2:
+        result_text = st.text_input(
+            help="示例：请展示最近三年的营收情况", label="文本输入", max_chars=100)
+
+    if result_audio:
+        # st.write("You said:")
+        st.text("识别结果: "+result_audio.get("GET_TEXT"))
+        st.write('')
+        st.write('')
+        addRecord('Alex',result_audio.get("GET_TEXT"))
+        process_text_v2(result_audio.get("GET_TEXT"),)
+    elif result_text:
+        addRecord('Alex',result_text)
+        process_text_v2(result_text)
+
+    st.sidebar.markdown('聊天记录：')
+
+    try:
+        # names, messages, times = zip(*state.chat_list)
+        df = pd.DataFrame(
+            state.chat_list,
+            columns=['讲话者','内容','时间点']
+        )
+        st.sidebar.dataframe(df)
+    except ValueError:
+        pass
+
+    if len(state.chat_list) > 10:
+        del (state.chat_list[0])
+    
+
+main()
+
+
+# def process_text(txt):
+#     '''
+#     Function for processing text and extracting key information.
+#     '''
+#     assert txt != ''
+
+#     try:
+#         TIME_RANGE = [int(s) for s in txt.split() if s.isdigit()][0]
+#     except:
+#         #st.warning('Please provide a time range.')
+#         pass
+
+#     if 'mean' in txt.lower():
+#         for x in EXPLAINABLE_TXT:
+#             if x in txt:
+#                 show_meaning(x)
+#                 return
+#         st.warning(
+#             "This is not yet explainable. More comprehensive explanations are expected to be filled in soon.")
+
+#     if 'catego' in txt.lower():
+#         for cat in CATEGORIES:
+#             if cat in txt:
+#                 show_category(cat)
+#         show_category()
+#         return
+
+#     if 'revenue' in txt.lower() or 'profit' in txt.lower():
+#         show_revenue(TIME_RANGE)
+
+#     if 'thank' in txt.lower():
+#         st.write("You're welcome! ^-^")
+
 
