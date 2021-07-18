@@ -34,7 +34,7 @@ def show_category(cat='all'):
     chart_data = pd.DataFrame(
         np.random.randn(35, 4),
         index=month_year_iter(8,2018,7,2021),
-        columns=['品类'+str(x) for x in range(1,5)]
+        columns=['品类'+x for x in ['A','B','C','D','E']]
         )
     st.area_chart(chart_data)
     
@@ -44,7 +44,7 @@ def show_category(cat='all'):
                     ]
         y_net_worth = [9345.919999999998, 8166.570000000007, 6988.619999999995,
                        7838.529999999999]
-        x = ['品类一', '品类二', '品类三', '品类四']
+        x = ['品类A', '品类B', '品类C', '品类']
 
         # Creating two subplots
         fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=True,
@@ -219,8 +219,7 @@ def show_revenue(number):
         st.plotly_chart(fig, use_container_width=True)
 
 
-def show_category_revenue(years_ago, cat='品类一'):
-    st.subheader(cat+'过去三个季度的营收报告')
+def show_category_revenue(years_ago):
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
@@ -235,8 +234,8 @@ def show_category_revenue(years_ago, cat='品类一'):
 
 def show_meaning():
     # st.info("Tips: Only a sample explanation below.")
-    st.markdown(
-        "时间为"+str(TIME_RANGE)+" 年份")
+    st.write(
+        "年份为：从",str(CURRENT_YEAR - TIME_RANGE), "到", str(CURRENT_YEAR))
     # st.markdown(
     #     "颜色代表品类，面积大小表示涨幅或跌幅")
     st.markdown(
@@ -245,7 +244,6 @@ def show_meaning():
     )
 
     show_category('all')
-
 
 
 def addRecord(user,txt):
@@ -340,7 +338,7 @@ def process_text_v2(txt):
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.info('''
-            从图像中可以看到，品类四在过去三年中的销售额占比最高，为17.52%；过去三年中，品类一的最高增长率为4.7%，品类二的最高增长率为3.2%，品类二的最高增长率为2.2%。总的来看，品类一的复合增长率最高，为13%，建议下一阶段增加产品投入。 
+            从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。 
             ''')
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
@@ -356,7 +354,8 @@ def process_text_v2(txt):
         if st.checkbox('启用'):
             st.info('''
             A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
-            ''')       
+            ''')     
+        st.subheader('A产品在过去三个季度的营收报告')  
         visualize('销售细节')
         
 
