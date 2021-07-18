@@ -220,7 +220,7 @@ def show_revenue(number):
 
 
 def show_category_revenue(years_ago, cat='品类一'):
-    st.subheader(cat+'的营收及利润报告')
+    st.subheader(cat+'过去三个季度的营收报告')
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
@@ -336,6 +336,7 @@ def process_text_v2(txt):
         visualize(selection)     
 
     elif '销售' in txt:
+        addRecord('勤答','回复图表')
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.info('''
@@ -346,9 +347,11 @@ def process_text_v2(txt):
         visualize('销售')
 
     elif '意义' in txt:
+        addRecord('勤答','回复文字')
         visualize('意义')
 
     elif '季度' in txt:
+        addRecord('勤答','回复文字')
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.info('''
@@ -358,6 +361,7 @@ def process_text_v2(txt):
         
 
     elif '毛利率' in txt:
+        addRecord('勤答','回复文字')
         st.write('检测到计算指标，是否启用关联分析功能？')
         if st.checkbox('启用'):
             st.info('''
