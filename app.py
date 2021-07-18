@@ -38,6 +38,25 @@ def visualize(string):
         with col2:
             image = Image.open('./assets/revenue_quarter.png')
             st.image(image)
+    elif string == '成本':
+        col1, col2 = st.beta_columns([1,2])
+        with col1:
+            image = Image.open('./assets/cost_year.png')
+            st.image(image)
+        with col2:
+            image = Image.open('./assets/cost_quarter.png')
+            st.image(image)   
+
+        image = Image.open('./assets/cost_component.png')
+        st.image(image)         
+    elif string == '利润':
+        col1, col2 = st.beta_columns([1,2])
+        with col1:
+            image = Image.open('./assets/profit_year.png')
+            st.image(image)
+        with col2:
+            image = Image.open('./assets/profit_quarter.png')
+            st.image(image)           
 
 
 def process_text_v2(txt):
@@ -72,8 +91,8 @@ def process_text_v2(txt):
                 addRecord('Alex','总利润表')
                 selection = '利润'
         with col3:
-            if st.button('营业总成本构成'): 
-                addRecord('Alex','营业总成本构成')  
+            if st.button('营业总成本'): 
+                addRecord('Alex','营业总成本')  
                 selection = '成本'
         visualize(selection)     
 
