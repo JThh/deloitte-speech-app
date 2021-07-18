@@ -132,8 +132,8 @@ def show_category(cat='all'):
         fig.update_layout(annotations=annotations)
 
         return fig
-    if cat == 'all':
-        st.info("Tips: Only a sample plot.")
+    # if cat == 'all':
+    #     st.info("Tips: Only a sample plot.")
 
         st.plotly_chart(draw_fig(), use_container_width=True)
         return
@@ -331,11 +331,19 @@ def process_text_v2(txt):
     elif '销售' in txt:
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
-            st.markdown('''
-            
+            st.write('''
+            从图像中可以看到，品类八的销售额占比最高，为17.52,
             ''')
         st.subheader('默认显示所有分公司最近三年的销售额')
+        st.markdown('可以通过确定**年份范围**和**分公司**得到更具体的图像')
         visualize('销售')
+
+    elif '年' in txt:
+        st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
+        if st.checkbox('启用'):
+            st.markdown('''
+            
+            ''')       
 
 
     
