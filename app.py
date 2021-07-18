@@ -82,7 +82,7 @@ def main():
 
     with col2:
         result_text = st.text_input(
-            help="示例：请展示最近三年的营收情况", label="Text input", max_chars=100)
+            help="示例：请展示最近三年的营收情况", label="文本输入", max_chars=100)
 
     if result_audio:
         # st.write("You said:")
@@ -90,7 +90,7 @@ def main():
         st.write('')
         st.write('')
         process_text_v2(result_audio.get("GET_TEXT"),)
-    if result_text:
+    elif result_text:
         process_text_v2(result_text)
 
     st.sidebar.markdown('聊天记录：')
