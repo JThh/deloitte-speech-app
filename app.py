@@ -64,8 +64,6 @@ def process_text_v2(txt):
 
     # queries, success = analyzer.run()
 
-    addRecord('Alex',txt)
-
     # if success:
     #     for q in queries:
     #         st.write(q)
@@ -78,20 +76,22 @@ def process_text_v2(txt):
 
 
     if '财务情况' in txt:
-        addRecord('勤答','模糊提问')
         col1, col2, col3 = st.beta_columns(3)
 
         selection = ''
         with col1:
             if st.button('营收趋势图'):
+                addRecord('勤答','模糊提问')
                 addRecord('Alex','营收趋势图')
                 selection = '营收'
         with col2:
             if st.button('总利润表'):
+                addRecord('勤答','模糊提问')
                 addRecord('Alex','总利润表')
                 selection = '利润'
         with col3:
             if st.button('营业总成本'): 
+                addRecord('勤答','模糊提问')
                 addRecord('Alex','营业总成本')  
                 selection = '成本'
         visualize(selection)     
@@ -150,8 +150,10 @@ def main():
         st.text("识别结果: "+result_audio.get("GET_TEXT"))
         st.write('')
         st.write('')
+        addRecord('Alex',result_audio.get("GET_TEXT"))
         process_text_v2(result_audio.get("GET_TEXT"),)
     elif result_text:
+        addRecord('Alex',result_text)
         process_text_v2(result_text)
 
     st.sidebar.markdown('聊天记录：')
