@@ -1,6 +1,3 @@
-import sys
-import json  
-# import jsonurl 
 import jieba
 import jieba.posseg as pseg
 import jieba.analyse
@@ -17,13 +14,13 @@ class TextAnalyzer():
 
     def run(self) -> list:
         if not self.followup:
-            kept_entities, kept_nouns, kept_time = self.split_entities()
-            entities, attrs = self.process_entities(kept_entities, kept_nouns, kept_time)
+            kept_entities, kept_nouns, kept_time, kept_eng = self.split_entities()
+            entities, attrs = self.process_entities(kept_entities, kept_nouns, kept_time, kept_eng)
             if not entities:
                 return self.send_message('NoEntity')
 
-            json_results = self.trigger_json(entities, attrs)
-            web_queries = self.json_to_web_query(json_results)
+            dict_results = self.trigger_dict(entities, attrs)
+            web_queries = self.dict_to_web_query(dict_results)
 
             return web_queries[:1], True
         else:
@@ -40,32 +37,33 @@ class TextAnalyzer():
         kept_entities['chart'] = []
         kept_entities['company'] = []
         kept_entities['entity'] = []
+        kept_english = list()
         kept_nouns = list()
         kept_time = list()
 
         # 重要性提取
-        sig_word = jieba.analyse.extract_tags(self.raw_text)
+        # sig_word = jieba.analyse.extract_tags(self.raw_text)
         
         # 检查是否是英语单词
-        def isEnglish(s):
-            try:
-                s.encode(encoding='utf-8').decode('ascii')
-            except UnicodeDecodeError:
-                return False
-            else:
-                return True
+        # def isEnglish(s):
+        #     try:
+        #         s.encode(encoding='utf-8').decode('ascii')
+        #     except UnicodeDecodeError:
+        #         return False
+        #     else:
+        #         return True
 
-        def isStopWord(s):
-            return s in STOP_WORDS
+        # def isStopWord(s):
+        #     return s in STOP_WORDS
                 
-        eng_entity = ''
+        # eng_entity = ''
 
-        for word in sig_word:
-            if isEnglish(word) and not isStopWord(word):
-                eng_entity += ' '+word
+        # for word in sig_word:
+        #     if isEnglish(word) and not isStopWord(word):
+        #         eng_entity += ' '+word
 
-        if eng_entity:
-            kept_nouns.append(eng_entity[1:].lower())
+        # if eng_entity:
+        #     kept_nouns.append(eng_entity[1:].lower())
         
         # 提取数量词、名词以及事先保存好的实体名词
         for w in segments:
@@ -84,13 +82,15 @@ class TextAnalyzer():
                 kept_nouns.append(w.word.lower())
             elif w.flag in ['m', 't']:
                 kept_time.append(w.word)
+            elif w.flag == 'eng' and w not in STOP_WORDS:
+                kept_english.append(w)
             
-        return kept_entities, kept_nouns, kept_time
+        return kept_entities, kept_nouns, kept_time, kept_english
 
-    def process_entities(self, entities: dict, nouns: list, time: list):
+    def process_entities(self, entities: dict, nouns: list, time: list, english: list):
         attrs = dict()
         
-        #先处理时间
+        # 先处理时间
         concat_time = ''.join(time)
         attrs['time_unit'] = ''
         attrs['period'] = ''
@@ -101,7 +101,7 @@ class TextAnalyzer():
             elif char_ in self.KGB['number_relations']:
                 attrs['period'] = self.KGB['number_relations'][char_]
 
-        #再处理实体
+        # 再处理实体
         if entities['chart']:
              attrs['visual_type'] = entities['chart'][0]
         else:
@@ -113,9 +113,9 @@ class TextAnalyzer():
             attrs['company'] = ''
 
 
-        #最后处理名词
+        # 再处理名词
         for noun in nouns:     
-            #模糊查找
+            # 模糊查找
             noun = noun.lower()
             if not attrs['visual_type']:
                 for chart in self.KGB['chart_relations'].keys():
@@ -131,9 +131,16 @@ class TextAnalyzer():
                 for ent in self.KGB['entity_relations']:
                     if noun in ent or ent in noun:
                         entities['entity'].append(self.KGB['entity_relations'][ent]['entity_name'])
+        
+        # 最后处理英语
+        if not entities['entity']:
+            for word in english:
+                for ent in self.KGB['entity_relations']:
+                    if word in ent or ent in word:
+                        entities['entity'].append(self.KGB['entity_relations'][ent]['entity_name'])
+                        break
 
-
-        # 最后返回独立实体及附属特征
+        # 返回独立实体及附属特征
         return list(set(entities['entity'])), attrs
 
         # if not entities:
@@ -141,8 +148,8 @@ class TextAnalyzer():
         # else:
         #     return json_to_web_query(trigger_json(entities, attrs))
 
-    def trigger_json(self,entities: list,attrs: dict):
-        json_results = []
+    def trigger_dict(self,entities: list,attrs: dict):
+        dict_results = []
 
         for ent in entities:
             reqs = self.KGB['entity_relations'][ent]['requirement'].keys()
@@ -165,15 +172,18 @@ class TextAnalyzer():
             # json_result = json.dumps(result, indent = 4)
         
             # json_results.append(json_result)
-            json_results.append(result)
+            dict_results.append(result)
 
-        return json_results
+        return dict_results
     
-    def json_to_web_query(self, jsons):
+    def dict_to_web_query(self, jsons):
         queries = []
 
         for json in jsons:
-            queries.append(json)
+            url = ''
+            for (key,value) in json:
+                url += f'{key}={value}' + '&'
+            queries.append(url[:-1])
 
         return queries
 
