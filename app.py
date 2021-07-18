@@ -23,7 +23,21 @@ st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 state = SessionState.get(chat_list=[])
 
+def month_year_iter( start_month, start_year, end_month, end_year ):
+    ym_start= 12*start_year + start_month - 1
+    ym_end= 12*end_year + end_month - 1
+    for ym in range( ym_start, ym_end ):
+        y, m = divmod( ym, 12 )
+        yield y, m+1
+
 def show_category(cat='all'):
+    chart_data = pd.DataFrame(
+        np.random.randn(33, 3),
+        index=month_year_iter(8,2018,7,2021),
+        columns=['品类'+str(x) for x in range(1,4)]
+        )
+    st.area_chart(chart_data)
+    
     def draw_fig():
 
         y_saving = [1.3586, 2.2623000000000002, 4.9821999999999997, 6.5096999999999996,
@@ -32,8 +46,8 @@ def show_category(cat='all'):
         y_net_worth = [93453.919999999998, 81666.570000000007, 69889.619999999995,
                        78381.529999999999, 141395.29999999999, 92969.020000000004,
                        66090.179999999993, 122379.3]
-        x = ['cat1', 'cat2', 'cat3', 'cat4',
-             'cat5', 'cat6', 'cat7', 'cat8']
+        x = ['品类一', '品类二', '品类三', '品类四',
+             '品类五', '品类六', '品类七', '品类八']
 
         # Creating two subplots
         fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=True,
@@ -48,7 +62,7 @@ def show_category(cat='all'):
                     color='rgba(50, 171, 96, 1.0)',
                     width=1),
             ),
-            name='Revenues, percentage of total revenues',
+            name='销售收入，占比总收入',
             orientation='h',
         ), 1, 1)
 
@@ -56,11 +70,11 @@ def show_category(cat='all'):
             x=y_net_worth, y=x,
             mode='lines+markers',
             line_color='rgb(128, 0, 128)',
-            name='Revenue net worth, in Millions(¥)',
+            name='销售收入净值（万）',
         ), 1, 2)
 
         fig.update_layout(
-            title='Revenues percentage & net worth for eight sub-categories',
+            title='八大品类的销售收入百分比与净值',
             yaxis=dict(
                 showgrid=False,
                 showline=False,
@@ -331,11 +345,11 @@ def process_text_v2(txt):
     elif '销售' in txt:
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
-            st.write('''
-            从图像中可以看到，品类八的销售额占比最高，为17.52,
+            st.markdown('''
+            从图像中可以看到，品类八的销售额占比最高，为17.52%, 
             ''')
         st.subheader('默认显示所有分公司最近三年的销售额')
-        st.markdown('可以通过确定**年份范围**和**分公司**得到更具体的图像')
+        st.text('可以通过确定年份范围和分公司得到更具体的图像')
         visualize('销售')
 
     elif '年' in txt:
