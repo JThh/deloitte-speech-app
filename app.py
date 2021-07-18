@@ -32,7 +32,7 @@ def month_year_iter( start_month, start_year, end_month, end_year ):
 
 def show_category(cat='all'):
     chart_data = pd.DataFrame(
-        np.random.randn(33, 3),
+        np.random.randn(35, 3),
         index=month_year_iter(8,2018,7,2021),
         columns=['品类'+str(x) for x in range(1,4)]
         )
@@ -225,18 +225,16 @@ def show_revenue(number):
         st.plotly_chart(fig, use_container_width=True)
 
 
-def show_category_revenue(years_ago, cat='category 1'):
-    st.subheader('Detailed revenue & profit report for '+cat)
+def show_category_revenue(years_ago, cat='品类一'):
+    st.subheader(cat+'的营收及利润报告')
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
         x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.3*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
 
     fig.update_layout(
-        title="Revenue & Profit Report for "+cat +
-        " in past "+str(years_ago)+" years",
-        xaxis_title="Quarters/Years",
-        yaxis_title="Amount (Million ¥)",
+        xaxis_title="季度/年份",
+        yaxis_title="值(百万¥)",
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -304,6 +302,9 @@ def visualize(string):
     elif string == '销售':
         show_category()
 
+    elif string == '销售细节':
+        show_category_revenue(3)
+
 
 def process_text_v2(txt):
     # analyzer = TextAnalyzer(txt,KGB,False)
@@ -346,7 +347,7 @@ def process_text_v2(txt):
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.markdown('''
-            从图像中可以看到，品类八的销售额占比最高，为17.52%, 
+            从图像中可以看到，品类八的销售额占比最高，为17.52%, ...
             ''')
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
@@ -358,6 +359,7 @@ def process_text_v2(txt):
             st.markdown('''
             
             ''')       
+        visualize('销售细节')
 
 
     
