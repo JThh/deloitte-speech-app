@@ -8,7 +8,7 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
-# from config import *
+from config import *
 from config_prev import *
 from utils import TextAnalyzer
 import numpy as np
@@ -17,7 +17,7 @@ import numpy as np
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 def process_text_v2(txt):
-    analyzer = TextAnalyzer(txt,followup=False)
+    analyzer = TextAnalyzer(txt,KGB,False)
 
     queries, success = analyzer.run()
 
