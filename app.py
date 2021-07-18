@@ -40,7 +40,7 @@ def show_category(cat='all'):
     
     def draw_fig():
 
-        y_saving = [1.3586, 2.2623000000000002, 4.9821999999999997, 6.5096999999999996
+        y_saving = [33.586, 25.623000000000002, 20.821999999999997, 22.5096999999999996
                     ]
         y_net_worth = [9345.919999999998, 8166.570000000007, 6988.619999999995,
                        7838.529999999999]
@@ -162,9 +162,9 @@ def show_revenue(number):
             x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
 
         fig.update_layout(
-            title="Revenue & Profit Report for past "+str(number)+" years",
-            xaxis_title="Quarters/Years",
-            yaxis_title="Amount (Million ¥)",
+            title="过去 "+str(number)+" 年的收入及利润表",
+            xaxis_title="季度/年",
+            yaxis_title="量 (百万 ¥)",
         )
         st.plotly_chart(fig, use_container_width=True)
 
@@ -186,16 +186,16 @@ def show_revenue(number):
             x=df_inc_gp['Date'], y=df_inc_gp['AAPL.Low']*np.random.uniform(low=0.5, high=0.85, size=(df_inc_gp.shape[0],)), name="Profits")])
 
         fig.update_layout(
-            title="Revenue & Profit Perc. Increase",
-            xaxis_title="Quarters/Years",
-            yaxis_title="Percentage (%)",
+            title="收入&利润增长",
+            xaxis_title="季度/年份",
+            yaxis_title="比例 (%)",
         )
         st.plotly_chart(fig, use_container_width=True)
 
     col1, col2 = st.beta_columns([1, 1])
 
     with col1:
-        st.write("Geographical Report for Chinese Market")
+        st.write("中国区市场增长分布")
         st.write("")
         st.write("")
         st.write("")
@@ -214,7 +214,7 @@ def show_revenue(number):
         # Use `hole` to create a donut-like pie chart
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
         fig.update_layout(
-            title="Revenue Division for each category",
+            title="各类收入所占比例",
         )
         st.plotly_chart(fig, use_container_width=True)
 
@@ -233,26 +233,18 @@ def show_category_revenue(years_ago, cat='品类一'):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def show_meaning(key):
-    st.info("Tips: Only a sample explanation below.")
-    if key.lower() == 'curve':
-        st.markdown(
-            "The curve stands for the _growth and dropdowns_ in revenue and profits in the past "+str(TIME_RANGE)+" years.")
-        st.markdown(
-            "And *red curve* stands for profits; *blue curve* stands for revenues.")
-    elif key.lower() == 'peak':
-        st.markdown(
-            "The peak value which occurred at **" +
-            str(PEAK_TIME)+"** reached **"+str(PEAK_VALUE)+"**"
-        )
-    else:
-        pass
+def show_meaning():
+    # st.info("Tips: Only a sample explanation below.")
+    st.markdown(
+        "时间为"+str(TIME_RANGE)+" 年份")
+    # st.markdown(
+    #     "颜色代表品类，面积大小表示涨幅或跌幅")
+    st.markdown(
+        "峰值出现在 **" +
+        str(PEAK_TIME)+"** 达到了 **"+str(PEAK_VALUE)+"**"
+    )
 
-    try:
-        show_revenue(TIME_RANGE)
-    except:
-        st.warning(
-            "You may have not queried the revenue or profit report. Please do that before checking the meanings.")
+    show_category('all')
 
 
 
@@ -299,6 +291,12 @@ def visualize(string):
     elif string == '销售细节':
         show_category_revenue(3)
 
+    elif string == '意义':
+        show_meaning()
+
+    elif string == '关联分析':
+        pass
+
 
 def process_text_v2(txt):
     # analyzer = TextAnalyzer(txt,KGB,False)
@@ -341,19 +339,32 @@ def process_text_v2(txt):
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.info('''
-            从图像中可以看到，品类四在过去三年中的销售额占比最高，为17.52%，四种产品在过去的三个月中均有不同程度的上涨。 
+            从图像中可以看到，品类四在过去三年中的销售额占比最高，为17.52%；过去三年中，品类一的最高增长率为4.7%，品类二的最高增长率为3.2%，品类二的最高增长率为2.2%。总的来看，品类一的复合增长率最高，为13%，建议下一阶段增加产品投入。 
             ''')
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
         visualize('销售')
 
+    elif '意义' in txt:
+
+
     elif '季度' in txt:
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
-            st.markdown('''
-            A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。"
+            st.info('''
+            A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
             ''')       
         visualize('销售细节')
+        
+
+    elif '毛利率' in txt:
+        st.write('检测到计算指标，是否启用关联分析功能？')
+        if st.checkbox('启用'):
+            st.info('''
+            过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%
+            ''')       
+        st.text('默认为过去一个季度的所有产品')
+        visualize('关联分析')
 
 
     
