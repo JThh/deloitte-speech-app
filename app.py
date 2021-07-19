@@ -228,8 +228,8 @@ def show_category_revenue():
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - 1), :]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
-        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.8*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
-
+        x=data_filter_year['Date'], y=data_filter_year['AAPL.Low'], name="Profits")])
+# *0.8*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)
     fig.update_layout(
         title="A产品在过去三个季度的营收及利润情况",
         xaxis_title="季度/年份",
@@ -447,7 +447,7 @@ def process_text_v2(txt):
             visualize('营收细节')
 
         with col2:
-            st.markdown('地域：A产品在过去三个季度的**销售情况**')  
+            st.markdown('A产品在过去三个季度的**销售情况**')  
             visualize('销售细节')
 
         
