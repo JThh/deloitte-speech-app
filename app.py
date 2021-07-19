@@ -571,7 +571,7 @@ def main():
         # st.write('')
         # st.write('')
 
-    with st.sidebar.beta_expander('Recent News'):
+    with st.sidebar.beta_expander('近期新闻'):
         components.html(
         """
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -663,7 +663,7 @@ def main():
             st.markdown(link, unsafe_allow_html=True)
 
         with col3:
-            link = '[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
+            link = '<img src="linkedin_logo.png">[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
             st.markdown(link, unsafe_allow_html=True)            
 
 
