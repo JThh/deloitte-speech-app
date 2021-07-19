@@ -316,7 +316,7 @@ def process_text_v2(txt):
 
 
     if '财务' in txt:
-        st.write('系统检测到模糊提问：财务分析，已为您返回财务分析涉及的三大报表，您也可以选择连接BDH查看财务分析仪表板')
+        st.text('系统检测到模糊提问：财务分析，已为您返回财务分析涉及的三大报表，您也可以选择连接BDH查看财务分析仪表板')
         col1, col2, col3, col4 = st.beta_columns([1,1,1,2.5])
 
         selection = ''
