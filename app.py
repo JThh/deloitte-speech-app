@@ -321,7 +321,7 @@ def process_text_v2(txt):
 
     if '财务' in txt:
         st.write('')
-        col1, col2, col3, col4 = st.beta_columns([1,1,1,3])
+        col1, col2, col3, col4 = st.beta_columns([1,1,1,2.5])
 
         selection = ''
         with col1:
@@ -343,11 +343,11 @@ def process_text_v2(txt):
                 addRecord('Alex','成本分布')  
                 selection = '成本'
 
-        with col4:
-            query = st.text_input(label='还想看什么信息？')
+        # with col4:
+        #     query = st.text_input(label='还想看什么信息？')
 
-        if query:
-            visualize(query)
+        # if query:
+        #     visualize(query)
         
         visualize(selection)     
 
