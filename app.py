@@ -237,7 +237,7 @@ def show_category_revenue():
 
 def show_category_sale():
     chart_data = pd.DataFrame(
-        np.random.randn(10, 1),
+        np.random.randn(9, 1),
         index=month_year_iter(10,2020,7,2021),
         columns=['品类'+x for x in ['A']]
         )
