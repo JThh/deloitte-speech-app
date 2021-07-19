@@ -562,14 +562,7 @@ def main():
 
         if len(state.chat_list) > 10:
             del (state.chat_list[0])
-    
-    with st.sidebar.beta_container():
-        st.write('')
-        st.write('')
-        # st.write('')
-        # st.write('')
-        # st.write('')
-        # st.write('')
+
 
     with st.sidebar.beta_expander('近期新闻'):
         components.html(
