@@ -563,7 +563,7 @@ def main():
     if len(state.chat_list) > 10:
         del (state.chat_list[0])
 
-    with st.sidebar.beta_expander('近期市场新闻'):
+    with st.sidebar.beta_expander('Recent News'):
         components.html(
         """
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -599,14 +599,14 @@ def main():
             </div>
         </div>
         <div class="card">
-            <div class="card-header" id="headingOne">
+            <div class="card-header" id="headingThree">
             <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                 CEE MARKETS-Forint touches 2-1/2 month low
                 </button>
             </h5>
             </div>
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
             <div class="card-body">
                 PRAGUE, July 19 (Reuters) - Central Europe's currencies fell on Monday, starting the week on a sour note amid global market weakness as coronavirus cases rise in different parts of the world, with the Hungarian forint touching a fresh 2-1/2 month low.
             </div>
@@ -616,6 +616,32 @@ def main():
         """,
         height=200,
         )
+
+    with st.sidebar.beta_container():
+        st.write('')
+        st.write('')
+        st.write('')
+        st.write('')
+        st.write('')
+        st.write('')
+        st.write('')
+    
+    with st.sidebar.beta_container():
+        st.subheader('分享报告')
+        col1,col2,col3 = st.sidebar.beta_columns(3)
+
+        with col1:
+            link = '[邮件](https://outlook.office.com/)'
+            st.markdown(link, unsafe_allow_html=True)
+
+        with col2:
+            link = '[微信](https://www.wechat.com/)'
+            st.markdown(link, unsafe_allow_html=True)
+
+        with col3:
+            link = '[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
+            st.markdown(link, unsafe_allow_html=True)            
+
 
 main()
 
