@@ -1,4 +1,3 @@
-from bokeh.models.textures import ImageURLTexture
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 
@@ -6,25 +5,24 @@ import streamlit as st
 import streamlit.components.v1 as components
 from streamlit_bokeh_events import streamlit_bokeh_events
 
-# import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
+
 import pydeck as pdk
 
 import time
 import numpy as np
 import pandas as pd
 
-from config import *
-from config_prev import *
-from utils import TextAnalyzer
-import SessionState
+from configs.config import *
+import utils.SessionState as sessionstate
 
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
-state = SessionState.get(chat_list=[])
+
+state = sessionstate.get(chat_list=[])
 
 
 def month_year_iter(start_month, start_year, end_month, end_year):
@@ -35,7 +33,7 @@ def month_year_iter(start_month, start_year, end_month, end_year):
         yield y, m+1
 
 
-def show_category(cat='all'):
+def show_category():
     chart_data = pd.DataFrame(
         np.random.randn(35, 4),
         index=month_year_iter(8, 2018, 7, 2021),
@@ -233,7 +231,7 @@ def show_category_revenue():
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
         x=data_filter_year['Date'], y=data_filter_year['AAPL.Low'], name="Profits")])
-# *0.8*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)
+    # *0.8*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)
     fig.update_layout(
         title="A产品在过去三个季度的营收及利润情况",
         xaxis_title="季度/年份",
@@ -310,7 +308,7 @@ def show_meaning(query):
             "解释：区域面积表示增长或下降的程度大小。四大品类中，品类A在过去三年的**平均增长率**最高，为**14.2%**。"
         )
 
-    show_category('all')
+    show_category()
 
 
 def addRecord(user, txt):
@@ -363,7 +361,7 @@ def visualize(string):
         st.image(image)
 
     elif string == '销售':
-        show_category('all')
+        show_category()
 
     elif string == '销售细节':
         show_category_sale()
@@ -372,7 +370,7 @@ def visualize(string):
         show_category_revenue()
 
 
-def process_text_v2(txt):
+def process_text(txt):
 
     if '财务' in txt:
         st.text('系统检测到模糊提问：财务分析，已为您返回财务分析涉及的三大报表，您也可以选择连接BDH查看财务分析仪表板')
@@ -543,10 +541,10 @@ def main():
         st.write('')
         st.write('')
         addRecord('Alex', result_audio.get("GET_TEXT"))
-        process_text_v2(result_audio.get("GET_TEXT"),)
+        process_text(result_audio.get("GET_TEXT"),)
     elif result_text:
         addRecord('Alex', result_text)
-        process_text_v2(result_text)
+        process_text(result_text)
 
     with st.sidebar.beta_container():
         st.write('')
@@ -658,37 +656,3 @@ def main():
 
 
 main()
-
-
-# def process_text(txt):
-#     '''
-#     Function for processing text and extracting key information.
-#     '''
-#     assert txt != ''
-
-#     try:
-#         TIME_RANGE = [int(s) for s in txt.split() if s.isdigit()][0]
-#     except:
-#         #st.warning('Please provide a time range.')
-#         pass
-
-#     if 'mean' in txt.lower():
-#         for x in EXPLAINABLE_TXT:
-#             if x in txt:
-#                 show_meaning(x)
-#                 return
-#         st.warning(
-#             "This is not yet explainable. More comprehensive explanations are expected to be filled in soon.")
-
-#     if 'catego' in txt.lower():
-#         for cat in CATEGORIES:
-#             if cat in txt:
-#                 show_category(cat)
-#         show_category()
-#         return
-
-#     if 'revenue' in txt.lower() or 'profit' in txt.lower():
-#         show_revenue(TIME_RANGE)
-
-#     if 'thank' in txt.lower():
-#         st.write("You're welcome! ^-^")
