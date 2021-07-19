@@ -22,6 +22,8 @@ from config_prev import *
 from utils import TextAnalyzer
 import SessionState
 
+np.random.seed(1)
+
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 state = SessionState.get(chat_list=[])
