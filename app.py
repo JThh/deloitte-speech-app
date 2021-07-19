@@ -235,7 +235,7 @@ def show_category_revenue(years_ago):
 def show_meaning():
     # st.info("Tips: Only a sample explanation below.")
     st.info(
-        "年份为：从",str(CURRENT_YEAR - TIME_RANGE), "到", str(CURRENT_YEAR))
+        "年份为：从"+str(CURRENT_YEAR - TIME_RANGE)+ "到"+str(CURRENT_YEAR))
     # st.markdown(
     #     "颜色代表品类，面积大小表示涨幅或跌幅")
     st.info(
