@@ -237,11 +237,11 @@ def show_category_revenue():
 
 def show_category_sale():
     chart_data = pd.DataFrame(
-        np.random.randn(9, 1),
+        np.random.randint(100000,1000000,size=(9, 1)),
         index=month_year_iter(10,2020,7,2021),
         columns=['品类'+x for x in ['A']]
         )
-    st.area_chart(chart_data)
+    st.line_chart(chart_data)
 
 
 def show_meaning(query):
@@ -396,10 +396,10 @@ def process_text_v2(txt):
         col1, col2 = st.beta_columns(2)
 
         with col1:
-            st.subheader('A产品在过去三个季度的销售情况')  
+            st.markdown('A产品在过去三个季度的**销售情况**')  
             visualize('销售细节')
         with col2:
-            st.subheader('A产品在过去三个季度的营收及利润情况')
+            st.markdown('A产品在过去三个季度的**营收及利润情况**')
             visualize('营收细节')
         
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
