@@ -340,13 +340,13 @@ def visualize(string):
      
     elif string == '利润':
         show_profit()
-        # col1, col2 = st.beta_columns(2)
-        # with col1:
-        #     image = Image.open('./assets/profit_year.png')
-        #     st.image(image)
-        # with col2:
-        #     image = Image.open('./assets/profit_quarter.png')
-        #     st.image(image)  
+        col1, col2 = st.beta_columns(2)
+        with col1:
+            image = Image.open('./assets/profit_year.png')
+            st.image(image)
+        with col2:
+            image = Image.open('./assets/profit_quarter.png')
+            st.image(image)  
 
     elif string == '销售':
         show_category('all')
@@ -474,20 +474,9 @@ def process_text_v2(txt):
                     ''')
 
 
-    # elif '毛利率' in txt:
-    #     addRecord('勤答','回复文字')
-    #     st.write('检测到计算指标，是否启用关联分析功能？')
-    #     if st.checkbox('启用'):
-    #         st.info('''
-    #         过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%
-    #         ''')       
-    #     st.text('默认为过去一个季度的所有产品')
-    #     visualize('关联分析')
-
-
     
 def main():
-    st.title("勤答：便携式数据交互平台")
+    st.title("🤖勤答：便携式数据交互平台")
     st.write("")
     st.sidebar.header("勤答")
 
