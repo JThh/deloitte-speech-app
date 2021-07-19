@@ -1,4 +1,7 @@
 import pandas as pd
+import numpy as np
+
+np.random.seed(1)
 
 CURRENT_YEAR = 2021
 TIME_RANGE = 5
