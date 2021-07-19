@@ -1,6 +1,5 @@
-from re import S
 from bokeh.models.textures import ImageURLTexture
-from bokeh.models.widgets import Button, Dropdown
+from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 
 import streamlit as st
@@ -27,21 +26,23 @@ st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 state = SessionState.get(chat_list=[])
 
-def month_year_iter( start_month, start_year, end_month, end_year ):
-    ym_start= 12*start_year + start_month - 1
-    ym_end= 12*end_year + end_month - 1
-    for ym in range( ym_start, ym_end ):
-        y, m = divmod( ym, 12 )
+
+def month_year_iter(start_month, start_year, end_month, end_year):
+    ym_start = 12*start_year + start_month - 1
+    ym_end = 12*end_year + end_month - 1
+    for ym in range(ym_start, ym_end):
+        y, m = divmod(ym, 12)
         yield y, m+1
+
 
 def show_category(cat='all'):
     chart_data = pd.DataFrame(
         np.random.randn(35, 4),
-        index=month_year_iter(8,2018,7,2021),
-        columns=['品类'+x for x in ['A','B','C','D']]
-        )
+        index=month_year_iter(8, 2018, 7, 2021),
+        columns=['品类'+x for x in ['A', 'B', 'C', 'D']]
+    )
     st.area_chart(chart_data)
-    
+
     def draw_fig():
 
         y_saving = [33.586, 25.623000000000002, 20.821999999999997, 22.5096999999999996
@@ -222,8 +223,10 @@ def show_revenue(number):
         )
         st.plotly_chart(fig, use_container_width=True)
 
+
 def show_profit():
     pass
+
 
 def show_category_revenue():
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - 1), :]
@@ -236,13 +239,13 @@ def show_category_revenue():
         xaxis_title="季度/年份",
         yaxis_title="值(百万¥)",
     )
-    st.plotly_chart(fig, use_container_width=True)   
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def show_category_sale():
     df = pd.DataFrame(
-    np.random.randn(1000, 2) / [50, 50] + [39.90, 116.4],
-    columns=['lat', 'lon'])
+        np.random.randn(1000, 2) / [50, 50] + [39.90, 116.4],
+        columns=['lat', 'lon'])
 
     st.pydeck_chart(pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
@@ -271,7 +274,7 @@ def show_category_sale():
                 get_radius=200,
             ),
         ],
-    ))   
+    ))
 
   # fig = go.Figure()
     # random_x = [(yr,mth) for (yr, mth) in month_year_iter(10,2020,7,2021)]
@@ -282,7 +285,7 @@ def show_category_sale():
     # fig.update_layout(title='A产品在过去三个季度的销售情况',
     #                xaxis_title='季度/年份',
     #                yaxis_title='数量')
-    # st.plotly_chart(fig, use_container_width=True)   
+    # st.plotly_chart(fig, use_container_width=True)
 
     # chart_data = pd.DataFrame(
     #     np.random.randint(100000,1000000,size=(9, 1)),
@@ -310,9 +313,9 @@ def show_meaning(query):
     show_category('all')
 
 
-def addRecord(user,txt):
+def addRecord(user, txt):
     time_string = time.strftime('%H:%M:%S')
-    state.chat_list.append((user,txt, time_string))  
+    state.chat_list.append((user, txt, time_string))
 
 
 def visualize(string):
@@ -334,10 +337,10 @@ def visualize(string):
             st.image(image)
         with col2:
             image = Image.open('./assets/cost_component.png')
-            st.image(image)    
+            st.image(image)
         image = Image.open('./assets/cost_quarter.png')
-        st.image(image)   
-     
+        st.image(image)
+
     elif string == '利润':
         show_profit()
         col1, col2 = st.beta_columns(2)
@@ -346,7 +349,7 @@ def visualize(string):
             st.image(image)
         with col2:
             image = Image.open('./assets/profit_quarter.png')
-            st.image(image)  
+            st.image(image)
 
     elif string == '连接BDH':
         st.text('连接中...')
@@ -354,10 +357,10 @@ def visualize(string):
 
         for percent_complete in range(100):
             time.sleep(0.04)
-            my_bar.progress(percent_complete + 1)     
+            my_bar.progress(percent_complete + 1)
 
         image = Image.open('./assets/BDH_Finance.png')
-        st.image(image)  
+        st.image(image)
 
     elif string == '销售':
         show_category('all')
@@ -373,26 +376,26 @@ def process_text_v2(txt):
 
     if '财务' in txt:
         st.text('系统检测到模糊提问：财务分析，已为您返回财务分析涉及的三大报表，您也可以选择连接BDH查看财务分析仪表板')
-        col1, col2, col3, col4 = st.beta_columns([1,1,1,2.5])
+        col1, col2, col3, col4 = st.beta_columns([1, 1, 1, 2.5])
 
         selection = ''
         with col1:
             st.write()
             if st.button('营收趋势图'):
-                addRecord('勤答','模糊提问')
-                addRecord('Alex','营收趋势图')
+                addRecord('勤答', '模糊提问')
+                addRecord('Alex', '营收趋势图')
                 selection = '营收'
         with col2:
             st.write()
             if st.button('总利润表'):
-                addRecord('勤答','模糊提问')
-                addRecord('Alex','总利润表')
+                addRecord('勤答', '模糊提问')
+                addRecord('Alex', '总利润表')
                 selection = '利润'
         with col3:
             st.write()
-            if st.button('成本分布'): 
-                addRecord('勤答','模糊提问')
-                addRecord('Alex','成本分布')  
+            if st.button('成本分布'):
+                addRecord('勤答', '模糊提问')
+                addRecord('Alex', '成本分布')
                 selection = '成本'
 
         # with col4:
@@ -400,8 +403,8 @@ def process_text_v2(txt):
 
         # if query:
         #     visualize(query)
-        
-        visualize(selection)     
+
+        visualize(selection)
 
         st.write('')
         st.write('')
@@ -421,9 +424,8 @@ def process_text_v2(txt):
     elif '连接' in txt:
         visualize('连接BDH')
 
-
     elif '销售' in txt:
-        addRecord('勤答','回复图表')
+        addRecord('勤答', '回复图表')
 
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
@@ -451,23 +453,22 @@ def process_text_v2(txt):
                     ''')
 
     elif '意义' in txt or '含义' in txt or '哪里' in txt:
-        addRecord('勤答','回复文字')
+        addRecord('勤答', '回复文字')
         show_meaning(txt)
 
     elif '季度' in txt:
-        addRecord('勤答','回复图表及文字')
+        addRecord('勤答', '回复图表及文字')
 
-        col1, col2 = st.beta_columns([1.2,1])
+        col1, col2 = st.beta_columns([1.2, 1])
 
         with col1:
             # st.markdown('A产品在过去三个季度的**营收及利润情况**')
             visualize('营收细节')
 
         with col2:
-            st.markdown('A产品在过去三个季度的**销售情况**')  
+            st.markdown('A产品在过去三个季度的**销售情况**')
             visualize('销售细节')
 
-        
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             col1, col2, col3 = st.beta_columns(3)
@@ -490,7 +491,6 @@ def process_text_v2(txt):
                     ''')
 
 
-    
 def main():
     st.title("🤖 勤答：便携式数据交互平台")
     st.write("")
@@ -542,10 +542,10 @@ def main():
         st.text("识别结果: "+result_audio.get("GET_TEXT"))
         st.write('')
         st.write('')
-        addRecord('Alex',result_audio.get("GET_TEXT"))
+        addRecord('Alex', result_audio.get("GET_TEXT"))
         process_text_v2(result_audio.get("GET_TEXT"),)
     elif result_text:
-        addRecord('Alex',result_text)
+        addRecord('Alex', result_text)
         process_text_v2(result_text)
 
     st.sidebar.markdown('聊天记录：')
@@ -554,7 +554,7 @@ def main():
         # names, messages, times = zip(*state.chat_list)
         df = pd.DataFrame(
             state.chat_list,
-            columns=['讲话者','内容','时间点']
+            columns=['讲话者', '内容', '时间点']
         )
         st.sidebar.dataframe(df)
     except ValueError:
@@ -562,7 +562,10 @@ def main():
 
     if len(state.chat_list) > 10:
         del (state.chat_list[0])
-    
+
+    components.sidebar.iframe(
+        'https://www.moneycontrol.com/news/business/market-live-updates-sgx-nifty-indicates-a-gap-down-opening-for-indian-indices-5-7189391.html')
+
 
 main()
 
@@ -599,5 +602,3 @@ main()
 
 #     if 'thank' in txt.lower():
 #         st.write("You're welcome! ^-^")
-
-
