@@ -218,6 +218,8 @@ def show_revenue(number):
         )
         st.plotly_chart(fig, use_container_width=True)
 
+def show_profit():
+    pass
 
 def show_category_revenue(years_ago):
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
@@ -275,6 +277,7 @@ def visualize(string):
         st.image(image)   
      
     elif string == '利润':
+        show_profit()
         col1, col2 = st.beta_columns(2)
         with col1:
             image = Image.open('./assets/profit_year.png')
@@ -429,6 +432,8 @@ def main():
     with col2:
         result_text = st.text_input(
             help="示例：请展示最近三年的营收情况", label="文本输入", max_chars=100)
+
+    components.iframe("https://bdhbitest.tax.deloitte.com.cn/analyseManage/predefinedReport/finance")
 
     if result_audio:
         # st.write("You said:")
