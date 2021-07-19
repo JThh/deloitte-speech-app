@@ -292,9 +292,6 @@ def visualize(string):
     elif string == '意义':
         show_meaning()
 
-    elif string == '关联分析':
-        pass
-
 
 def process_text_v2(txt):
     # analyzer = TextAnalyzer(txt,KGB,False)
@@ -335,39 +332,48 @@ def process_text_v2(txt):
 
     elif '销售' in txt:
         addRecord('勤答','回复图表')
-        st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
-        if st.checkbox('启用'):
-            st.info('''
-            从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。 
-            ''')
+
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
         visualize('销售')
+
+        st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
+        if st.checkbox('启用'):
+            col1, col2, col3 = st.beta_col
+            st.info('''
+            数据分析：从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。
+            ''')
+            st.info('''
+            指标分析：过去季度的销售毛利率为20%，add more。
+            ''')
+            st.info('''
+            市场分析：过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%。
+            ''')
 
     elif '意义' in txt:
         addRecord('勤答','回复文字')
         visualize('意义')
 
     elif '季度' in txt:
-        addRecord('勤答','回复文字')
+        addRecord('勤答','回复图表及文字')
+        visualize('销售细节')
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.info('''
             A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
             ''')     
         st.subheader('A产品在过去三个季度的营收报告')  
-        visualize('销售细节')
         
 
-    elif '毛利率' in txt:
-        addRecord('勤答','回复文字')
-        st.write('检测到计算指标，是否启用关联分析功能？')
-        if st.checkbox('启用'):
-            st.info('''
-            过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%
-            ''')       
-        st.text('默认为过去一个季度的所有产品')
-        visualize('关联分析')
+    # elif '毛利率' in txt:
+    #     addRecord('勤答','回复文字')
+    #     st.write('检测到计算指标，是否启用关联分析功能？')
+    #     if st.checkbox('启用'):
+    #         st.info('''
+    #         过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%
+    #         ''')       
+    #     st.text('默认为过去一个季度的所有产品')
+    #     visualize('关联分析')
 
 
     
