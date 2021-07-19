@@ -34,7 +34,7 @@ def show_category(cat='all'):
     chart_data = pd.DataFrame(
         np.random.randn(35, 4),
         index=month_year_iter(8,2018,7,2021),
-        columns=['品类'+x for x in ['A','B','C','D','E']]
+        columns=['品类'+x for x in ['A','B','C','D']]
         )
     st.area_chart(chart_data)
     
