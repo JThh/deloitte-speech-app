@@ -440,14 +440,14 @@ def process_text_v2(txt):
     elif '季度' in txt:
         addRecord('勤答','回复图表及文字')
 
-        col1, col2 = st.beta_columns(2)
+        col1, col2 = st.beta_columns([1.2,1])
 
         with col1:
-            # st.markdown('A产品在过去三个季度的**销售情况**')  
+            # st.markdown('A产品在过去三个季度的**营收及利润情况**')
             visualize('营收细节')
 
         with col2:
-            # st.markdown('A产品在过去三个季度的**营收及利润情况**')
+            st.markdown('地域：A产品在过去三个季度的**销售情况**')  
             visualize('销售细节')
 
         
