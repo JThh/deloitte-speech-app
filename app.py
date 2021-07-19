@@ -582,13 +582,13 @@ def main():
             <div class="card-header" id="headingOne">
             <h5 class="mb-0">
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Market Live Updates
+                市场动态更新
                 </button>
             </h5>
             </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                Sensex, Nifty near day's low; Nifty Bank falls over 2%
+                Sensex, Nifty达到今日最低点， Nifty Bank 跌幅超过2%
             </div>
             </div>
         </div>
@@ -596,7 +596,7 @@ def main():
             <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Dow futures slump over 300 points
+                Dow futures下降超过300个点
                 </button>
             </h5>
             </div>
@@ -610,7 +610,7 @@ def main():
             <div class="card-header" id="headingThree">
             <h5 class="mb-0">
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                CEE MARKETS-Forint touches 2-1/2 month low
+                CEE MARKETS-Forint达到近两个月以来新低
                 </button>
             </h5>
             </div>
