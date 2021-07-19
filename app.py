@@ -325,16 +325,19 @@ def process_text_v2(txt):
 
         selection = ''
         with col1:
+            st.write()
             if st.button('营收趋势图'):
                 addRecord('勤答','模糊提问')
                 addRecord('Alex','营收趋势图')
                 selection = '营收'
         with col2:
+            st.write()
             if st.button('总利润表'):
                 addRecord('勤答','模糊提问')
                 addRecord('Alex','总利润表')
                 selection = '利润'
         with col3:
+            st.write()
             if st.button('成本分布'): 
                 addRecord('勤答','模糊提问')
                 addRecord('Alex','成本分布')  
@@ -349,8 +352,7 @@ def process_text_v2(txt):
         visualize(selection)     
 
         with st.beta_expander('连接BDH分析'):
-            image = Image('./assets/BDH_Finance.png')
-            st.image(image)
+            visualize('全局')
 
     elif '销售' in txt:
         addRecord('勤答','回复图表')
