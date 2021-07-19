@@ -240,7 +240,7 @@ def show_category_revenue():
 
 def show_category_sale():
     df = pd.DataFrame(
-    np.random.randn(1000, 2) + [39.90, 116.4],
+    np.random.randn(1000, 2) / [50, 50] + [39.90, 116.4],
     columns=['lat', 'lon'])
 
     st.pydeck_chart(pdk.Deck(
