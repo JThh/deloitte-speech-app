@@ -632,17 +632,23 @@ def main():
         with col1:
             link = '''
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <a href="#" class="fa fa-facebook"></a>
-            [邮件](https://outlook.office.com/)
+            <a href="#" class="fa fa-facebook">https://outlook.office.com/</a>
             '''
             st.markdown(link, unsafe_allow_html=True)
 
         with col2:
-            link = '[QQ](https://www.wechat.com/)'
+            link = '''
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <a href="#" class="fa fa-twitter">https://twitter.com/</a>
+            '''
             st.markdown(link, unsafe_allow_html=True)
 
         with col3:
-            link = '<img src="./assets/linkedin_logo.png">[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
+            link = '''
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <a href="#" class="fa fa-linkedin">https://www.linkedin.com/home/?originalSubdomain=sg/</a>
+            '''
+            # link = '<img src="./assets/linkedin_logo.png">[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
             st.markdown(link, unsafe_allow_html=True)            
 
 
