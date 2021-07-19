@@ -347,8 +347,9 @@ def process_text_v2(txt):
         
         visualize(selection)     
 
-        st.empty()
-        st.empty()
+        st.write('')
+        st.write('')
+        st.write('')
 
         with st.beta_expander('连接BDH分析'):
             image = Image.open('./assets/BDH_Finance.png')
