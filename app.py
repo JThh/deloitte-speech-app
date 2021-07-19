@@ -349,11 +349,14 @@ def process_text_v2(txt):
 
         st.write('')
         st.write('')
-        st.write('')
 
         with st.beta_expander('连接BDH分析'):
-            with st.spinner('连接中...'):
-                time.sleep(5)
+            my_bar = st.progress(0)
+
+            for percent_complete in range(100):
+                time.sleep(0.1)
+                my_bar.progress(percent_complete + 1)
+
             image = Image.open('./assets/BDH_Finance.png')
             st.image(image)   
 
