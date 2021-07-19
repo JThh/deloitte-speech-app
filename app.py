@@ -284,7 +284,11 @@ def visualize(string):
             st.image(image)
         with col2:
             image = Image.open('./assets/profit_quarter.png')
-            st.image(image)           
+            st.image(image)  
+
+    elif string == '全局':
+        image = Image.open('./assets/BDH_Finance.png')
+        st.image(image)   
 
     elif string == '销售':
         show_category('all')
@@ -313,7 +317,7 @@ def process_text_v2(txt):
 
 
     if '财务' in txt:
-        col1, col2, col3 = st.beta_columns(3)
+        col1, col2, col3, col4 = st.beta_columns(4)
 
         selection = ''
         with col1:
@@ -327,10 +331,16 @@ def process_text_v2(txt):
                 addRecord('Alex','总利润表')
                 selection = '利润'
         with col3:
-            if st.button('营业总成本'): 
+            if st.button('成本分布'): 
                 addRecord('勤答','模糊提问')
-                addRecord('Alex','营业总成本')  
+                addRecord('Alex','成本分布')  
                 selection = '成本'
+        with col4:
+            if st.button('连接BDH-全局预览'): 
+                addRecord('勤答','模糊提问')
+                addRecord('Alex','连接BDH-全局预览')  
+                selection = '全局'
+
         visualize(selection)     
 
     elif '销售' in txt:
@@ -433,10 +443,7 @@ def main():
         result_text = st.text_input(
             help="示例：请展示最近三年的营收情况", label="文本输入", max_chars=100)
 
-    components.iframe('https://bdhtest.tax.deloitte.com.cn/home')
-    # image = Image.open("./assets/BDH_Finance.png")
-    # st.image(image)
-
+    # components.iframe('https://bdhtest.tax.deloitte.com.cn/home')
     if result_audio:
         # st.write("You said:")
         st.text("识别结果: "+result_audio.get("GET_TEXT"))
