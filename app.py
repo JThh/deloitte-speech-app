@@ -352,6 +352,8 @@ def process_text_v2(txt):
         st.write('')
 
         with st.beta_expander('连接BDH分析'):
+            with st.spinner('连接中...'):
+                time.sleep(5)
             image = Image.open('./assets/BDH_Finance.png')
             st.image(image)   
 
