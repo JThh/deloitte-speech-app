@@ -563,8 +563,9 @@ def main():
     if len(state.chat_list) > 10:
         del (state.chat_list[0])
 
-    components.sidebar.iframe(
-        'https://www.moneycontrol.com/news/business/market-live-updates-sgx-nifty-indicates-a-gap-down-opening-for-indian-indices-5-7189391.html')
+    with st.sidebar.beta_expander('近期市场新闻'):
+        components.iframe(
+            'https://www.moneycontrol.com/news/business/market-live-updates-sgx-nifty-indicates-a-gap-down-opening-for-indian-indices-5-7189391.html')
 
 
 main()
