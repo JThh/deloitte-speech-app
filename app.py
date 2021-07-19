@@ -234,16 +234,20 @@ def show_category_revenue(years_ago):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def show_meaning():
-    # st.info("Tips: Only a sample explanation below.")
-    st.info(
-        "年份为：从"+str(CURRENT_YEAR - TIME_RANGE)+ "到"+str(CURRENT_YEAR))
-    # st.markdown(
-    #     "颜色代表品类，面积大小表示涨幅或跌幅")
-    st.info(
-        "峰值出现在 **" +
-        str(PEAK_TIME)+"** 达到了 **"+str(PEAK_VALUE)+"**"
-    )
+def show_meaning(query):
+    # st.info("Tips: Only a sample explanation below."
+
+    if '峰值' in query:
+        st.write("系统检测到您的问题：峰值在哪里")
+        st.success(
+            "解释：峰值出现在 **" +
+            str(PEAK_TIME)+"** 达到了 **"+str(PEAK_VALUE)+"**"
+        )
+    if '区域' in query:
+        st.write("系统检测到您的问题：区域大小的含义")
+        st.success(
+            "解释：区域面积表示增长或下降的程度大小。四大品类中，品类A在过去三年的**平均增长率**最高，为**14.2%**。"
+        )
 
     show_category('all')
 
@@ -296,8 +300,7 @@ def visualize(string):
     elif string == '销售细节':
         show_category_revenue(3)
 
-    elif string == '意义':
-        show_meaning()
+    # elif 
 
 
 def process_text_v2(txt):
@@ -317,7 +320,8 @@ def process_text_v2(txt):
 
 
     if '财务' in txt:
-        col1, col2, col3, col4 = st.beta_columns(4)
+        st.write('')
+        col1, col2, col3, col4 = st.beta_columns([1,1,1,3])
 
         selection = ''
         with col1:
@@ -335,13 +339,18 @@ def process_text_v2(txt):
                 addRecord('勤答','模糊提问')
                 addRecord('Alex','成本分布')  
                 selection = '成本'
-        with col4:
-            if st.button('连接BDH-全局预览'): 
-                addRecord('勤答','模糊提问')
-                addRecord('Alex','连接BDH-全局预览')  
-                selection = '全局'
 
+        with col4:
+            query = st.text_input(label='还想看什么信息？')
+
+        if query:
+            visualize(query)
+        
         visualize(selection)     
+
+        with st.beta_expander('连接BDH分析'):
+            image = Image('./assets/BDH_Finance.png')
+            st.image(image)
 
     elif '销售' in txt:
         addRecord('勤答','回复图表')
@@ -371,19 +380,19 @@ def process_text_v2(txt):
                     过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%。
                     ''')
 
-    elif '意义' in txt:
+    elif '意义' in txt or '含义' in txt or '意思' in txt:
         addRecord('勤答','回复文字')
-        visualize('意义')
+        show_meaning(txt)
 
     elif '季度' in txt:
         addRecord('勤答','回复图表及文字')
+        st.subheader('A产品在过去三个季度的营收报告')  
         visualize('销售细节')
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             st.info('''
             A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
             ''')     
-        st.subheader('A产品在过去三个季度的营收报告')  
         
 
     # elif '毛利率' in txt:
