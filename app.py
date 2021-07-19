@@ -556,7 +556,7 @@ def main():
                 state.chat_list,
                 columns=['讲话者', '内容', '时间点']
             )
-            st.sidebar.dataframe(df)
+            st.dataframe(df)
         except ValueError:
             pass
 
