@@ -548,20 +548,20 @@ def main():
         addRecord('Alex', result_text)
         process_text_v2(result_text)
 
-    st.sidebar.markdown('聊天记录：')
 
-    try:
-        # names, messages, times = zip(*state.chat_list)
-        df = pd.DataFrame(
-            state.chat_list,
-            columns=['讲话者', '内容', '时间点']
-        )
-        st.sidebar.dataframe(df)
-    except ValueError:
-        pass
+    with st.sidebar.beta_expander('聊天记录'):
+        try:
+            # names, messages, times = zip(*state.chat_list)
+            df = pd.DataFrame(
+                state.chat_list,
+                columns=['讲话者', '内容', '时间点']
+            )
+            st.sidebar.dataframe(df)
+        except ValueError:
+            pass
 
-    if len(state.chat_list) > 10:
-        del (state.chat_list[0])
+        if len(state.chat_list) > 10:
+            del (state.chat_list[0])
     
     with st.sidebar.beta_container():
         st.write('')
