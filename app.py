@@ -319,7 +319,7 @@ def visualize(string):
     if string == '':
         pass
     elif string == '营收':
-        show_revenue(5)
+        show_revenue(3)
         # col1, col2 = st.beta_columns([1,2])
         # with col1:
         #     image = Image.open('./assets/revenue_year.png')
