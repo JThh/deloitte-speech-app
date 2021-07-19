@@ -663,7 +663,7 @@ def main():
             st.markdown(link, unsafe_allow_html=True)
 
         with col3:
-            link = '<img src="linkedin_logo.png">[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
+            link = '<img src="./assets/linkedin_logo.png">[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
             st.markdown(link, unsafe_allow_html=True)            
 
 
