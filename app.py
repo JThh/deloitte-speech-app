@@ -550,8 +550,6 @@ def main():
 
     with st.sidebar.beta_container():
         st.write('')
-        st.write('')
-        st.write('')
 
     with st.sidebar.beta_expander('聊天记录'):
         try:
