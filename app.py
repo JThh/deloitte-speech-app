@@ -1,3 +1,4 @@
+from re import S
 from bokeh.models.textures import ImageURLTexture
 from bokeh.models.widgets import Button, Dropdown
 from bokeh.models import CustomJS
@@ -221,8 +222,8 @@ def show_revenue(number):
 def show_profit():
     pass
 
-def show_category_revenue(years_ago):
-    data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - years_ago), :]
+def show_category_revenue():
+    data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - 1), :]
 
     fig = go.Figure([go.Scatter(x=data_filter_year['Date'], y=data_filter_year['AAPL.High'], name="Revenue"), go.Scatter(
         x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.8*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
@@ -231,7 +232,16 @@ def show_category_revenue(years_ago):
         xaxis_title="季度/年份",
         yaxis_title="值(百万¥)",
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)   
+
+
+def show_category_sale():
+    chart_data = pd.DataFrame(
+        np.random.randn(10, 1),
+        index=month_year_iter(10,2020,7,2021),
+        columns=['品类'+x for x in ['A']]
+        )
+    st.area_chart(chart_data)
 
 
 def show_meaning(query):
@@ -282,38 +292,25 @@ def visualize(string):
      
     elif string == '利润':
         show_profit()
-        col1, col2 = st.beta_columns(2)
-        with col1:
-            image = Image.open('./assets/profit_year.png')
-            st.image(image)
-        with col2:
-            image = Image.open('./assets/profit_quarter.png')
-            st.image(image)  
+        # col1, col2 = st.beta_columns(2)
+        # with col1:
+        #     image = Image.open('./assets/profit_year.png')
+        #     st.image(image)
+        # with col2:
+        #     image = Image.open('./assets/profit_quarter.png')
+        #     st.image(image)  
 
     elif string == '销售':
         show_category('all')
 
     elif string == '销售细节':
-        show_category_revenue(3)
+        show_category_sale()
 
-    # elif 
+    elif string == '营收细节':
+        show_category_revenue()
 
 
 def process_text_v2(txt):
-    # analyzer = TextAnalyzer(txt,KGB,False)
-
-    # queries, success = analyzer.run()
-
-    # if success:
-    #     for q in queries:
-    #         st.write(q)
-    #         state.chat_list.append(('勤答',q, time_string))
-    #         visualize(q)
-    # else:
-    #     msg = queries
-    #     st.write(msg)
-    #     state.chat_list.append(('勤答',msg, time_string))
-
 
     if '财务' in txt:
         st.text('系统检测到模糊提问：财务分析，已为您返回财务分析涉及的三大报表，您也可以选择连接BDH查看财务分析仪表板')
@@ -389,20 +386,43 @@ def process_text_v2(txt):
                     过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%。
                     ''')
 
-    elif '意义' in txt or '含义' in txt or '意思' in txt:
+    elif '意义' in txt or '含义' in txt or '哪里' in txt:
         addRecord('勤答','回复文字')
         show_meaning(txt)
 
     elif '季度' in txt:
         addRecord('勤答','回复图表及文字')
-        st.subheader('A产品在过去三个季度的营收报告')  
-        visualize('销售细节')
+
+        col1, col2 = st.beta_columns(2)
+
+        with col1:
+            st.subheader('A产品在过去三个季度的销售情况')  
+            visualize('销售细节')
+        with col2:
+            st.subheader('A产品在过去三个季度的营收及利润情况')
+            visualize('营收细节')
+        
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
-            st.info('''
-            A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
-            ''')     
-        
+            col1, col2, col3 = st.beta_columns(3)
+            with col1:
+                with st.beta_expander('数据分析'):
+                    st.info('''
+                    从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。
+                    ''')
+
+            with col2:
+                with st.beta_expander('指标分析'):
+                    st.info('''
+                    过去季度的销售毛利率为20%，add more。
+                    ''')
+
+            with col3:
+                with st.beta_expander('市场分析'):
+                    st.info('''
+                    A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
+                    ''')
+
 
     # elif '毛利率' in txt:
     #     addRecord('勤答','回复文字')
