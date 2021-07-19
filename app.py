@@ -588,13 +588,27 @@ def main():
             <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Dow futures slump over 300 points on reopening concerns
+                Dow futures slump over 300 points
                 </button>
             </h5>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body">
                 U.S. stock futures slumped on Monday morning, with reopening concerns triggered by new cases at the Olympic village ahead of the opening ceremony, and new restrictions imposed on travel to France by the U.K., which separately reduced its coronavirus rules for England.
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                CEE MARKETS-Forint touches 2-1/2 month low
+                </button>
+            </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                PRAGUE, July 19 (Reuters) - Central Europe's currencies fell on Monday, starting the week on a sour note amid global market weakness as coronavirus cases rise in different parts of the world, with the Hungarian forint touching a fresh 2-1/2 month low.
             </div>
             </div>
         </div>
