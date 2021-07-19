@@ -11,6 +11,8 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image
+import pydeck as pdk
+
 import time
 import numpy as np
 import pandas as pd
@@ -237,16 +239,49 @@ def show_category_revenue():
 
 
 def show_category_sale():
-    fig = go.Figure()
-    random_x = [(yr,mth) for (yr, mth) in month_year_iter(10,2020,7,2021)]
-    random_y = np.random.randn(9) * 100000
-    fig.add_trace(go.Scatter(x=random_x, y=random_y,
-                    mode='lines+markers',
-                    name='品类A'))
-    fig.update_layout(title='A产品在过去三个季度的销售情况',
-                   xaxis_title='季度/年份',
-                   yaxis_title='数量')
-    st.plotly_chart(fig, use_container_width=True)   
+    df = pd.DataFrame(
+    np.random.randn(1000, 2) / [50, 50] + [39.90, 116.4],
+    columns=['lat', 'lon'])
+
+    st.pydeck_chart(pdk.Deck(
+        map_style='mapbox://styles/mapbox/light-v9',
+        initial_view_state=pdk.ViewState(
+            latitude=39.90,
+            longitude=116.4,
+            zoom=11,
+            pitch=50,
+        ),
+        layers=[
+            pdk.Layer(
+                'HexagonLayer',
+                data=df,
+                get_position='[lon, lat]',
+                radius=200,
+                elevation_scale=4,
+                elevation_range=[0, 1000],
+                pickable=True,
+                extruded=True,
+            ),
+            pdk.Layer(
+                'ScatterplotLayer',
+                data=df,
+                get_position='[lon, lat]',
+                get_color='[200, 30, 0, 160]',
+                get_radius=200,
+            ),
+        ],
+    ))   
+
+  # fig = go.Figure()
+    # random_x = [(yr,mth) for (yr, mth) in month_year_iter(10,2020,7,2021)]
+    # random_y = np.random.randn(9) * 100000
+    # fig.add_trace(go.Scatter(x=random_x, y=random_y,
+    #                 mode='lines+markers',
+    #                 name='品类A'))
+    # fig.update_layout(title='A产品在过去三个季度的销售情况',
+    #                xaxis_title='季度/年份',
+    #                yaxis_title='数量')
+    # st.plotly_chart(fig, use_container_width=True)   
 
     # chart_data = pd.DataFrame(
     #     np.random.randint(100000,1000000,size=(9, 1)),
@@ -409,10 +444,12 @@ def process_text_v2(txt):
 
         with col1:
             # st.markdown('A产品在过去三个季度的**销售情况**')  
-            visualize('销售细节')
+            visualize('营收细节')
+
         with col2:
             # st.markdown('A产品在过去三个季度的**营收及利润情况**')
-            visualize('营收细节')
+            visualize('销售细节')
+
         
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
