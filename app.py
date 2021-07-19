@@ -657,7 +657,9 @@ def main():
             <a href="#" class="fa fa-skype"></a>
             '''
             # link = '<img src="./assets/linkedin_logo.png">[领英](https://www.linkedin.com/home/?originalSubdomain=sg)'
-            st.markdown(link, unsafe_allow_html=True)      
+            st.markdown(link, unsafe_allow_html=True)     
+
+        st.write('') 
 
 
 main()
