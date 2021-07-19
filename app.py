@@ -574,13 +574,13 @@ def main():
             <div class="card-header" id="headingOne">
             <h5 class="mb-0">
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Collapsible Group Item #1
+                Market Live Updates
                 </button>
             </h5>
             </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-                Collapsible Group Item #1 content
+                Sensex, Nifty near day's low; Nifty Bank falls over 2%
             </div>
             </div>
         </div>
@@ -588,13 +588,13 @@ def main():
             <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Collapsible Group Item #2
+                Dow futures slump over 300 points on reopening concerns
                 </button>
             </h5>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body">
-                Collapsible Group Item #2 content
+                U.S. stock futures slumped on Monday morning, with reopening concerns triggered by new cases at the Olympic village ahead of the opening ceremony, and new restrictions imposed on travel to France by the U.K., which separately reduced its coronavirus rules for England.
             </div>
             </div>
         </div>
