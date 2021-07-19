@@ -625,41 +625,16 @@ def main():
         height=200,
         )
 
-    with st.sidebar.beta_container():
-        # st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
     
     with st.sidebar.beta_expander('分享报告'):
         col1,col2,col3 = st.beta_columns(3)
 
         with col1:
-            link = '📧[邮件](https://outlook.office.com/)'
+            link = '[邮件](https://outlook.office.com/)'
             st.markdown(link, unsafe_allow_html=True)
 
         with col2:
-            link = '🐧[QQ](https://www.wechat.com/)'
+            link = '[QQ](https://www.wechat.com/)'
             st.markdown(link, unsafe_allow_html=True)
 
         with col3:
