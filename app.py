@@ -348,6 +348,17 @@ def visualize(string):
             image = Image.open('./assets/profit_quarter.png')
             st.image(image)  
 
+    elif string == '连接BDH':
+        st.text('连接中...')
+        my_bar = st.progress(0)
+
+        for percent_complete in range(100):
+            time.sleep(0.05)
+            my_bar.progress(percent_complete + 1)     
+
+        image = Image.open('./assets/BDH_Finance.png')
+        st.image(image)  
+
     elif string == '销售':
         show_category('all')
 
@@ -396,15 +407,20 @@ def process_text_v2(txt):
         st.write('')
 
         with st.beta_expander('连接BDH分析'):
-            st.text('连接中...')
-            my_bar = st.progress(0)
+            visualize('连接BDH')
 
-            for percent_complete in range(100):
-                time.sleep(0.05)
-                my_bar.progress(percent_complete + 1)     
+    elif '营收' in txt:
+        visualize('营收')
 
-            image = Image.open('./assets/BDH_Finance.png')
-            st.image(image)   
+    elif '利润' in txt:
+        visualize('利润')
+
+    elif '成本' in txt:
+        visualize('成本')
+
+    elif '连接' in txt:
+        visualize('连接BDH')
+
 
     elif '销售' in txt:
         addRecord('勤答','回复图表')
