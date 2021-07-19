@@ -316,7 +316,7 @@ def process_text_v2(txt):
 
 
     if '财务' in txt:
-        st.write('')
+        st.write('系统检测到模糊提问：财务分析，已为您返回财务分析涉及的三大报表，您也可以选择连接BDH查看财务分析仪表板')
         col1, col2, col3, col4 = st.beta_columns([1,1,1,2.5])
 
         selection = ''
@@ -351,11 +351,12 @@ def process_text_v2(txt):
         st.write('')
 
         with st.beta_expander('连接BDH分析'):
+            st.text('连接中...')
             my_bar = st.progress(0)
 
-            for percent_complete in range(100):
+            for percent_complete in range(10):
                 time.sleep(0.1)
-                my_bar.progress(percent_complete + 1)
+                my_bar.progress(percent_complete + 1)     
 
             image = Image.open('./assets/BDH_Finance.png')
             st.image(image)   
