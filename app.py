@@ -565,7 +565,7 @@ def main():
 
     with st.sidebar.beta_expander('近期市场新闻'):
         components.iframe(
-            'https://github.com/JThh/speech-app')
+            'https://dash-gallery.plotly.host/dash-financial-report/portfolio-management')
 
 
 main()
