@@ -290,10 +290,6 @@ def visualize(string):
             image = Image.open('./assets/profit_quarter.png')
             st.image(image)  
 
-    elif string == '全局':
-        image = Image.open('./assets/BDH_Finance.png')
-        st.image(image)   
-
     elif string == '销售':
         show_category('all')
 
@@ -352,7 +348,8 @@ def process_text_v2(txt):
         visualize(selection)     
 
         with st.beta_expander('连接BDH分析'):
-            visualize('全局')
+            image = Image.open('./assets/BDH_Finance.png')
+            st.image(image)   
 
     elif '销售' in txt:
         addRecord('勤答','回复图表')
