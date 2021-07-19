@@ -238,7 +238,7 @@ def show_category_revenue():
 
 def show_category_sale():
     fig = go.Figure()
-    random_x = month_year_iter(10,2020,7,2021)
+    random_x = list(month_year_iter(10,2020,7,2021))
     random_y = np.random.randn(9) * 100000
     fig.add_trace(go.Scatter(x=random_x, y=random_y,
                     mode='lines+markers',
