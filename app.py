@@ -565,7 +565,7 @@ def main():
 
     with st.sidebar.beta_expander('近期市场新闻'):
         components.iframe(
-            'https://www.moneycontrol.com/news/business/market-live-updates-sgx-nifty-indicates-a-gap-down-opening-for-indian-indices-5-7189391.html')
+            'https://arxiv.org/pdf/2008.07939.pdf')
 
 
 main()
