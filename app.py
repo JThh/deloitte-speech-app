@@ -433,7 +433,7 @@ def main():
         result_text = st.text_input(
             help="示例：请展示最近三年的营收情况", label="文本输入", max_chars=100)
 
-    components.iframe('https://bdhbitest.tax.deloitte.com.cn/')
+    components.iframe('https://bdhtest.tax.deloitte.com.cn/home')
     # image = Image.open("./assets/BDH_Finance.png")
     # st.image(image)
 
