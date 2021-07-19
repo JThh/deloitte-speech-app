@@ -626,10 +626,10 @@ def main():
         )
 
     with st.sidebar.beta_container():
-        st.write('')
-        st.write('')
-        st.write('')
-        st.write('')
+        # st.write('')
+        # st.write('')
+        # st.write('')
+        # st.write('')
         st.write('')
         st.write('')
         st.write('')
