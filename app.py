@@ -492,7 +492,7 @@ def process_text_v2(txt):
 
     
 def main():
-    st.title("🤖勤答：便携式数据交互平台")
+    st.title("🤖 勤答：便携式数据交互平台")
     st.write("")
     st.sidebar.header("勤答")
 
