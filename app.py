@@ -565,7 +565,7 @@ def main():
 
     with st.sidebar.beta_expander('近期市场新闻'):
         components.iframe(
-            'https://arxiv.org/pdf/2008.07939.pdf')
+            'https://github.com/JThh/speech-app')
 
 
 main()
