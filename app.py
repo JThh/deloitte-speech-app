@@ -229,6 +229,7 @@ def show_category_revenue():
         x=data_filter_year['Date'], y=data_filter_year['AAPL.Low']*0.8*np.random.uniform(low=0.9, high=0.95, size=(data_filter_year.shape[0],)), name="Profits")])
 
     fig.update_layout(
+        title="A产品在过去三个季度的营收及利润情况",
         xaxis_title="季度/年份",
         yaxis_title="值(百万¥)",
     )
@@ -236,12 +237,23 @@ def show_category_revenue():
 
 
 def show_category_sale():
-    chart_data = pd.DataFrame(
-        np.random.randint(100000,1000000,size=(9, 1)),
-        index=month_year_iter(10,2020,7,2021),
-        columns=['品类'+x for x in ['A']]
-        )
-    st.line_chart(chart_data)
+    fig = go.Figure()
+    random_x = month_year_iter(10,2020,7,2021)
+    random_y = np.random.randn(9) * 100000
+    fig.add_trace(go.Scatter(x=random_x, y=random_y,
+                    mode='lines+markers',
+                    name='品类A'))
+    fig.update_layout(title='A产品在过去三个季度的销售情况',
+                   xaxis_title='季度/年份',
+                   yaxis_title='数量')
+    st.plotly_chart(fig, use_container_width=True)   
+
+    # chart_data = pd.DataFrame(
+    #     np.random.randint(100000,1000000,size=(9, 1)),
+    #     index=month_year_iter(10,2020,7,2021),
+    #     columns=['品类'+x for x in ['A']]
+    #     )
+    # st.line_chart(chart_data)
 
 
 def show_meaning(query):
@@ -396,10 +408,10 @@ def process_text_v2(txt):
         col1, col2 = st.beta_columns(2)
 
         with col1:
-            st.markdown('A产品在过去三个季度的**销售情况**')  
+            # st.markdown('A产品在过去三个季度的**销售情况**')  
             visualize('销售细节')
         with col2:
-            st.markdown('A产品在过去三个季度的**营收及利润情况**')
+            # st.markdown('A产品在过去三个季度的**营收及利润情况**')
             visualize('营收细节')
         
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
