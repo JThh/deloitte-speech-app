@@ -268,7 +268,7 @@ def show_category_sale():
                 get_radius=200,
             ),
         ],
-    ))
+    ),height=200)
 
   # fig = go.Figure()
     # random_x = [(yr,mth) for (yr, mth) in month_year_iter(10,2020,7,2021)]
@@ -580,9 +580,9 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4 = st.beta_columns(4)
+        col1, col2, col3, col4 = st.beta_columns([3,5,2,4,5])
 
-        # selection = ''
+        selection = ''
         with col1:
             st.write()
             if st.button('洗发水'):
