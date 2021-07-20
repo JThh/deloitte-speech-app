@@ -39,7 +39,7 @@ def show_category():
         index=month_year_iter(8, 2018, 7, 2021),
         columns=['化妆品','洗发水','纸巾','空气清新剂']
     )
-    st.area_chart(chart_data)
+    st.line_chart(chart_data)
 
     def draw_fig():
 
@@ -63,7 +63,7 @@ def show_category():
                     width=1),
             ),
             name='销售收入，占比总收入',
-            orientation='h',
+            orientation='v',
         ), 1, 1)
 
         fig.append_trace(go.Scatter(
@@ -508,7 +508,7 @@ def process_text(txt):
     elif '连接' in txt:
         visualize('连接BDH')
 
-    elif '销售' in txt:
+    elif '销售' in txt or '销量' in txt:
         addRecord('勤答', '回复图表')
 
         st.subheader('默认显示所有分公司最近三年的销售额')
