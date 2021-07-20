@@ -12,7 +12,7 @@ data = pd.read_csv(
 data.loc[:, 'Date'] = data.loc[:, 'Date'].apply(
     lambda x: str(int(x[:4])+4)+x[4:])
 
-data.rename({'Revenue':'营收','Profits':'利润'},axis=1)
+data.rename({'Revenue':'营收','Profits':'利润'},axis=1,inplace=True)
 
 PEAK_TIME = data.loc[data['AAPL.High'] ==
                      data['AAPL.High'].max(), 'Date'].values[0]
