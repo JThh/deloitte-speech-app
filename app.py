@@ -536,7 +536,6 @@ def process_text(txt):
                     ''')
         visualize('销售')
 
-
     elif '纸巾' in txt or '含义' in txt or '区域' in txt:
         addRecord('勤答', '回复文字')
         show_meaning(txt)
@@ -582,7 +581,7 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2 = st.beta_columns(2)
+        col1, col2 = st.beta_columns([1.2,1])
 
         # selection = ''
         with col1:
