@@ -575,34 +575,44 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4, col5 = st.beta_columns([2,2,2,2,5])
+        # col1, col2, col3, col4, col5 = st.beta_columns([2,2,2,2,5])
 
-        selection = ''
-        with col1:
-            st.write()
-            if st.button('洗发水'):
-                addRecord('Alex', '洗发水')
-                selection = '洗发水'
+        # selection = ''
+        with st.beta_expander('洗发水'):
+            addRecord('Alex', '洗发水')
+            visualize('洗发水')
+        with st.beta_expander('空气清新剂'):
+            addRecord('Alex', '空气清新剂')
+            visualize('空气清新剂')
+        with st.beta_expander('纸巾'):
+            addRecord('Alex', '纸巾')
+            visualize('纸巾')
+        with st.beta_expander('所有产品'):
+            addRecord('Alex', '所有产品')
+            visualize('所有产品')
+            # if st.button('洗发水'):
+            #     addRecord('Alex', '洗发水')
+            #     selection = '洗发水'
         
-        with col2:
-            st.write()
-            if st.button('空气清新剂'):
-                addRecord('Alex', '空气清新剂')
-                selection = '空气清新剂'
+        # with col2:
+        #     st.write()
+        #     if st.button('空气清新剂'):
+        #         addRecord('Alex', '空气清新剂')
+        #         selection = '空气清新剂'
 
-        with col3:
-            st.write()
-            if st.button('纸巾'):
-                addRecord('Alex', '纸巾')
-                selection = '纸巾'  
+        # with col3:
+        #     st.write()
+        #     if st.button('纸巾'):
+        #         addRecord('Alex', '纸巾')
+        #         selection = '纸巾'  
         
-        with col4:
-            st.write()
-            if st.button('所有产品'):
-                addRecord('Alex', '所有产品')
-                selection = '所有产品'  
+        # with col4:
+        #     st.write()
+        #     if st.button('所有产品'):
+        #         addRecord('Alex', '所有产品')
+        #         selection = '所有产品'  
 
-        visualize(selection)          
+        # visualize(selection)          
 
 
 def main():
