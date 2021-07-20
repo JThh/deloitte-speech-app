@@ -373,48 +373,48 @@ def visualize(string):
     #     show_category_revenue()
 
     elif string == '化妆品':
-        st.markdown('化妆品类在过去三年的**营收及利润情况**')
+        st.subheader('化妆品类在过去三年的营收及利润情况')
 
         image = Image.open('./assets/productA.png')
         st.image(image)
 
-        st.markdown('化妆品类在过去三年的**销量情况**')
+        st.subheader('化妆品类在过去三年的销量情况')
         show_category_sale()
 
     elif string == '洗发水':
-        st.markdown('洗发水类在过去三年的**营收及利润情况**')
+        st.subheader('洗发水类在过去三年的营收及利润情况')
 
         image = Image.open('./assets/productB.png')
         st.image(image)
 
-        st.markdown('洗发水类在过去三年的**销量情况**')
+        st.subheader('洗发水类在过去三年的销量情况')
         show_category_sale()
 
     elif string == '空气清新剂':
-        st.markdown('空气清新剂类在过去三年的**营收及利润情况**')
+        st.subheader('空气清新剂类在过去三年的营收及利润情况')
 
         image = Image.open('./assets/productC.png')
         st.image(image)
 
-        st.markdown('空气清新剂类在过去三年的**销量情况**')
+        st.subheader('空气清新剂类在过去三年的销量情况')
         show_category_sale()
 
     elif string == '纸巾':
-        st.markdown('纸巾类在过去三年的**营收及利润情况**')
+        st.subheader('纸巾类在过去三年的营收及利润情况')
 
         image = Image.open('./assets/productC.png')
         st.image(image)
 
-        st.markdown('纸巾类在过去三年的**销量情况**')
+        st.subheader('纸巾类在过去三年的销量情况')
         show_category_sale()
 
     elif string == '所有产品':
-        st.markdown('所有产品在过去三年的**营收及利润情况**')
+        st.subheader('所有产品在过去三年的营收及利润情况')
 
         image = Image.open('./assets/all_products.png')
         st.image(image)
 
-        st.markdown('所有产品在过去三年的**销量情况**')
+        st.subheader('所有产品在过去三年的销量情况')
         show_category_sale()
 
 
@@ -575,7 +575,7 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4, col5 = st.beta_columns([1, 1, 1, 1, 3])
+        col1, col2, col3, col4, col5 = st.beta_columns([2,2,2,2,5])
 
         selection = ''
         with col1:
