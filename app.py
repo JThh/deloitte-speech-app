@@ -373,13 +373,16 @@ def visualize(string):
     #     show_category_revenue()
 
     elif string == '化妆品':
-        st.subheader('化妆品类在过去三年的营收及利润情况')
+        col1, col2 = st.beta_columns([1.5,1])
+        with col1:
+            st.subheader('化妆品类在过去三年的营收及利润情况')
 
-        image = Image.open('./assets/productA.png')
-        st.image(image)
+            image = Image.open('./assets/productA.png')
+            st.image(image)
 
-        st.subheader('化妆品类在过去三年的销量情况')
-        show_category_sale()
+        with col2:
+            st.subheader('化妆品类在过去三年的销量情况')
+            show_category_sale()
 
     elif string == '洗发水':
         st.subheader('洗发水类在过去三年的营收及利润情况')
@@ -536,7 +539,7 @@ def process_text(txt):
         addRecord('勤答', '回复文字')
         show_meaning(txt)
 
-    elif '产品' in txt:
+    elif '产品' in txt or '化妆品' in txt:
         addRecord('勤答', '回复图表及文字')
 
         # col1, col2 = st.beta_columns([1.2, 1])
@@ -572,54 +575,39 @@ def process_text(txt):
 
         visualize('化妆品')
             
+        st.write('')
+        st.write('')
 
         st.write('您可能还想看：')
 
-        col1, col2 = st.beta_columns([2,2])
+        col1, col2, col3, col4 = st.beta_columns(4)
 
         # selection = ''
         with col1:
-            with st.beta_expander('洗发水'):
+            st.write()
+            if st.button('洗发水'):
                 addRecord('Alex', '洗发水')
-                visualize('洗发水')
+                selection = '洗发水'
+        
         with col2:
-            with st.beta_expander('空气清新剂'):
+            st.write()
+            if st.button('空气清新剂'):
                 addRecord('Alex', '空气清新剂')
-                visualize('空气清新剂')
+                selection = '空气清新剂'
 
-        col1, col2 = st.beta_columns([2,2])
-        
-        with col1:
-            with st.beta_expander('纸巾'):
+        with col3:
+            st.write()
+            if st.button('纸巾'):
                 addRecord('Alex', '纸巾')
-                visualize('纸巾')
-        with col2:
-            with st.beta_expander('所有产品'):
+                selection = '纸巾'  
+        
+        with col4:
+            st.write()
+            if st.button('所有产品'):
                 addRecord('Alex', '所有产品')
-                visualize('所有产品')
-            # if st.button('洗发水'):
-            #     addRecord('Alex', '洗发水')
-            #     selection = '洗发水'
-        
-        # with col2:
-        #     st.write()
-        #     if st.button('空气清新剂'):
-        #         addRecord('Alex', '空气清新剂')
-        #         selection = '空气清新剂'
+                selection = '所有产品'  
 
-        # with col3:
-        #     st.write()
-        #     if st.button('纸巾'):
-        #         addRecord('Alex', '纸巾')
-        #         selection = '纸巾'  
-        
-        # with col4:
-        #     st.write()
-        #     if st.button('所有产品'):
-        #         addRecord('Alex', '所有产品')
-        #         selection = '所有产品'  
-
-        # visualize(selection)          
+        visualize(selection)          
 
 
 def main():
