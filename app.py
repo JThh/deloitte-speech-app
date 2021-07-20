@@ -290,18 +290,15 @@ def show_category_sale():
 
 
 def show_meaning(query):
-    # st.info("Tips: Only a sample explanation below."
-
-    if '峰值' in query:
-        st.write("系统检测到您的问题：峰值在哪里")
+    if '最好' in query:
+        st.write("系统检测到您的问题：纸巾类产品什么时候销量最佳")
         st.success(
-            "解释：峰值出现在 **" +
-            str(PEAK_TIME)+"** 达到了 **"+str(PEAK_VALUE)+"**"
+            "解释：经过系统计算，纸巾类在每年的6-8月份销量增长率最高，8月份销量最好；在2019年8月销量达到20万件，同比增长20%，比空气清新剂类类高出30%的销售额。"
         )
     if '区域' in query:
         st.write("系统检测到您的问题：区域大小的含义")
         st.success(
-            "解释：区域面积表示增长或下降的程度大小。四大品类中，品类A在过去三年的**平均增长率**最高，为**14.2%**。"
+            "解释：区域面积表示增长或下降的程度大小。四大品类中，化妆品类在过去三年的**平均增长率**最高，为**14.2%**；纸巾类在去年的平均增长率最高，为11%；化妆品类在上个月的平均增长率最高，为9%。"
         )
 
     show_category()
@@ -376,11 +373,12 @@ def visualize(string):
         col1, col2 = st.beta_columns([1.5,1])
         with col1:
             st.subheader('化妆品类在过去三年的营收及利润情况')
-
+            st.write('')
             image = Image.open('./assets/productA.png')
             st.image(image)
 
             st.subheader('过去三年的指标与成本构成')
+            st.write('')
             image = Image.open('./assets/productA_ext.png')
             st.image(image)            
 
