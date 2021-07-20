@@ -341,6 +341,7 @@ def visualize(string):
             image = Image.open('./assets/profit1-1.png')
             st.image(image)
             st.write('')
+            st.write('')
             image = Image.open('./assets/profit1-2.png')
             st.image(image)
         with col2:
@@ -424,30 +425,35 @@ def process_text(txt):
         visualize('利润')
 
         st.write('您可能还想看：')
-        col1, col2, col3, col4 = st.beta_columns([1, 1, 2,2])
+
+        col1, col2, col3, col4 = st.beta_columns([1, 1, 1,4])
 
         selection = ''
         with col1:
             st.write()
             if st.button('营收趋势图'):
-                addRecord('勤答', '模糊提问')
                 addRecord('Alex', '营收趋势图')
                 selection = '营收'
         
         with col2:
             st.write()
             if st.button('成本分布'):
-                addRecord('勤答', '模糊提问')
                 addRecord('Alex', '成本分布')
                 selection = '成本'
+
+        with col3:
+            st.write()
+            if st.button('成本分布'):
+                addRecord('Alex', '连接BDH分析')
+                selection = '连接BDH'
  
         visualize(selection)
 
-        st.write('')
-        st.write('')
+        # st.write('')
+        # st.write('')
 
-        with st.beta_expander('连接BDH分析'):
-            visualize('连接BDH')  
+        # with st.beta_expander('连接BDH分析'):
+        #     visualize('连接BDH')  
 
     elif '成本' in txt:
         visualize('成本')
@@ -483,7 +489,7 @@ def process_text(txt):
                     过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%。
                     ''')
 
-    elif '意义' in txt or '含义' in txt or '哪里' in txt:
+    elif '峰值' in txt or '含义' in txt or '区域' in txt:
         addRecord('勤答', '回复文字')
         show_meaning(txt)
 
