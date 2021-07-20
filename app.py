@@ -431,19 +431,19 @@ def process_text(txt):
         selection = ''
         with col1:
             st.write()
-            if st.button('营收趋势图'):
+            if st.button('营收趋势图',key='营收趋势图'):
                 addRecord('Alex', '营收趋势图')
                 selection = '营收'
         
         with col2:
             st.write()
-            if st.button('成本分布'):
+            if st.button('成本分布',key='成本分布'):
                 addRecord('Alex', '成本分布')
                 selection = '成本'
 
         with col3:
             st.write()
-            if st.button('成本分布'):
+            if st.button('连接BDH分析',key='连接BDH分析'):
                 addRecord('Alex', '连接BDH分析')
                 selection = '连接BDH'
  
@@ -466,7 +466,6 @@ def process_text(txt):
 
         st.subheader('默认显示所有分公司最近三年的销售额')
         st.text('可以通过确定年份范围和分公司得到更具体的图像')
-        visualize('销售')
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
@@ -488,6 +487,9 @@ def process_text(txt):
                     st.info('''
                     过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%。
                     ''')
+        visualize('销售')
+
+
 
     elif '峰值' in txt or '含义' in txt or '区域' in txt:
         addRecord('勤答', '回复文字')
