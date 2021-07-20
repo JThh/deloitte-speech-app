@@ -222,10 +222,6 @@ def show_revenue(number):
         st.plotly_chart(fig, use_container_width=True)
 
 
-def show_profit():
-    pass
-
-
 def show_category_revenue():
     data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - 1), :]
 
@@ -340,13 +336,22 @@ def visualize(string):
         st.image(image)
 
     elif string == '利润':
-        show_profit()
-        col1, col2 = st.beta_columns(2)
+
+        col1, col2, col3 = st.beta_columns([1,1.5,1.5])
         with col1:
-            image = Image.open('./assets/profit_year.png')
+            image = Image.open('./assets/profit1-1.png')
+            st.image(image)
+            image = Image.open('./assets/profit1-2.png')
             st.image(image)
         with col2:
-            image = Image.open('./assets/profit_quarter.png')
+            image = Image.open('./assets/profit2-1.png')
+            st.image(image)
+            image = Image.open('./assets/profit2-2.png')
+            st.image(image)
+        with col3:
+            image = Image.open('./assets/profit3-1.png')
+            st.image(image)
+            image = Image.open('./assets/profit3-2.png')
             st.image(image)
 
     elif string == '连接BDH':
@@ -414,7 +419,33 @@ def process_text(txt):
         visualize('营收')
 
     elif '利润' in txt:
+        st.text('系统检测到模糊提问：利润情况，已为您返回与利润相关的所有报表，您也可以选择连接BDH查看完整的仪表板')
         visualize('利润')
+
+        st.write('您可能还想看：')
+        col1, col2, col3, col4 = st.beta_columns([1, 1, 2,2])
+
+        with col1:
+            st.write()
+            if st.button('营收趋势图'):
+                addRecord('勤答', '模糊提问')
+                addRecord('Alex', '营收趋势图')
+                selection = '营收'
+        
+        with col2:
+            st.write()
+            if st.button('成本分布'):
+                addRecord('勤答', '模糊提问')
+                addRecord('Alex', '成本分布')
+                selection = '成本'
+ 
+        visualize(selection)
+
+        st.write('')
+        st.write('')
+
+        with st.beta_expander('连接BDH分析'):
+            visualize('连接BDH')  
 
     elif '成本' in txt:
         visualize('成本')
