@@ -340,6 +340,7 @@ def visualize(string):
         with col1:
             image = Image.open('./assets/profit1-1.png')
             st.image(image)
+            st.write('')
             image = Image.open('./assets/profit1-2.png')
             st.image(image)
         with col2:
