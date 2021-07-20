@@ -369,11 +369,53 @@ def visualize(string):
     elif string == '销售':
         show_category()
 
-    elif string == '销售细节':
+    # elif string == '营收细节':
+    #     show_category_revenue()
+
+    elif string == '化妆品':
+        st.markdown('化妆品类在过去三年的**营收及利润情况**')
+
+        image = Image.open('./assets/productA.png')
+        st.image(image)
+
+        st.markdown('化妆品类在过去三年的**销量情况**')
         show_category_sale()
 
-    elif string == '营收细节':
-        show_category_revenue()
+    elif string == '洗发水':
+        st.markdown('洗发水类在过去三年的**营收及利润情况**')
+
+        image = Image.open('./assets/productB.png')
+        st.image(image)
+
+        st.markdown('洗发水类在过去三年的**销量情况**')
+        show_category_sale()
+
+    elif string == '空气清新剂':
+        st.markdown('空气清新剂类在过去三年的**营收及利润情况**')
+
+        image = Image.open('./assets/productC.png')
+        st.image(image)
+
+        st.markdown('空气清新剂类在过去三年的**销量情况**')
+        show_category_sale()
+
+    elif string == '纸巾':
+        st.markdown('纸巾类在过去三年的**营收及利润情况**')
+
+        image = Image.open('./assets/productC.png')
+        st.image(image)
+
+        st.markdown('纸巾类在过去三年的**销量情况**')
+        show_category_sale()
+
+    elif string == '所有产品':
+        st.markdown('所有产品在过去三年的**营收及利润情况**')
+
+        image = Image.open('./assets/all_products.png')
+        st.image(image)
+
+        st.markdown('所有产品在过去三年的**销量情况**')
+        show_category_sale()
 
 
 def process_text(txt):
@@ -490,7 +532,6 @@ def process_text(txt):
         visualize('销售')
 
 
-
     elif '峰值' in txt or '含义' in txt or '区域' in txt:
         addRecord('勤答', '回复文字')
         show_meaning(txt)
@@ -498,15 +539,15 @@ def process_text(txt):
     elif '产品' in txt:
         addRecord('勤答', '回复图表及文字')
 
-        col1, col2 = st.beta_columns([1.2, 1])
+        # col1, col2 = st.beta_columns([1.2, 1])
 
-        with col1:
-            # st.markdown('A产品在过去三个季度的**营收及利润情况**')
-            visualize('营收细节')
+        # with col1:
+        #     # st.markdown('A产品在过去三个季度的**营收及利润情况**')
+        #     visualize('营收细节')
 
-        with col2:
-            st.markdown('子产品在过去三年的**销售情况**')
-            visualize('销售细节')
+        # with col2:
+        #     st.markdown('子产品在过去三年的**销售情况**')
+        #     visualize('销售细节')
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
@@ -528,6 +569,40 @@ def process_text(txt):
                     st.info('''
                     A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
                     ''')
+
+        visualize('化妆品')
+            
+
+        st.write('您可能还想看：')
+
+        col1, col2, col3, col4, col5 = st.beta_columns([1, 1, 1, 1, 3])
+
+        selection = ''
+        with col1:
+            st.write()
+            if st.button('洗发水'):
+                addRecord('Alex', '洗发水')
+                selection = '洗发水'
+        
+        with col2:
+            st.write()
+            if st.button('空气清新剂'):
+                addRecord('Alex', '空气清新剂')
+                selection = '空气清新剂'
+
+        with col3:
+            st.write()
+            if st.button('纸巾'):
+                addRecord('Alex', '纸巾')
+                selection = '纸巾'  
+        
+        with col4:
+            st.write()
+            if st.button('所有产品'):
+                addRecord('Alex', '所有产品')
+                selection = '所有产品'  
+
+        visualize(selection)          
 
 
 def main():
