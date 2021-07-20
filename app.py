@@ -575,7 +575,7 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4 = st.beta_columns([2,2,2,2])
+        col1, col2 = st.beta_columns([2,2])
 
         # selection = ''
         with col1:
@@ -586,11 +586,14 @@ def process_text(txt):
             with st.beta_expander('空气清新剂'):
                 addRecord('Alex', '空气清新剂')
                 visualize('空气清新剂')
-        with col3:
+
+        col1, col2 = st.beta_columns([2,2])
+        
+        with col1:
             with st.beta_expander('纸巾'):
                 addRecord('Alex', '纸巾')
                 visualize('纸巾')
-        with col4:
+        with col2:
             with st.beta_expander('所有产品'):
                 addRecord('Alex', '所有产品')
                 visualize('所有产品')
