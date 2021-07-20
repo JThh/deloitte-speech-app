@@ -12,11 +12,15 @@ data = pd.read_csv(
 data.loc[:, 'Date'] = data.loc[:, 'Date'].apply(
     lambda x: str(int(x[:4])+4)+x[4:])
 
+data.rename({'Revenue':'营收','Profits':'利润'},axis=1)
+
 PEAK_TIME = data.loc[data['AAPL.High'] ==
                      data['AAPL.High'].max(), 'Date'].values[0]
 PEAK_VALUE = data['AAPL.High'].max()
 
 CATEGORIES = ["category "+str(n) for n in range(1,9)]
+
+SALES_DATA = np.random.randn(35, 4)
 
 # import pickle5 as pickle
 

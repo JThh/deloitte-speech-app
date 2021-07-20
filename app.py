@@ -35,9 +35,9 @@ def month_year_iter(start_month, start_year, end_month, end_year):
 
 def show_category():
     chart_data = pd.DataFrame(
-        np.random.randn(35, 4),
+        SALES_DATA,
         index=month_year_iter(8, 2018, 7, 2021),
-        columns=['品类'+x for x in ['A', 'B', 'C', 'D']]
+        columns=['化妆品','洗发水','纸巾','空气清新剂']
     )
     st.area_chart(chart_data)
 
@@ -47,7 +47,7 @@ def show_category():
                     ]
         y_net_worth = [9345.919999999998, 8166.570000000007, 6988.619999999995,
                        7838.529999999999]
-        x = ['品类A', '品类B', '品类C', '品类']
+        x = ['化妆品','洗发水','纸巾','空气清新剂']
 
         # Creating two subplots
         fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=True,
@@ -416,7 +416,7 @@ def process_text(txt):
         with st.beta_expander('连接BDH分析'):
             visualize('连接BDH')
 
-    elif '营收' in txt:
+    elif '营收' in txt or '收入' in txt:
         visualize('营收')
 
     elif '利润' in txt:
@@ -426,7 +426,7 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4 = st.beta_columns([1, 1, 1.5,4])
+        col1, col2, col3, col4 = st.beta_columns([1, 1, 2,2])
 
         selection = ''
         with col1:
@@ -441,19 +441,19 @@ def process_text(txt):
                 addRecord('Alex', '成本分布')
                 selection = '成本'
 
-        with col3:
-            st.write()
-            if st.button('连接BDH分析',key='连接BDH分析'):
-                addRecord('Alex', '连接BDH分析')
-                selection = '连接BDH'
+        # with col3:
+        #     st.write()
+        #     if st.button('连接BDH分析',key='连接BDH分析'):
+        #         addRecord('Alex', '连接BDH分析')
+        #         selection = '连接BDH'
  
         visualize(selection)
 
-        # st.write('')
-        # st.write('')
+        st.write('')
+        st.write('')
 
-        # with st.beta_expander('连接BDH分析'):
-        #     visualize('连接BDH')  
+        with st.beta_expander('连接BDH分析'):
+            visualize('连接BDH')  
 
     elif '成本' in txt:
         visualize('成本')
@@ -495,7 +495,7 @@ def process_text(txt):
         addRecord('勤答', '回复文字')
         show_meaning(txt)
 
-    elif '季度' in txt:
+    elif '产品' in txt:
         addRecord('勤答', '回复图表及文字')
 
         col1, col2 = st.beta_columns([1.2, 1])
@@ -505,7 +505,7 @@ def process_text(txt):
             visualize('营收细节')
 
         with col2:
-            st.markdown('A产品在过去三个季度的**销售情况**')
+            st.markdown('子产品在过去三年的**销售情况**')
             visualize('销售细节')
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
