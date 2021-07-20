@@ -268,7 +268,7 @@ def show_category_sale():
                 get_radius=200,
             ),
         ],
-    ),height=200)
+    ))
 
   # fig = go.Figure()
     # random_x = [(yr,mth) for (yr, mth) in month_year_iter(10,2020,7,2021)]
