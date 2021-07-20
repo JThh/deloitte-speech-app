@@ -419,12 +419,14 @@ def process_text(txt):
         visualize('营收')
 
     elif '利润' in txt:
-        st.text('系统检测到模糊提问：利润情况，已为您返回与利润相关的所有报表，您也可以选择连接BDH查看完整的仪表板')
+        st.text('系统检测到模糊提问：利润情况，已为您返回与利润相关的所有报表')
+        st.write('')
         visualize('利润')
 
         st.write('您可能还想看：')
         col1, col2, col3, col4 = st.beta_columns([1, 1, 2,2])
 
+        selection = ''
         with col1:
             st.write()
             if st.button('营收趋势图'):
