@@ -426,7 +426,7 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4 = st.beta_columns([1, 1, 1,4])
+        col1, col2, col3, col4 = st.beta_columns([1, 1, 1.5,4])
 
         selection = ''
         with col1:
