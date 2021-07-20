@@ -380,8 +380,12 @@ def visualize(string):
             image = Image.open('./assets/productA.png')
             st.image(image)
 
+            st.subheader('过去三年的指标与成本构成')
+            image = Image.open('./assets/productA_ext.png')
+            st.image(image)            
+
         with col2:
-            st.subheader('化妆品类在过去三年的销量情况')
+            st.subheader('过去三年的销量情况')
             show_category_sale()
 
     elif string == '洗发水':
@@ -580,7 +584,7 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4 = st.beta_columns([3,5,2,4,5])
+        col1, col2, col3, col4, col5 = st.beta_columns([3,5,2,4,5])
 
         selection = ''
         with col1:
