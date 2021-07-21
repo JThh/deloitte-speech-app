@@ -383,21 +383,11 @@ def visualize(string):
             st.write('')
             # st.write('')
             st.write('')
-            # image = Image.open('./assets/profit1-2.png')
-            # st.image(image)
-            fig = go.Figure()
-
-            fig.add_trace(go.Indicator(
-                mode = "number+delta",
-                value = 450,
-                title = {"text": "Accounts<br><span style='font-size:0.8em;color:gray'>Subtitle</span><br><span style='font-size:0.8em;color:gray'>Subsubtitle</span>"},
-                delta = {'reference': 400, 'relative': True},
-                domain = {'x': [0.6, 1], 'y': [0, 1]}))
-            
-            st.plotly_chart(fig)
-
+            image = Image.open('./assets/profit1-2.png')
+            st.image(image)
             
         with col2:
+
             image = Image.open('./assets/profit2-2.png')
             st.image(image)
             image = Image.open('./assets/profit2-1.png')
@@ -410,6 +400,7 @@ def visualize(string):
             st.write('')
             image = Image.open('./assets/profit3-1.png')
             st.image(image)
+
 
     elif string == '连接BDH':
         st.text('连接中...')
