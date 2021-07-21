@@ -422,6 +422,7 @@ def show_profit():
                 margin-bottom=: 0px;
             }
             div {
+                border: solid green;
                 border-width: thin;
             }
             </style>
@@ -446,6 +447,7 @@ def show_profit():
                 text-align: center;
             }
             div {
+                border: solid green;
                 border-width: thin;
             }
             </style>
@@ -471,6 +473,7 @@ def show_profit():
                 margin-bottom=: 0px;
             }
             div {
+                border: solid green;
                 border-width: thin;
             }
             </style>
