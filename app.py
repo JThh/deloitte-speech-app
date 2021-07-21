@@ -432,7 +432,7 @@ def show_profit():
                 <h3>193,261,60</h3>
             </div>
             """
-        ,height=500)
+        ,height=500,width=100)
 
 
 
