@@ -730,7 +730,7 @@ def process_text(txt):
             with col1:
                 with st.beta_expander('市场分析'):
                     st.success('''
-                    示例：过去季度总体的销售毛利率为20%，市场同期为15%，比市场高约33%；
+                    示例：过去季度总体的销售毛利率为20%，市场同期为15%，比市场高约33%；营业净利润率为11.7%，市场同期为14%，比市场低13%；原因可能为目前的产品成本过高。
                     ''')
             with col2:
                 with st.beta_expander('数据分析'):
@@ -741,7 +741,7 @@ def process_text(txt):
             with col3:
                 with st.beta_expander('指标分析'):
                     st.info('''
-                    过去季度的销售毛利率为20%，add more。
+                    示例：过去季度的销售毛利率为20%，营业净利润率为11.7%，息税前利润率为15%。
                     ''')
 
 
@@ -754,35 +754,25 @@ def process_text(txt):
     elif '产品' in txt or '化妆品' in txt:
         addRecord('勤答', '回复图表及文字')
 
-        # col1, col2 = st.beta_columns([1.2, 1])
-
-        # with col1:
-        #     # st.markdown('A产品在过去三个季度的**营收及利润情况**')
-        #     visualize('营收细节')
-
-        # with col2:
-        #     st.markdown('子产品在过去三年的**销售情况**')
-        #     visualize('销售细节')
-
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
             col1, col2, col3 = st.beta_columns(3)
             with col1:
                 with st.beta_expander('市场分析'):
                     st.success('''
-                    A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
+                    示例：化妆品类销售量比同期市场均值高16.5%，销售毛利率比同期市场毛利率高15%。
                     ''')
 
             with col2:
                 with st.beta_expander('数据分析'):
                     st.info('''
-                    从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。
+                    示例：化妆品类在过去三个季度中营收净增长达30%，利润增长为15%，最高单季度增长率为31.3%。
                     ''')
 
             with col3:
                 with st.beta_expander('指标分析'):
                     st.info('''
-                    过去季度的销售毛利率为20%，add more。
+                    示例：过去季度的销售毛利率为20%，营业净利润率为11.7%，息税前利润率为15%。
                     ''')
 
 
