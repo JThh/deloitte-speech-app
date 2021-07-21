@@ -37,15 +37,16 @@ def month_year_iter(start_month, start_year, end_month, end_year):
 
 
 def show_category():
-    chart_data = pd.DataFrame(
-        SALES_DATA,
-        index=month_year_iter(8, 2018, 7, 2021),
-        columns=['化妆品','洗发水','纸巾','空气清新剂']
-    )
-    st.line_chart(chart_data)
+    # chart_data = pd.DataFrame(
+    #     SALES_DATA,
+    #     index=month_year_iter(8, 2018, 7, 2021),
+    #     columns=['化妆品','洗发水','纸巾','空气清新剂']
+    # )
+    # st.line_chart(chart_data)
 
     df = px.data.stocks()
     df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
+    df.iloc[:,0] = df.iloc[:,0] * 100000
     fig = px.line(df, x="date", y=df.columns[:5],
                 hover_data={"date": "|%B %d, %Y"},
                 title='产品销量变化')
@@ -53,9 +54,10 @@ def show_category():
         title_text='时间',
         dtick="M1",
         tickformat="%b\n%Y")
-    fig.update_yaxes(title_text='销量（万）')
+    fig.update_yaxes(title_text='销量')
 
     fig.update_layout(legend=dict(
+        title='',
         orientation="h",
         yanchor="bottom",
         y=1.02,
