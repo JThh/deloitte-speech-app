@@ -411,7 +411,7 @@ def show_profit():
             <style>
             h2 {
                 text-align: center;
-                color: green;
+                color: black;
                 font-family: Arial;
                 background-color: green;
 
@@ -424,7 +424,7 @@ def show_profit():
             div {
                 border: solid green;
                 border-width: thin;
-                margin: 0px, 5px, 0px, 5px;
+                padding: 0px, 5px, 0px, 5px;
             }
             </style>
             <div>
@@ -438,7 +438,7 @@ def show_profit():
             <style>
             h2 {
                 text-align: center;
-                color: green;
+                color: black;
                 background-color: green;
                 font-family: Arial;         
             }
@@ -450,7 +450,7 @@ def show_profit():
             div {
                 border: solid green;
                 border-width: thin;
-                margin: 0px, 5px, 0px, 5px;
+                padding: 0px, 5px, 0px, 5px;
             }
             </style>
             <div>
@@ -465,7 +465,7 @@ def show_profit():
             <style>
             h2 {
                 text-align: center;
-                color: green;
+                color: black;
                 font-family: Arial;
                 background-color: green;
             }
@@ -477,7 +477,7 @@ def show_profit():
             div {
                 border: solid green;
                 border-width: thin;
-                margin: 0px, 5px, 0px, 5px;
+                padding: 0px, 5px, 0px, 5px;
             }
             </style>
             <div>
