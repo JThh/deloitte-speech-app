@@ -53,7 +53,8 @@ def show_category():
     fig.update_xaxes(
         title_text='时间',
         dtick="M1",
-        tickformat="%b\n%Y")
+        tickformat="%b\n%Y",
+        tickangle=45,)
     fig.update_yaxes(title_text='销量')
 
     fig.update_layout(legend=dict(
@@ -64,7 +65,7 @@ def show_category():
         xanchor="right",
         x=1
     ))
-    st.plotly_chart(fig, width=500)
+    st.plotly_chart(fig)
 
 
     def draw_fig():
@@ -434,8 +435,6 @@ def show_profit():
             </div>
             """
         ,height=300,width=120)
-
-
 
     with col2:   
         fig = go.Figure(go.Waterfall(
