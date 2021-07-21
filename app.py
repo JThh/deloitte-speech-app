@@ -413,6 +413,8 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
+                margin: 0px;
+                background-color: green;
 
             }
             h3 {
@@ -420,19 +422,15 @@ def show_profit():
                 color: black;
                 text-align: center;
                 margin: 0px;
+                margin-bottom: 5px;
             }
             div {
                 border: solid green;
                 border-width: thin;
             }
-            span {
-                background-color: green;
-            }
             </style>
             <div>
-                <span>
-                    <h2>销售毛利率</h2>
-                </span>
+                <h2>销售毛利率</h2>
                 <h3>37.1%</h3>
             </div>
             """
@@ -443,6 +441,8 @@ def show_profit():
             h2 {
                 text-align: center;
                 color: green;
+                margin: 0px;
+                background-color: green;
                 font-family: Arial;         
             }
             h3 {
@@ -450,6 +450,7 @@ def show_profit():
                 color: black;
                 margin: 0px;
                 text-align: center;
+                margin-bottom: 5px;
             }
             div {
                 border: solid green;
@@ -460,9 +461,7 @@ def show_profit():
             }
             </style>
             <div>
-                <span>
-                    <h2>营业净利率</h2>
-                </span>
+                <h2>营业净利率</h2>
                 <h3>37.1%</h3>
             </div>
             """
@@ -475,25 +474,23 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
+                background-color: green;
+                margin: 0px;
             }
             h3 {
                 font-family: Arial;
                 color: black;
                 text-align: center;
                 margin: 0px;
+                margin-bottom: 5px;
             }
             div {
                 border: solid green;
                 border-width: thin;
             }
-            span {
-                background-color: green;
-            }
             </style>
             <div>
-                <span>
-                    <h2>息税前利润</h2>
-                </span>
+                <h2>息税前利润</h2>
                 <h3>37.1%</h3>
             </div>
             """
