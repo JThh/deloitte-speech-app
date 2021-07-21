@@ -46,7 +46,7 @@ def show_category():
 
     df = px.data.stocks().iloc[:40,:]
     df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
-    df.iloc[:,0] = [x*100000 for x in df.iloc[:,0]]
+    df.iloc[:,0] = [x*100000 for x in df.iloc[:,0].values]
     fig = px.line(df, x="date", y=df.columns[:5],
                 hover_data={"date": "|%B %d, %Y"},
                 title='产品销量变化')
