@@ -386,9 +386,73 @@ def show_profit():
         ), height=400, width=550)
         st.plotly_chart(fig, height=400, width=550)
 
-    col1,col2 = st.beta_columns([1,4])
+    col1,col2,col3 = st.beta_columns([1,4,1])
 
     with col1:
+        st.write('利润指标')
+        # st.write('')
+        st.write('')
+        st.write('')
+        st.write('')
+        components.html(
+            """
+            <style>
+            h2 {
+                text-align: center;
+                color: white;
+                font-family: Arial;
+                background-color: blue;
+                margin: 0px;
+                font-size:0.8em;
+            }
+            h3 {
+                font-family: Arial;
+                color: black;
+                text-align: center;
+            }
+            div {
+                border: solid blue;
+                border-width: thin;
+                padding: 0px, 5px, 0px, 5px;
+                margin-bottom: 15px;
+            }
+            </style>
+            <div>
+                <h2>毛利润</h2>
+                <h3>28,133,401</h3>
+            </div>
+            <div>
+                <h2>净利润</h2>
+                <h3>263,637,95</h3>
+            </div>
+            <div>
+                <h2>息税前利润</h2>
+                <h3>193,261,60</h3>
+            </div>
+            """
+        ,height=500)
+
+
+
+    with col2:   
+        fig = go.Figure(go.Waterfall(
+            name = "20", orientation = "v",
+            measure = ["relative", "relative", "total", "relative", "relative", "relative","relative","relative","relative","total""relative","total",],
+            x = ["营业收入", "营业成本", "毛利润", "营业税金", "销售费用", "管理费用","财务费用","研发费用","投资收益","利润所得","所得税","净利润"],
+            textposition = "outside",
+            text = ["53M", "-14M", "39M", "-7M", "-6M", "-3M","+1M","-71K","+68K","25M","-6M","19M"],
+            y = [53, -14, 0, -7, -6, -3, 1, -0.071, 0.068, 0, -6, 0],
+            connector = {"line":{"color":"rgb(63, 63, 63)"}},
+        ))
+
+        fig.update_layout(
+                title = "各项目增减情况",
+                showlegend = True
+        )
+
+        st.plotly_chart(fig)
+
+    with col3:
         st.write('')
         # st.write('')
         st.write('')
@@ -431,28 +495,6 @@ def show_profit():
             </div>
             """
         ,height=500)
-
-
-
-    with col2:   
-        fig = go.Figure(go.Waterfall(
-            name = "20", orientation = "v",
-            measure = ["relative", "relative", "total", "relative", "relative", "relative","relative","relative","relative","total""relative","total",],
-            x = ["营业收入", "营业成本", "毛利润", "营业税金", "销售费用", "管理费用","财务费用","研发费用","投资收益","利润所得","所得税","净利润"],
-            textposition = "outside",
-            text = ["53M", "-14M", "39M", "-7M", "-6M", "-3M","+1M","-71K","+68K","25M","-6M","19M"],
-            y = [53, -14, 0, -7, -6, -3, 1, -0.071, 0.068, 0, -6, 0],
-            connector = {"line":{"color":"rgb(63, 63, 63)"}},
-        ))
-
-        fig.update_layout(
-                title = "各项目增减情况",
-                showlegend = True
-        )
-
-        st.plotly_chart(fig)
-
-
 
 
 def show_meaning(query):
@@ -500,29 +542,29 @@ def visualize(string):
 
     elif string == '利润':
         show_profit()
-        col1, col2, col3 = st.beta_columns([0.8,1.4,1.5])
-        with col1:
-            image = Image.open('./assets/profit1-1.png')
-            st.image(image)
-            st.write('')
-            # st.write('')
-            st.write('')
-            image = Image.open('./assets/profit1-2.png')
-            st.image(image)
+        # col1, col2, col3 = st.beta_columns([0.8,1.4,1.5])
+        # with col1:
+        #     image = Image.open('./assets/profit1-1.png')
+        #     st.image(image)
+        #     st.write('')
+        #     # st.write('')
+        #     st.write('')
+        #     image = Image.open('./assets/profit1-2.png')
+        #     st.image(image)
             
-        with col2:
-            image = Image.open('./assets/profit2-2.png')
-            st.image(image)
-            image = Image.open('./assets/profit2-1.png')
-            st.image(image)
-        with col3:
-            image = Image.open('./assets/profit3-2.png')
-            st.image(image)
-            # st.write('')
-            st.write('')
-            st.write('')
-            image = Image.open('./assets/profit3-1.png')
-            st.image(image)
+        # with col2:
+        #     image = Image.open('./assets/profit2-2.png')
+        #     st.image(image)
+        #     image = Image.open('./assets/profit2-1.png')
+        #     st.image(image)
+        # with col3:
+        #     image = Image.open('./assets/profit3-2.png')
+        #     st.image(image)
+        #     # st.write('')
+        #     st.write('')
+        #     st.write('')
+        #     image = Image.open('./assets/profit3-1.png')
+        #     st.image(image)
 
 
     elif string == '连接BDH':
