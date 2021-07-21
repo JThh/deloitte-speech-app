@@ -400,6 +400,7 @@ def visualize(string):
         st.image(image)
 
     elif string == '利润':
+        show_profit()
         col1, col2, col3 = st.beta_columns([0.8,1.4,1.5])
         with col1:
             image = Image.open('./assets/profit1-1.png')
@@ -411,7 +412,6 @@ def visualize(string):
             st.image(image)
             
         with col2:
-            show_profit()
             image = Image.open('./assets/profit2-2.png')
             st.image(image)
             image = Image.open('./assets/profit2-1.png')
