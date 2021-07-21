@@ -417,7 +417,7 @@ def show_profit():
             }
             h3 {
                 font-family: Arial;
-                color: green;
+                color: black;
                 text-align: center;
                 margin-bottom=: 0px;
             }
@@ -425,9 +425,14 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
             }
+            p {
+                background-color: green;
+            }
             </style>
             <div>
-                <h2>销售毛利率</h2>
+                <p>
+                    <h2>销售毛利率</h2>
+                </p>
                 <h3>37.1%</h3>
             </div>
             """
@@ -442,7 +447,7 @@ def show_profit():
             }
             h3 {
                 font-family: Arial;
-                color: green;
+                color: black;
                 margin-bottom=: 0px;
                 text-align: center;
             }
@@ -450,9 +455,14 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
             }
+            p {
+                background-color: green;
+            }
             </style>
             <div>
-                <h2>营业净利率</h2>
+                <p>
+                    <h2>营业净利率</h2>
+                </p>
                 <h3>37.1%</h3>
             </div>
             """
@@ -468,7 +478,7 @@ def show_profit():
             }
             h3 {
                 font-family: Arial;
-                color: green;
+                color: black;
                 text-align: center;
                 margin-bottom=: 0px;
             }
@@ -476,9 +486,14 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
             }
+            p {
+                background-color: green;
+            }
             </style>
             <div>
-                <h2>息税前利润</h2>
+                <p>
+                    <h2>息税前利润</h2>
+                </p>
                 <h3>37.1%</h3>
             </div>
             """
