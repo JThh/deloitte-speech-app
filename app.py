@@ -361,8 +361,8 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=400, width=500)
-        st.plotly_chart(fig, height=400, width=500)
+        ), height=350, width=450)
+        st.plotly_chart(fig, height=350, width=450)
     with col3:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
@@ -383,8 +383,25 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=400, width=500)
-        st.plotly_chart(fig, height=400, width=500)
+        ), height=350, width=450)
+        st.plotly_chart(fig, height=350, width=450)
+
+    fig = go.Figure(go.Waterfall(
+        name = "20", orientation = "v",
+        measure = ["total", "relative", "total", "relative", "relative", "relative","relative","relative","relative","total""relative","total",],
+        x = ["营业收入", "营业成本", "毛利润", "营业税金", "销售费用", "管理费用","财务费用","研发费用","投资收益","利润所得","所得税","净利润"],
+        textposition = "outside",
+        text = ["53M", "-14M", "39M", "-7M", "-6M", "-3M","+1M","-71K","+68K","25M","-6M","19M"],
+        y = [53, -14, 0, -7, -6, -3, 1, -0.071, 0.068, 0, -6, 0],
+        connector = {"line":{"color":"rgb(63, 63, 63)"}},
+    ))
+
+    fig.update_layout(
+            title = "各个项目增减情况",
+            showlegend = True
+    )
+
+    st.plotly_chart(fig)
 
 def show_meaning(query):
     if '最好' in query:
