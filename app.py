@@ -189,7 +189,7 @@ def show_category():
 
         # Use `hole` to create a donut-like pie chart
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
-        fig.update_layout(template="plotly", title="四大品类销量占比",plot_bgcolor='rgba(255, 255, 255, 0)')
+        fig.update_layout(template="plotly", title="四大品类销量占比",paper_bgcolor='rgba(255, 255, 255, 0)')
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
