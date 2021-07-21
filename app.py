@@ -332,29 +332,83 @@ def show_category_sale():
     # st.line_chart(chart_data)
 
 def show_profit():
+    col1, col2, col3 = st.beta_columns([1,2,2])
     df = px.data.stocks()
-    fig = px.line(df, x="date", y=df.columns[3],
-                hover_data={"date": "|%B %d, %Y"},
-                title='净利润（月份）')
-    fig.update_traces(mode='lines+markers')
-    fig.update_xaxes(
-        title_text='',
-        dtick="M1",
-        tickformat="%b\n%Y",
-        tickangle=-45,
-        )
-    fig.update_yaxes(title_text='')
 
-    fig.update_layout(legend=dict(
-        title='',
-        orientation="h",
-        yanchor="bottom",
-        y=1.02,
-        xanchor="right",
-        x=1
-    ))
-    st.plotly_chart(fig, use_container_width=True)
+    with col1:
+        fig = go.Figure()
 
+        fig.add_trace(go.Indicator(
+            value = 200,
+            delta = {'reference': 160},
+            gauge = {
+                'axis': {'visible': False}},
+            domain = {'row': 0, 'column': 0}))
+
+        fig.add_trace(go.Indicator(
+            value = 120,
+            gauge = {
+                'shape': "bullet",
+                'axis' : {'visible': False}},
+            domain = {'x': [0.05, 0.5], 'y': [0.15, 0.35]}))
+
+        fig.add_trace(go.Indicator(
+            mode = "number+delta",
+            value = 300,
+            domain = {'row': 0, 'column': 1}))
+
+
+        fig.update_layout(
+            grid = {'rows': 3, 'columns': 1, 'pattern': "independent"},
+            template = {'data' : {'indicator': [{
+                'title': {'text': "Speed"},
+                'mode' : "number+delta+gauge",
+                'delta' : {'reference': 90}}]
+                                }})
+    with col2:
+        fig = px.line(df, x="date", y=df.columns[3],
+                    hover_data={"date": "|%B %d, %Y"},
+                    title='净利润（月份）',color_discrete_sequence=['green'])
+        fig.update_traces(mode='lines+markers')
+        fig.update_xaxes(
+            title_text='',
+            dtick="M1",
+            tickformat="%b\n%Y",
+            tickangle=-45,
+            )
+        fig.update_yaxes(title_text='')
+
+        fig.update_layout(legend=dict(
+            title='',
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ))
+        st.plotly_chart(fig, use_container_width=True)
+    with col3:
+        fig = px.line(df, x="date", y=df.columns[4],
+                    hover_data={"date": "|%B %d, %Y"},
+                    title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['green'])
+        fig.update_traces(mode='lines+markers')
+        fig.update_xaxes(
+            title_text='',
+            dtick="M1",
+            tickformat="%b\n%Y",
+            tickangle=-45,
+            )
+        fig.update_yaxes(title_text='',tickformat="M")
+
+        fig.update_layout(legend=dict(
+            title='',
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        ))
+        st.plotly_chart(fig, use_container_width=True)        
 
 def show_meaning(query):
     if '最好' in query:
