@@ -426,74 +426,82 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                margin-bottom: -20px;
+                margin-bottom: 5px;
             }
             </style>
             <div>
                 <h2>销售毛利率</h2>
                 <h3>37.1%</h3>
             </div>
-            """
-        )
-        components.html(
-            """
-            <style>
-            h2 {
-                text-align: center;
-                color: white;
-                background-color: green;
-                font-family: Arial;         
-                margin: 0px;
-                font-size:0.8em;
-            }
-            h3 {
-                font-family: Arial;
-                color: black;
-                text-align: center;
-            }
-            div {
-                border: solid green;
-                border-width: thin;
-                padding: 0px, 5px, 0px, 5px;
-                margin-bottom: -20px;
-            }
-            </style>
             <div>
-                <h2>营业净利率</h2>
+                <h2>销售毛利率</h2>
+                <h3>37.1%</h3>
+            </div>
+            <div>
+                <h2>销售毛利率</h2>
                 <h3>37.1%</h3>
             </div>
             """
         )
+        # components.html(
+        #     """
+        #     <style>
+        #     h2 {
+        #         text-align: center;
+        #         color: white;
+        #         background-color: green;
+        #         font-family: Arial;         
+        #         margin: 0px;
+        #         font-size:0.8em;
+        #     }
+        #     h3 {
+        #         font-family: Arial;
+        #         color: black;
+        #         text-align: center;
+        #     }
+        #     div {
+        #         border: solid green;
+        #         border-width: thin;
+        #         padding: 0px, 5px, 0px, 5px;
+        #         margin-bottom: -20px;
+        #     }
+        #     </style>
+        #     <div>
+        #         <h2>营业净利率</h2>
+        #         <h3>37.1%</h3>
+        #     </div>
+        #     """
+        # )
 
-        components.html(
-            """
-            <style>
-            h2 {
-                text-align: center;
-                color: white;
-                font-family: Arial;
-                background-color: green;
-                margin: 0px;
-                font-size:0.8em;
-            }
-            h3 {
-                font-family: Arial;
-                color: black;
-                text-align: center;
-            }
-            div {
-                border: solid green;
-                border-width: thin;
-                padding: 0px, 5px, 0px, 5px;
-                margin-bottom: -20px;
-            }
-            </style>
-            <div>
-                <h2>息税前利润</h2>
-                <h3>37.1%</h3>
-            </div>
-            """
-        )
+        # components.html(
+        #     """
+        #     <style>
+        #     h2 {
+        #         text-align: center;
+        #         color: white;
+        #         font-family: Arial;
+        #         background-color: green;
+        #         margin: 0px;
+        #         font-size:0.8em;
+        #     }
+        #     h3 {
+        #         font-family: Arial;
+        #         color: black;
+        #         text-align: center;
+        #     }
+        #     div {
+        #         border: solid green;
+        #         border-width: thin;
+        #         padding: 0px, 5px, 0px, 5px;
+        #         margin-bottom: -20px;
+        #     }
+        #     </style>
+        #     <div>
+        #         <h2>息税前利润</h2>
+        #         <h3>37.1%</h3>
+        #     </div>
+        #     """
+        # )
 
 
 
