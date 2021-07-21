@@ -391,8 +391,21 @@ def show_profit():
     with col1:
         # st.success("销售毛利率：37.1%")
         # st.success("营业净利率：37.1%")
-        st.success("息税前利润：37.1%")     
-
+        # st.success("息税前利润：37.1%")     
+        fig = go.Figure()
+        fig.add_trace(go.Indicator(
+            value = 37.1,
+            gauge = {
+                'shape': "bullet",
+                'axis' : {'visible': False}},
+            domain = {'x': [0.05, 0.5], 'y': [0.15, 0.35]}))
+        fig.update_layout(
+            template = {'data' : {'indicator': [{
+                'title': {'text': "销售毛利率"},
+                'mode' : "number+delta+gauge",
+                'delta' : {'reference': 30}}]
+                                }}) 
+        st.plotly_chart(fig)    
 
     with col2:   
         fig = go.Figure(go.Waterfall(
@@ -412,20 +425,7 @@ def show_profit():
 
         st.plotly_chart(fig)
 
-    fig = go.Figure()
-    fig.add_trace(go.Indicator(
-        value = 37.1,
-        gauge = {
-            'shape': "bullet",
-            'axis' : {'visible': False}},
-        domain = {'x': [0.05, 0.5], 'y': [0.15, 0.35]}))
-    fig.update_layout(
-        template = {'data' : {'indicator': [{
-            'title': {'text': "销售毛利率"},
-            'mode' : "number+delta+gauge",
-            'delta' : {'reference': 30}}]
-                            }}) 
-    st.plotly_chart(fig)    
+
 
 
 def show_meaning(query):
