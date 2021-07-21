@@ -7,6 +7,8 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import plotly.express as px
+
 from PIL import Image
 
 import pydeck as pdk
@@ -41,6 +43,15 @@ def show_category():
     )
     st.line_chart(chart_data)
 
+    df = px.data.stocks()
+    fig = px.line(df, x="date", y=df.columns,
+                hover_data={"date": "|%B %d, %Y"},
+                title='custom tick labels')
+    fig.update_xaxes(
+        dtick="M1",
+        tickformat="%b\n%Y")
+    fig.show()
+
     def draw_fig():
 
         y_saving = [33.586, 25.623000000000002, 20.821999999999997, 22.5096999999999996
@@ -50,7 +61,7 @@ def show_category():
         x = ['化妆品','洗发水','纸巾','空气清新剂']
 
         # Creating two subplots
-        fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=True,
+        fig = make_subplots(rows=2, cols=1, specs=[[{}, {}]], shared_xaxes=True,
                             shared_yaxes=False, vertical_spacing=0.001)
 
         fig.append_trace(go.Bar(
@@ -71,7 +82,7 @@ def show_category():
             mode='lines+markers',
             line_color='rgb(128, 0, 128)',
             name='销售收入净值（万）',
-        ), 1, 2)
+        ), 2, 1)
 
         fig.update_layout(
             title='四大品类的销售收入百分比与净值',
@@ -511,8 +522,8 @@ def process_text(txt):
     elif '销售' in txt or '销量' in txt:
         addRecord('勤答', '回复图表')
 
-        st.subheader('默认显示所有分公司最近三年的销售额')
-        st.text('可以通过确定年份范围和分公司得到更具体的图像')
+        st.subheader('默认显示所有产品分类最近三年的销售额')
+        st.text('可以通过确定年份范围和产品得到更具体的图像')
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
