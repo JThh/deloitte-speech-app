@@ -100,7 +100,7 @@ def show_category():
         ), 1, 2)
 
         fig.update_layout(
-            title='四大品类的销售收入百分比与净值',
+            title='四大品类的收入百分比与净值',
             yaxis=dict(
                 showgrid=False,
                 showline=False,
@@ -175,13 +175,21 @@ def show_category():
 
     col1, col2 = st.beta_columns(2)
     with col1:
+        fig =go.Figure(go.Sunburst(
+            labels=["眼影","粉底","口红","眉笔","去屑洗发水","营养洗发水","纸抽","面巾纸","除臭剂","清新喷雾"],
+            parents=["化妆品", "化妆品", "化妆品", "化妆品", "洗发水", "洗发水", "纸巾", "纸巾", "空气清新剂", "空气清新剂"],
+            values=[4014, 2102, 2000, 1000, 4000, 4000, 4900, 2088, 3900,3900],
+        ))
+        fig.update_layout(margin = dict(t=0, l=0, r=0, b=0))
+        st.plotly_chart(fig, use_container_width=True)
+
         labels = ["化妆品","洗发水","纸巾","空气清新剂"]
         values = [9345.919999999998, 8166.570000000007, 6988.619999999995,
                         7838.529999999999]
 
         # Use `hole` to create a donut-like pie chart
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
-        fig.update(layout_title_text='四大品类销售占比')
+        fig.update(layout_title_text='四大品类销量占比')
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
