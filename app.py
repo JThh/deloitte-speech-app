@@ -404,8 +404,11 @@ def show_profit():
         #         'mode' : "number+delta+gauge",
         #         'delta' : {'reference': 30}}]
         #                         }},width=100,height=50) 
-        # st.plotly_chart(fig)    
-
+        # st.plotly_chart(fig)   
+         
+        st.write('')
+        st.write('')
+        st.write('')
         components.html(
             """
             <style>
