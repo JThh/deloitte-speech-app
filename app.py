@@ -390,9 +390,10 @@ def show_profit():
 
     with col1:
         st.write('')
+        st.write('')
         st.write('利润指标')
         # st.write('')
-        st.write('')
+        # st.write('')
         st.write('')
         # st.write('')
         components.html(
