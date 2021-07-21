@@ -342,7 +342,7 @@ def show_profit():
 
     #     # st.plotly_chart(fig, height=400, width=100)
     with col1:
-        fig = px.line(df.iloc[-40:,:], x="date", y=df.columns[3],
+        fig = px.line(df.iloc[-60:,:], x="date", y=df.columns[3],
                     hover_data={"date": "|%B %d, %Y"},
                     title='净利润（月份）',color_discrete_sequence=['green'])
         fig.update_traces(mode='lines+markers')
@@ -364,7 +364,7 @@ def show_profit():
         ), height=400, width=550)
         st.plotly_chart(fig, height=400, width=550)
     with col2:
-        fig = px.line(df.iloc[-40:,:], x="date", y=df.columns[4],
+        fig = px.line(df.iloc[-60:,:], x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
                     title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['blue'])
         fig.update_traces(mode='lines+markers')
@@ -405,7 +405,8 @@ def show_profit():
         #         'delta' : {'reference': 30}}]
         #                         }},width=100,height=50) 
         # st.plotly_chart(fig)   
-         
+        
+        st.write('财务指标：')
         st.write('')
         st.write('')
         st.write('')
