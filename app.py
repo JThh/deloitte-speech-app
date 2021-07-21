@@ -44,9 +44,9 @@ def show_category():
     # )
     # st.line_chart(chart_data)
 
-    df = px.data.stocks()
+    df = px.data.stocks().iloc[:40,:]
     df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
-    # df.iloc[:,0] = df.iloc[:,0] * 100000
+    df.iloc[:,0] = [x*100000 for x in df.iloc[:,0]]
     fig = px.line(df, x="date", y=df.columns[:5],
                 hover_data={"date": "|%B %d, %Y"},
                 title='产品销量变化')
@@ -330,6 +330,7 @@ def show_category_sale():
     #     columns=['品类'+x for x in ['A']]
     #     )
     # st.line_chart(chart_data)
+
 
 def show_profit():
     col1, col2 = st.beta_columns(2)
