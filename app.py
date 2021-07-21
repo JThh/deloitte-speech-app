@@ -382,9 +382,9 @@ def visualize(string):
             st.write('')
             image = Image.open('./assets/profit3-1.png')
             st.image(image)
-            st.write('')
-            st.write('')
-            st.write('')
+            # st.write('')
+            # st.write('')
+            # st.write('')
             image = Image.open('./assets/profit3-2.png')
             st.image(image)
 
