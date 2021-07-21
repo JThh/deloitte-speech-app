@@ -350,7 +350,7 @@ def show_profit():
             title_text='',
             dtick="M1",
             tickformat="%b\n%Y",
-            tickangle=-45,
+            tickangle=45,
             )
         fig.update_yaxes(title_text='利润（百万）')
 
@@ -361,8 +361,8 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=400, width=500)
-        st.plotly_chart(fig, height=400, width=500)
+        ), height=400, width=550)
+        st.plotly_chart(fig, height=400, width=550)
     with col2:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
@@ -372,7 +372,7 @@ def show_profit():
             title_text='',
             dtick="M1",
             tickformat="%b\n%Y",
-            tickangle=-45,
+            tickangle=45,
             )
         fig.update_yaxes(title_text='利润（百万）')
 
@@ -383,15 +383,30 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=400, width=500)
-        st.plotly_chart(fig, height=400, width=500)
+        ), height=400, width=550)
+        st.plotly_chart(fig, height=400, width=550)
 
-    col1,col2 = st.beta_columns([1,3])
+    col1,col2 = st.beta_columns([1,4])
 
     with col1:
-        st.success("销售毛利率：37.1%")
-        st.success("营业净利率：37.1%")
-        st.success("息税前利润：37.1%")     
+        # st.success("销售毛利率：37.1%")
+        # st.success("营业净利率：37.1%")
+        # st.success("息税前利润：37.1%")  
+        fig = go.Figure()
+        fig.add_trace(go.Indicator(
+            value = 37.1,
+            gauge = {
+                'shape': "bullet",
+                'axis' : {'visible': False}},
+            domain = {'x': [0.05, 0.5], 'y': [0.15, 0.35]}))
+        fig.update_layout(
+            template = {'data' : {'indicator': [{
+                'title': {'text': "销售毛利率"},
+                'mode' : "number+delta+gauge",
+                'delta' : {'reference': 30}}]
+                                }}, width=100) 
+        st.plotly_chart(fig)       
+
 
     with col2:   
         fig = go.Figure(go.Waterfall(
