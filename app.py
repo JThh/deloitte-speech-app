@@ -432,7 +432,7 @@ def show_profit():
                 <h3>193,261,60</h3>
             </div>
             """
-        ,height=500,width=100)
+        ,height=500,width=150)
 
 
 
@@ -452,7 +452,7 @@ def show_profit():
                 showlegend = True
         )
 
-        st.plotly_chart(fig)
+        st.plotly_chart(fig,use_container_width=True)
 
     with col3:
         st.write('')
