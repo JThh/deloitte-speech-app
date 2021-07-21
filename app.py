@@ -44,7 +44,7 @@ def show_category():
     # )
     # st.line_chart(chart_data)
 
-    df = px.data.stocks().iloc[:40,:]
+    df = px.data.stocks().iloc[-40:,:]
     df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
     # df.iloc[:,0] = [x*100000 for x in df.iloc[:,0].values]
     fig = px.line(df, x="date", y=df.columns[:5],
@@ -64,7 +64,7 @@ def show_category():
         xanchor="right",
         x=1
     ))
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width=500)
 
 
     def draw_fig():
