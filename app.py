@@ -669,7 +669,7 @@ def process_text(txt):
     elif ('营收' in txt or '收入' in txt) and '消毒液' not in txt:
         visualize('营收')
 
-    elif '利润' in txt:
+    elif '利润' in txt and '消毒液' not in txt:
         st.text('系统检测到模糊提问：利润情况，已为您返回与利润相关的所有报表')
         st.write('')
         visualize('利润')
