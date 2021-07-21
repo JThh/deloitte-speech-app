@@ -424,7 +424,7 @@ def show_profit():
             'title': {'text': "销售毛利率"},
             'mode' : "number+delta+gauge",
             'delta' : {'reference': 30}}]
-                            }}, width=10) 
+                            }}) 
     st.plotly_chart(fig)    
 
 
