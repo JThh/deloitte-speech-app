@@ -44,7 +44,7 @@ def show_category():
     # )
     # st.line_chart(chart_data)
 
-    df = px.data.stocks()
+    df = data.copy()
     df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
     df.iloc[:,0] = df.iloc[:,0] * 100000
     fig = px.line(df, x="date", y=df.columns[:5],
