@@ -335,6 +335,8 @@ def show_profit():
     # col1, col2, col3 = st.beta_columns([0.1,2,2])
     df = px.data.stocks()
 
+    formatValue = d3.format(".2s");
+
     # with col1:
     #     fig = go.Figure()
 
@@ -366,7 +368,7 @@ def show_profit():
     #             'delta' : {'reference': 90}}]
     #                             }})
     # with col2:
-    fig = px.line(df, x="date", y=df.columns[3],
+    fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[3],
                 hover_data={"date": "|%B %d, %Y"},
                 title='净利润（月份）',color_discrete_sequence=['green'])
     fig.update_traces(mode='lines+markers')
@@ -376,7 +378,7 @@ def show_profit():
         tickformat="%b\n%Y",
         tickangle=-45,
         )
-    fig.update_yaxes(title_text='')
+    fig.update_yaxes(title_text='利润（百万）')
 
     fig.update_layout(legend=dict(
         title='',
@@ -388,7 +390,7 @@ def show_profit():
     ))
     st.plotly_chart(fig, use_container_width=True)
     # with col3:
-    fig = px.line(df, x="date", y=df.columns[4],
+    fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
                 hover_data={"date": "|%B %d, %Y"},
                 title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['blue'])
     fig.update_traces(mode='lines+markers')
@@ -398,7 +400,7 @@ def show_profit():
         tickformat="%b\n%Y",
         tickangle=-45,
         )
-    fig.update_yaxes(title_text='',tickformat="M")
+    fig.update_yaxes(title_text='利润（百万）')
 
     fig.update_layout(legend=dict(
         title='',
