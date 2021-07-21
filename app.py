@@ -414,7 +414,7 @@ def show_profit():
                 color: black;
                 font-family: Arial;
                 background-color: green;
-
+                margin: 0px;
             }
             h3 {
                 font-family: Arial;
@@ -441,6 +441,7 @@ def show_profit():
                 color: black;
                 background-color: green;
                 font-family: Arial;         
+                margin: 0px;
             }
             h3 {
                 font-family: Arial;
@@ -468,6 +469,7 @@ def show_profit():
                 color: black;
                 font-family: Arial;
                 background-color: green;
+                margin: 0px;
             }
             h3 {
                 font-family: Arial;
