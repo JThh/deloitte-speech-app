@@ -332,7 +332,7 @@ def show_category_sale():
     # st.line_chart(chart_data)
 
 def show_profit():
-    col1, col2, col3 = st.beta_columns([1,2,2])
+    col1, col2, col3 = st.beta_columns([0.1,2,2])
     df = px.data.stocks()
 
     # with col1:
@@ -368,7 +368,7 @@ def show_profit():
     with col2:
         fig = px.line(df, x="date", y=df.columns[3],
                     hover_data={"date": "|%B %d, %Y"},
-                    title='净利润（月份）',color_discrete_sequence=['lightgreen'])
+                    title='净利润（月份）',color_discrete_sequence=['green'])
         fig.update_traces(mode='lines+markers')
         fig.update_xaxes(
             title_text='',
@@ -390,7 +390,7 @@ def show_profit():
     with col3:
         fig = px.line(df, x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
-                    title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['lightblue'])
+                    title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['blue'])
         fig.update_traces(mode='lines+markers')
         fig.update_xaxes(
             title_text='',
