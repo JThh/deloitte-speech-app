@@ -426,7 +426,7 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                margin-bottom: 5px;
+                margin-bottom: 15px;
             }
             </style>
             <div>
@@ -434,15 +434,15 @@ def show_profit():
                 <h3>37.1%</h3>
             </div>
             <div>
-                <h2>销售毛利率</h2>
+                <h2>营业净利率</h2>
                 <h3>37.1%</h3>
             </div>
             <div>
-                <h2>销售毛利率</h2>
+                <h2>息税前利润</h2>
                 <h3>37.1%</h3>
             </div>
             """
-        )
+        ,height=500)
         # components.html(
         #     """
         #     <style>
