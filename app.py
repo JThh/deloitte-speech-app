@@ -335,7 +335,6 @@ def show_profit():
     # col1, col2, col3 = st.beta_columns([0.1,2,2])
     df = px.data.stocks()
 
-    formatValue = d3.format(".2s");
 
     # with col1:
     #     fig = go.Figure()
