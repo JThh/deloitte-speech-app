@@ -50,7 +50,8 @@ def show_category():
     fig.update_xaxes(
         dtick="M1",
         tickformat="%b\n%Y")
-    fig.show()
+    st.plotly_chart(fig, use_container_width=True)
+
 
     def draw_fig():
 
