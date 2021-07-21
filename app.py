@@ -361,8 +361,8 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=350, width=450)
-        st.plotly_chart(fig, height=350, width=450)
+        ), height=400, width=500)
+        st.plotly_chart(fig, height=400, width=500)
     with col3:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
@@ -383,8 +383,8 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=350, width=450)
-        st.plotly_chart(fig, height=350, width=450)
+        ), height=400, width=500)
+        st.plotly_chart(fig, height=400, width=500)
 
 def show_meaning(query):
     if '最好' in query:
