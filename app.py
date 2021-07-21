@@ -172,12 +172,19 @@ def show_category():
         fig.update_layout(annotations=annotations)
 
         return fig
-    # if cat == 'all':
-    #     st.info("Tips: Only a sample plot.")
 
-    st.plotly_chart(draw_fig(), use_container_width=True)
-    #     return
-    # show_category_revenue(TIME_RANGE, cat)
+    col1, col2 = st.beta_columns(2)
+    with col1:
+        labels = ["化妆品","洗发水","纸巾","空气清新剂"]
+        values = [9345.919999999998, 8166.570000000007, 6988.619999999995,
+                        7838.529999999999]
+
+        # Use `hole` to create a donut-like pie chart
+        fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+        st.plotly_chart(fig, use_container_width=True)
+
+    with col2:
+        st.plotly_chart(draw_fig(), use_container_width=True)
 
 
 def show_revenue(number):
@@ -367,7 +374,7 @@ def visualize(string):
             st.write('')
             st.image(image)
             st.write('')
-            st.write('')
+            # st.write('')
             st.write('')
             image = Image.open('./assets/profit1-2.png')
             st.image(image)
