@@ -711,7 +711,7 @@ def process_text(txt):
     elif '连接' in txt:
         visualize('连接BDH')
 
-    elif ('销售' in txt or '销量' in txt) and ('纸巾' not in txt or '化妆品' not in txt):
+    elif ('销售' in txt or '销量' in txt) and '纸巾' not in txt and '化妆品' not in txt:
         addRecord('勤答', '回复图表')
 
         st.subheader('默认显示所有产品分类最近三年的销售额')
