@@ -426,7 +426,7 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                border-bottom: -5px;
+                margin-bottom: -5px;
             }
             </style>
             <div>
@@ -455,7 +455,7 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                border-bottom: -5px;
+                margin-bottom: -5px;
             }
             </style>
             <div>
@@ -485,7 +485,7 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                border-bottom: -5px;
+                margin-bottom: -5px;
             }
             </style>
             <div>
@@ -494,6 +494,8 @@ def show_profit():
             </div>
             """
         )
+
+
 
     with col2:   
         fig = go.Figure(go.Waterfall(
