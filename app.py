@@ -335,40 +335,40 @@ def show_profit():
     col1, col2, col3 = st.beta_columns([1,2,2])
     df = px.data.stocks()
 
-    with col1:
-        fig = go.Figure()
+    # with col1:
+    #     fig = go.Figure()
 
-        fig.add_trace(go.Indicator(
-            value = 200,
-            delta = {'reference': 160},
-            gauge = {
-                'axis': {'visible': False}},
-            domain = {'row': 0, 'column': 0}))
+    #     fig.add_trace(go.Indicator(
+    #         value = 200,
+    #         delta = {'reference': 160},
+    #         gauge = {
+    #             'axis': {'visible': False}},
+    #         domain = {'row': 0, 'column': 0}))
 
-        fig.add_trace(go.Indicator(
-            value = 120,
-            gauge = {
-                'shape': "bullet",
-                'axis' : {'visible': False}},
-            domain = {'x': [0.05, 0.5], 'y': [0.15, 0.35]}))
+    #     fig.add_trace(go.Indicator(
+    #         value = 120,
+    #         gauge = {
+    #             'shape': "bullet",
+    #             'axis' : {'visible': False}},
+    #         domain = {'x': [0.05, 0.5], 'y': [0.15, 0.35]}))
 
-        fig.add_trace(go.Indicator(
-            mode = "number+delta",
-            value = 300,
-            domain = {'row': 0, 'column': 1}))
+    #     fig.add_trace(go.Indicator(
+    #         mode = "number+delta",
+    #         value = 300,
+    #         domain = {'row': 0, 'column': 1}))
 
 
-        fig.update_layout(
-            grid = {'rows': 3, 'columns': 1, 'pattern': "independent"},
-            template = {'data' : {'indicator': [{
-                'title': {'text': "Speed"},
-                'mode' : "number+delta+gauge",
-                'delta' : {'reference': 90}}]
-                                }})
+    #     fig.update_layout(
+    #         grid = {'rows': 3, 'columns': 1, 'pattern': "independent"},
+    #         template = {'data' : {'indicator': [{
+    #             'title': {'text': "Speed"},
+    #             'mode' : "number+delta+gauge",
+    #             'delta' : {'reference': 90}}]
+    #                             }})
     with col2:
         fig = px.line(df, x="date", y=df.columns[3],
                     hover_data={"date": "|%B %d, %Y"},
-                    title='净利润（月份）',color_discrete_sequence=['green'])
+                    title='净利润（月份）',color_discrete_sequence=['lightgreen'])
         fig.update_traces(mode='lines+markers')
         fig.update_xaxes(
             title_text='',
@@ -390,7 +390,7 @@ def show_profit():
     with col3:
         fig = px.line(df, x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
-                    title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['green'])
+                    title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['lightblue'])
         fig.update_traces(mode='lines+markers')
         fig.update_xaxes(
             title_text='',
