@@ -711,7 +711,7 @@ def process_text(txt):
     elif '连接' in txt:
         visualize('连接BDH')
 
-    elif ('销售' in txt or '销量' in txt) and '纸巾' not in txt:
+    elif ('销售' in txt or '销量' in txt) and ('纸巾' not in txt or '化妆品' not in txt):
         addRecord('勤答', '回复图表')
 
         st.subheader('默认显示所有产品分类最近三年的销售额')
@@ -744,7 +744,7 @@ def process_text(txt):
         addRecord('勤答', '回复文字')
         show_meaning(txt)
 
-    elif '产品' in txt or '化妆品' in txt:
+    elif '化妆品' in txt:
         addRecord('勤答', '回复图表及文字')
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
