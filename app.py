@@ -411,10 +411,11 @@ def show_profit():
             <style>
             h2 {
                 text-align: center;
-                color: black;
+                color: white;
                 font-family: Arial;
                 background-color: green;
                 margin: 0px;
+                font-size:0.8em;
             }
             h3 {
                 font-family: Arial;
@@ -438,10 +439,11 @@ def show_profit():
             <style>
             h2 {
                 text-align: center;
-                color: black;
+                color: white;
                 background-color: green;
                 font-family: Arial;         
                 margin: 0px;
+                font-size:0.8em;
             }
             h3 {
                 font-family: Arial;
@@ -466,10 +468,11 @@ def show_profit():
             <style>
             h2 {
                 text-align: center;
-                color: black;
+                color: white;
                 font-family: Arial;
                 background-color: green;
                 margin: 0px;
+                font-size:0.8em;
             }
             h3 {
                 font-family: Arial;
