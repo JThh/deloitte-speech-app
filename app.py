@@ -61,7 +61,7 @@ def show_category():
         x = ['化妆品','洗发水','纸巾','空气清新剂']
 
         # Creating two subplots
-        fig = make_subplots(rows=2, cols=1, specs=[[{}, {}]], shared_xaxes=True,
+        fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=True,
                             shared_yaxes=False, vertical_spacing=0.001)
 
         fig.append_trace(go.Bar(
@@ -74,7 +74,7 @@ def show_category():
                     width=1),
             ),
             name='销售收入，占比总收入',
-            orientation='v',
+            orientation='h',
         ), 1, 1)
 
         fig.append_trace(go.Scatter(
@@ -82,7 +82,7 @@ def show_category():
             mode='lines+markers',
             line_color='rgb(128, 0, 128)',
             name='销售收入净值（万）',
-        ), 2, 1)
+        ), 1, 2)
 
         fig.update_layout(
             title='四大品类的销售收入百分比与净值',
