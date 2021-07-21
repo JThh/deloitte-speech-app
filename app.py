@@ -389,26 +389,10 @@ def show_profit():
     col1,col2 = st.beta_columns([1,4])
 
     with col1:
-        # st.success("销售毛利率：37.1%")
-        # st.success("营业净利率：37.1%")
-        # st.success("息税前利润：37.1%")     
-        # fig = go.Figure()
-        # fig.add_trace(go.Indicator(
-        #     value = 37.1,
-        #     gauge = {
-        #         'shape': "bullet",
-        #         'axis' : {'visible': False}}))
-        # fig.update_layout(
-        #     template = {'data' : {'indicator': [{
-        #         'title': {'text': "销售毛利率"},
-        #         'mode' : "number+delta+gauge",
-        #         'delta' : {'reference': 30}}]
-        #                         }},width=100,height=50) 
-        # st.plotly_chart(fig)   
-        
+        st.write('')
+        # st.write('')
+        st.write('')
         st.write('财务指标：')
-        st.write('')
-        st.write('')
         st.write('')
         components.html(
             """
@@ -447,65 +431,6 @@ def show_profit():
             </div>
             """
         ,height=500)
-        # components.html(
-        #     """
-        #     <style>
-        #     h2 {
-        #         text-align: center;
-        #         color: white;
-        #         background-color: green;
-        #         font-family: Arial;         
-        #         margin: 0px;
-        #         font-size:0.8em;
-        #     }
-        #     h3 {
-        #         font-family: Arial;
-        #         color: black;
-        #         text-align: center;
-        #     }
-        #     div {
-        #         border: solid green;
-        #         border-width: thin;
-        #         padding: 0px, 5px, 0px, 5px;
-        #         margin-bottom: -20px;
-        #     }
-        #     </style>
-        #     <div>
-        #         <h2>营业净利率</h2>
-        #         <h3>37.1%</h3>
-        #     </div>
-        #     """
-        # )
-
-        # components.html(
-        #     """
-        #     <style>
-        #     h2 {
-        #         text-align: center;
-        #         color: white;
-        #         font-family: Arial;
-        #         background-color: green;
-        #         margin: 0px;
-        #         font-size:0.8em;
-        #     }
-        #     h3 {
-        #         font-family: Arial;
-        #         color: black;
-        #         text-align: center;
-        #     }
-        #     div {
-        #         border: solid green;
-        #         border-width: thin;
-        #         padding: 0px, 5px, 0px, 5px;
-        #         margin-bottom: -20px;
-        #     }
-        #     </style>
-        #     <div>
-        #         <h2>息税前利润</h2>
-        #         <h3>37.1%</h3>
-        #     </div>
-        #     """
-        # )
 
 
 
@@ -521,7 +446,7 @@ def show_profit():
         ))
 
         fig.update_layout(
-                title = "各个项目增减情况",
+                title = "项目增减情况",
                 showlegend = True
         )
 
