@@ -9,10 +9,9 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.express as px
+import pydeck as pdk
 
 from PIL import Image
-
-import pydeck as pdk
 
 import time
 import numpy as np
@@ -49,7 +48,7 @@ def show_category():
         tickformat="%b\n%Y",
         tickangle=45,)
     fig.update_yaxes(title_text='销量')
-    fig.update_traces(mode='lines+markers')
+    # fig.update_traces(mode='lines+markers')
     fig.update_layout(legend=dict(
         title='',
         orientation="h",
@@ -329,13 +328,7 @@ def show_category_sale():
 def show_profit():
     col1, col2 = st.beta_columns(2)
     df = px.data.stocks()
-
-    # with col1:
-    #     st.success("销售毛利率：37.1%")
-    #     st.success("营业净利率：37.1%")
-    #     st.success("息税前利润：37.1%")
-
-    #     # st.plotly_chart(fig, height=400, width=100)
+    
     with col1:
         fig = px.line(df.iloc[-60:,:], x="date", y=df.columns[3],
                     hover_data={"date": "|%B %d, %Y"},
