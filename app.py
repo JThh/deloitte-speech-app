@@ -392,7 +392,7 @@ def show_profit():
         st.write('')
         # st.write('')
         st.write('')
-        st.write('财务指标：')
+        st.write('财务指标')
         st.write('')
         components.html(
             """
@@ -446,7 +446,7 @@ def show_profit():
         ))
 
         fig.update_layout(
-                title = "项目增减情况",
+                title = "各项目增减情况",
                 showlegend = True
         )
 
