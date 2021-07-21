@@ -413,17 +413,22 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
-                border-width: 1px;
-                border-color: green;
+
             }
             h3 {
                 font-family: Arial;
                 color: green;
                 text-align: center;
+                margin-bottom=: 0px;
+            }
+            div {
+                border-width: thin;
             }
             </style>
-            <h2>销售毛利率</h2>
-            <h3>37.1%</h>
+            <div>
+                <h2>销售毛利率</h2>
+                <h3>37.1%</h3>
+            </div>
             """
         )
         components.html(
@@ -432,18 +437,22 @@ def show_profit():
             h2 {
                 text-align: center;
                 color: green;
-                font-family: Arial;
-                border-width: 1px;
-                border-color: green;                
+                font-family: Arial;         
             }
             h3 {
                 font-family: Arial;
                 color: green;
+                margin-bottom=: 0px;
                 text-align: center;
             }
+            div {
+                border-width: thin;
+            }
             </style>
-            <h2>营业净利率</h2>
-            <h3>37.1%</h>
+            <div>
+                <h2>营业净利率</h2>
+                <h3>37.1%</h3>
+            </div>
             """
         )
 
@@ -454,17 +463,21 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
-                border-width: 1px;
-                border-color: green;
             }
             h3 {
                 font-family: Arial;
                 color: green;
                 text-align: center;
+                margin-bottom=: 0px;
+            }
+            div {
+                border-width: thin;
             }
             </style>
-            <h2>息税前利润</h2>
-            <h3>37.1%</h>
+            <div>
+                <h2>息税前利润</h2>
+                <h3>37.1%</h3>
+            </div>
             """
         )
 
