@@ -22,6 +22,9 @@ CATEGORIES = ["category "+str(n) for n in range(1,9)]
 
 SALES_DATA = np.random.randn(35, 4)
 
+sunflowers_colors = ['rgb(177, 127, 38)', 'rgb(205, 152, 36)', 'rgb(99, 79, 37)',
+                     'rgb(129, 180, 179)', 'rgb(124, 103, 37)']
+
 # import pickle5 as pickle
 
 # DICT_PATH = './dict.txt'
