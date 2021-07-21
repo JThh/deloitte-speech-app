@@ -413,7 +413,6 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
-                margin: 0px;
                 background-color: green;
 
             }
@@ -421,12 +420,11 @@ def show_profit():
                 font-family: Arial;
                 color: black;
                 text-align: center;
-                margin: 0px;
-                margin-bottom: 5px;
             }
             div {
                 border: solid green;
                 border-width: thin;
+                margin: 0px, 5px, 0px, 5px;
             }
             </style>
             <div>
@@ -441,23 +439,18 @@ def show_profit():
             h2 {
                 text-align: center;
                 color: green;
-                margin: 0px;
                 background-color: green;
                 font-family: Arial;         
             }
             h3 {
                 font-family: Arial;
                 color: black;
-                margin: 0px;
                 text-align: center;
-                margin-bottom: 5px;
             }
             div {
                 border: solid green;
                 border-width: thin;
-            }
-            span {
-                background-color: green;
+                margin: 0px, 5px, 0px, 5px;
             }
             </style>
             <div>
@@ -475,18 +468,16 @@ def show_profit():
                 color: green;
                 font-family: Arial;
                 background-color: green;
-                margin: 0px;
             }
             h3 {
                 font-family: Arial;
                 color: black;
                 text-align: center;
-                margin: 0px;
-                margin-bottom: 5px;
             }
             div {
                 border: solid green;
                 border-width: thin;
+                margin: 0px, 5px, 0px, 5px;
             }
             </style>
             <div>
