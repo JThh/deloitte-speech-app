@@ -37,13 +37,6 @@ def month_year_iter(start_month, start_year, end_month, end_year):
 
 
 def show_category():
-    # chart_data = pd.DataFrame(
-    #     SALES_DATA,
-    #     index=month_year_iter(8, 2018, 7, 2021),
-    #     columns=['化妆品','洗发水','纸巾','空气清新剂']
-    # )
-    # st.line_chart(chart_data)
-
     df = px.data.stocks().iloc[-60:,:]
     df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
     # df.iloc[:,0] = [x*100000 for x in df.iloc[:,0].values]
@@ -56,7 +49,7 @@ def show_category():
         tickformat="%b\n%Y",
         tickangle=45,)
     fig.update_yaxes(title_text='销量')
-
+    fig.update_traces(mode='lines+markers')
     fig.update_layout(legend=dict(
         title='',
         orientation="h",
@@ -737,12 +730,12 @@ def process_text(txt):
             with col1:
                 with st.beta_expander('市场分析'):
                     st.success('''
-                    过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%；国旗
+                    示例：过去季度总体的销售毛利率为20%，市场同期为15%，比市场高约33%；
                     ''')
             with col2:
                 with st.beta_expander('数据分析'):
                     st.info('''
-                    从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。
+                    示例：从图像中可以看到，化妆品类在过去三年中的销售额占比最高，为33.59%；过去三年中，洗发水的平均增长率最高，为14.7%。
                     ''')
 
             with col3:
