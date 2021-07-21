@@ -365,6 +365,8 @@ def show_profit():
                 'mode' : "number+delta+gauge",
                 'delta' : {'reference': 90}}]
                                 }}, width=100)
+
+        st.plotly_chart(fig, height=400, width=100)
     with col2:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[3],
                     hover_data={"date": "|%B %d, %Y"},
