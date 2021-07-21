@@ -411,7 +411,7 @@ def show_profit():
             <style>
             h2 {
                 text-align: center;
-                text-color: green;
+                color: green;
                 font-family: Arial;
             }
             h4 {
