@@ -183,14 +183,14 @@ def show_category():
         fig.update_layout(margin = dict(t=0, l=0, r=0, b=0))
         st.plotly_chart(fig, use_container_width=True)
 
-        labels = ["化妆品","洗发水","纸巾","空气清新剂"]
-        values = [9345.919999999998, 8166.570000000007, 6988.619999999995,
-                        7838.529999999999]
+        # labels = ["化妆品","洗发水","纸巾","空气清新剂"]
+        # values = [9345.919999999998, 8166.570000000007, 6988.619999999995,
+        #                 7838.529999999999]
 
-        # Use `hole` to create a donut-like pie chart
-        fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
-        fig.update(layout_title_text='四大品类销量占比')
-        st.plotly_chart(fig, use_container_width=True)
+        # # Use `hole` to create a donut-like pie chart
+        # fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+        # fig.update(layout_title_text='四大品类销量占比')
+        # st.plotly_chart(fig, use_container_width=True)
 
     with col2:
         st.plotly_chart(draw_fig(), use_container_width=True)
