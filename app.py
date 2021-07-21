@@ -1,3 +1,4 @@
+from bokeh.models.annotations import LegendItem
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 
@@ -44,19 +45,27 @@ def show_category():
     st.line_chart(chart_data)
 
     df = px.data.stocks()
-    fig = px.line(df, x="date", y=df.columns[:4],
+    fig = px.line(df, x="date", y=df.columns[:5],
                 hover_data={"date": "|%B %d, %Y"},
-                title='产品销量变化',labels={
-                     "GOOG": "化妆品",
-                     "AAPL": "洗发水",
-                     "AMZN": "纸巾",
-                     "FB": "空气清新剂",
-                 },)
+                title='产品销量变化',legend=(
+                     "化妆品",
+                     "洗发水",
+                     "纸巾",
+                     "空气清新剂",
+    ),)
     fig.update_xaxes(
         title_text='时间',
         dtick="M1",
         tickformat="%b\n%Y")
-    fig.update_yaxes(title_text='量（M）')
+    fig.update_yaxes(title_text='销量（万）')
+
+    fig.update_layout(legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    ))
     st.plotly_chart(fig, use_container_width=True)
 
 
