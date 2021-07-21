@@ -408,6 +408,17 @@ def show_profit():
 
         components.html(
             """
+            <style>
+            h2 {
+                text-align: center;
+                text-color: green;
+                font-family: Arial;
+            }
+            h4 {
+                font-family: Arial;
+                text-align: center;
+            }
+            </style>
             <h2>销售毛利率</h2>
             <h4>37.1%</h4>
             """
