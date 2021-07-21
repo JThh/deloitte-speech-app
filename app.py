@@ -587,7 +587,6 @@ def process_text(txt):
                     过去季度的销售毛利率为20%，add more。
                     ''')
 
-            with col3:
 
         visualize('销售')
 
@@ -612,22 +611,23 @@ def process_text(txt):
         if st.checkbox('启用'):
             col1, col2, col3 = st.beta_columns(3)
             with col1:
+                with st.beta_expander('市场分析'):
+                    st.success('''
+                    A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
+                    ''')
+
+            with col2:
                 with st.beta_expander('数据分析'):
                     st.info('''
                     从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。
                     ''')
 
-            with col2:
+            with col3:
                 with st.beta_expander('指标分析'):
                     st.info('''
                     过去季度的销售毛利率为20%，add more。
                     ''')
 
-            with col3:
-                with st.beta_expander('市场分析'):
-                    st.info('''
-                    A产品在过去三个季度中营收净增长达30%，利润增长为10%；A产品主要为夏季使用产品，销售增长可能与最近的气温上涨相关。
-                    ''')
 
         visualize('化妆品')
             
