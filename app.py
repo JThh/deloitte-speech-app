@@ -386,7 +386,7 @@ def show_profit():
         ), height=400, width=550)
         st.plotly_chart(fig, height=400, width=550)
 
-    col1,col2,col3 = st.beta_columns([1,4,1])
+    col1,col2,col3 = st.beta_columns([1,5,1])
 
     with col1:
         st.write('')
