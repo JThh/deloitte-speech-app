@@ -37,7 +37,7 @@ def month_year_iter(start_month, start_year, end_month, end_year):
 
 def show_category():
     df = px.data.stocks().iloc[-60:,:]
-    df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
+    df.columns = [df.columns[0]] + ["消毒液","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
     # df.iloc[:,0] = [x*100000 for x in df.iloc[:,0].values]
     fig = px.line(df, x="date", y=df.columns[:5],
                 hover_data={"date": "|%B %d, %Y"},
@@ -66,7 +66,7 @@ def show_category():
                     ]
         y_net_worth = [9345.919999999998, 8166.570000000007, 6988.619999999995,
                        7838.529999999999]
-        x = ['化妆品','洗发水','纸巾','空气清新剂']
+        x = ['消毒液','洗发水','纸巾','空气清新剂']
 
         # Creating two subplots
         fig = make_subplots(rows=1, cols=2, specs=[[{}, {}]], shared_xaxes=True,
@@ -176,7 +176,7 @@ def show_category():
         # fig.update_layout(margin = dict(t=0, l=0, r=0, b=0))
         # st.plotly_chart(fig, use_container_width=True)
 
-        labels = ["化妆品","洗发水","纸巾","空气清新剂"]
+        labels = ["消毒液","洗发水","纸巾","空气清新剂"]
         values = [9345.919999999998, 8166.570000000007, 6988.619999999995,
                         7838.529999999999]
 
@@ -494,7 +494,7 @@ def show_meaning(query):
     if '区域' in query:
         st.write("系统检测到您的问题：区域大小的含义")
         st.success(
-            "解释：区域面积表示增长或下降的程度大小。四大品类中，化妆品类在过去三年的**平均增长率**最高，为**14.2%**；纸巾类在去年的平均增长率最高，为11%；化妆品类在上个月的平均增长率最高，为9%。"
+            "解释：区域面积表示增长或下降的程度大小。四大品类中，消毒液类在过去三年的**平均增长率**最高，为**14.2%**；纸巾类在去年的平均增长率最高，为11%；消毒液类在上个月的平均增长率最高，为9%。"
         )
 
     show_category()
@@ -572,10 +572,10 @@ def visualize(string):
     # elif string == '营收细节':
     #     show_category_revenue()
 
-    elif string == '化妆品':
+    elif string == '消毒液':
         col1, col2 = st.beta_columns([1.5,1])
         with col1:
-            st.subheader('化妆品类在过去三年的营收及利润情况')
+            st.subheader('消毒液类在过去三年的营收及利润情况')
             st.write('')
             image = Image.open('./assets/productA.png')
             st.image(image)
@@ -711,7 +711,7 @@ def process_text(txt):
     elif '连接' in txt:
         visualize('连接BDH')
 
-    elif ('销售' in txt or '销量' in txt) and '纸巾' not in txt and '化妆品' not in txt:
+    elif ('销售' in txt or '销量' in txt) and '纸巾' not in txt and '消毒液' not in txt:
         addRecord('勤答', '回复图表')
 
         st.subheader('默认显示所有产品分类最近三年的销售额')
@@ -723,12 +723,12 @@ def process_text(txt):
             with col1:
                 with st.beta_expander('市场分析'):
                     st.success('''
-                    示例：过去季度总体的销售毛利率为20%，市场同期为15%，比市场高约33%；原因可能为目前的产品成本过高。
+                    示例：过去季度总体的销售毛利率为20%，市场同期为15%，比市场高约33%；息税前利润率比市场高约15%。
                     ''')
             with col2:
                 with st.beta_expander('数据分析'):
                     st.info('''
-                    示例：从图像中可以看到，化妆品类在过去三年中的销售额占比最高，为33.59%；过去三年中，洗发水的平均增长率最高，为14.7%。
+                    示例：从图像中可以看到，洗发水类在过去三年中的销售额占比最高，为33.59%；过去三年中，消毒液的平均增长率最高，为14.7%。
                     ''')
 
             with col3:
@@ -744,7 +744,7 @@ def process_text(txt):
         addRecord('勤答', '回复文字')
         show_meaning(txt)
 
-    elif '化妆品' in txt:
+    elif '消毒液' in txt:
         addRecord('勤答', '回复图表及文字')
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
@@ -753,13 +753,13 @@ def process_text(txt):
             with col1:
                 with st.beta_expander('市场分析'):
                     st.success('''
-                    示例：化妆品类销售量比同期市场均值高16.5%，销售毛利率比同期市场毛利率高15%。
+                    示例：受新冠疫情的影响，消毒液的销售额从2019年Q4至2020年Q2达到近年较高水平，在2020年Q4略有回落。
                     ''')
 
             with col2:
                 with st.beta_expander('数据分析'):
                     st.info('''
-                    示例：化妆品类在过去三个季度中营收净增长达30%，利润增长为15%，最高单季度增长率为31.3%。
+                    示例：消毒液类在过去三个季度中营收净增长达30%，利润增长为15%，最高单季度增长率为31.3%。
                     ''')
 
             with col3:
@@ -769,7 +769,7 @@ def process_text(txt):
                     ''')
 
 
-        visualize('化妆品')
+        visualize('消毒液')
             
         st.write('')
         st.write('')
