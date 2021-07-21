@@ -47,8 +47,8 @@ def show_category():
     df = data.copy()
     df.columns = [df.columns[0]] + ["化妆品","洗发水","纸巾","空气清新剂"] + list(df.columns[5:])
     df.iloc[:,0] = df.iloc[:,0] * 100000
-    fig = px.line(df, x="date", y=df.columns[:5],
-                hover_data={"date": "|%B %d, %Y"},
+    fig = px.line(df, x="Date", y=df.columns[:5],
+                hover_data={"Date": "|%B %d, %Y"},
                 title='产品销量变化')
     fig.update_xaxes(
         title_text='时间',
