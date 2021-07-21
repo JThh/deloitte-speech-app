@@ -397,8 +397,7 @@ def show_profit():
             value = 37.1,
             gauge = {
                 'shape': "bullet",
-                'axis' : {'visible': False}},
-            domain = {'x': [0.05, 0.5], 'y': [0.15, 0.35]}))
+                'axis' : {'visible': False}}))
         fig.update_layout(
             template = {'data' : {'indicator': [{
                 'title': {'text': "销售毛利率"},
