@@ -331,6 +331,30 @@ def show_category_sale():
     #     )
     # st.line_chart(chart_data)
 
+def show_profit():
+    df = px.data.stocks()
+    fig = px.line(df, x="date", y=df.columns[3],
+                hover_data={"date": "|%B %d, %Y"},
+                title='净利润（月份）')
+    fig.update_traces(mode='lines+markers')
+    fig.update_xaxes(
+        title_text='',
+        dtick="M1",
+        tickformat="%b\n%Y",
+        tickangle=-45,
+        )
+    fig.update_yaxes(title_text='')
+
+    fig.update_layout(legend=dict(
+        title='',
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    ))
+    st.plotly_chart(fig, use_container_width=True)
+
 
 def show_meaning(query):
     if '最好' in query:
@@ -387,7 +411,6 @@ def visualize(string):
             st.image(image)
             
         with col2:
-
             image = Image.open('./assets/profit2-2.png')
             st.image(image)
             image = Image.open('./assets/profit2-1.png')
@@ -558,7 +581,7 @@ def process_text(txt):
     elif '连接' in txt:
         visualize('连接BDH')
 
-    elif '销售' in txt or '销量' in txt:
+    elif ('销售' in txt or '销量' in txt) and '最好' not in txt:
         addRecord('勤答', '回复图表')
 
         st.subheader('默认显示所有产品分类最近三年的销售额')
