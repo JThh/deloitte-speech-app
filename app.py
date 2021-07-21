@@ -411,6 +411,7 @@ def visualize(string):
             st.image(image)
             
         with col2:
+            show_profit()
             image = Image.open('./assets/profit2-2.png')
             st.image(image)
             image = Image.open('./assets/profit2-1.png')
