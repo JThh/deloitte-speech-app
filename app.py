@@ -333,7 +333,7 @@ def show_category_sale():
 
 
 def show_meaning(query):
-    if '最高' in query:
+    if '最好' in query:
         st.write("系统检测到您的问题：纸巾类产品什么时候销量最佳")
         st.success(
             "解释：经过系统计算，纸巾类在每年的6-8月份销量增长率最高，8月份销量最好；在2019年8月销量达到20万件，同比增长20%，比空气清新剂类类高出30%的销售额。"
@@ -383,8 +383,20 @@ def visualize(string):
             st.write('')
             # st.write('')
             st.write('')
-            image = Image.open('./assets/profit1-2.png')
-            st.image(image)
+            # image = Image.open('./assets/profit1-2.png')
+            # st.image(image)
+            fig = go.Figure()
+
+            fig.add_trace(go.Indicator(
+                mode = "number+delta",
+                value = 450,
+                title = {"text": "Accounts<br><span style='font-size:0.8em;color:gray'>Subtitle</span><br><span style='font-size:0.8em;color:gray'>Subsubtitle</span>"},
+                delta = {'reference': 400, 'relative': True},
+                domain = {'x': [0.6, 1], 'y': [0, 1]}))
+            
+            st.plotly_chart(fig)
+
+            
         with col2:
             image = Image.open('./assets/profit2-2.png')
             st.image(image)
@@ -584,7 +596,7 @@ def process_text(txt):
 
         visualize('销售')
 
-    elif '纸巾' in txt or '含义' in txt or '区域' in txt:
+    elif '最好' in txt or '含义' in txt or '区域' in txt:
         addRecord('勤答', '回复文字')
         show_meaning(txt)
 
