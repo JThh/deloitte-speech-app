@@ -389,11 +389,12 @@ def show_profit():
     col1,col2,col3 = st.beta_columns([1,4,1])
 
     with col1:
+        st.write('')
         st.write('利润指标')
         # st.write('')
         st.write('')
         st.write('')
-        st.write('')
+        # st.write('')
         components.html(
             """
             <style>
@@ -401,7 +402,7 @@ def show_profit():
                 text-align: center;
                 color: white;
                 font-family: Arial;
-                background-color: blue;
+                background-color: green;
                 margin: 0px;
                 font-size:0.8em;
             }
@@ -411,7 +412,7 @@ def show_profit():
                 text-align: center;
             }
             div {
-                border: solid blue;
+                border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
                 margin-bottom: 15px;
@@ -465,7 +466,7 @@ def show_profit():
                 text-align: center;
                 color: white;
                 font-family: Arial;
-                background-color: green;
+                background-color: blue;
                 margin: 0px;
                 font-size:0.8em;
             }
@@ -475,7 +476,7 @@ def show_profit():
                 text-align: center;
             }
             div {
-                border: solid green;
+                border: solid blue;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
                 margin-bottom: 15px;
@@ -490,7 +491,7 @@ def show_profit():
                 <h3>37.1%</h3>
             </div>
             <div>
-                <h2>息税前利润</h2>
+                <h2>息税前利率</h2>
                 <h3>37.1%</h3>
             </div>
             """
