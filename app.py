@@ -416,11 +416,49 @@ def show_profit():
             }
             h4 {
                 font-family: Arial;
+                color: green;
                 text-align: center;
             }
             </style>
             <h2>销售毛利率</h2>
-            <h4>37.1%</h4>
+            <h3>37.1%</h>
+            """
+        )
+        components.html(
+            """
+            <style>
+            h2 {
+                text-align: center;
+                color: green;
+                font-family: Arial;
+            }
+            h4 {
+                font-family: Arial;
+                color: green;
+                text-align: center;
+            }
+            </style>
+            <h2>营业净利率</h2>
+            <h3>37.1%</h>
+            """
+        )
+
+        components.html(
+            """
+            <style>
+            h2 {
+                text-align: center;
+                color: green;
+                font-family: Arial;
+            }
+            h4 {
+                font-family: Arial;
+                color: green;
+                text-align: center;
+            }
+            </style>
+            <h2>息税前利润</h2>
+            <h3>37.1%</h>
             """
         )
 
