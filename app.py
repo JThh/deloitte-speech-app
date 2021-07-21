@@ -332,7 +332,7 @@ def show_category_sale():
     # st.line_chart(chart_data)
 
 def show_profit():
-    col1, col2, col3 = st.beta_columns([1,4,4])
+    col1, col2, col3 = st.beta_columns([2,4,4])
     df = px.data.stocks()
 
     with col1:
@@ -361,8 +361,8 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=400, width=400)
-        st.plotly_chart(fig, height=400, width=400)
+        ), height=300, width=400)
+        st.plotly_chart(fig, height=300, width=400)
     with col3:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
@@ -383,8 +383,8 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=400, width=400)
-        st.plotly_chart(fig, height=400, width=400)        
+        ), height=300, width=400)
+        st.plotly_chart(fig, height=300, width=400)
 
 def show_meaning(query):
     if '最好' in query:
