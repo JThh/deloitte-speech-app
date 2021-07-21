@@ -419,20 +419,20 @@ def show_profit():
                 font-family: Arial;
                 color: black;
                 text-align: center;
-                margin-bottom=: 0px;
+                margin: 0px;
             }
             div {
                 border: solid green;
                 border-width: thin;
             }
-            p {
+            span {
                 background-color: green;
             }
             </style>
             <div>
-                <p>
+                <span>
                     <h2>销售毛利率</h2>
-                </p>
+                </span>
                 <h3>37.1%</h3>
             </div>
             """
@@ -448,21 +448,21 @@ def show_profit():
             h3 {
                 font-family: Arial;
                 color: black;
-                margin-bottom=: 0px;
+                margin: 0px;
                 text-align: center;
             }
             div {
                 border: solid green;
                 border-width: thin;
             }
-            p {
+            span {
                 background-color: green;
             }
             </style>
             <div>
-                <p>
+                <span>
                     <h2>营业净利率</h2>
-                </p>
+                </span>
                 <h3>37.1%</h3>
             </div>
             """
@@ -480,20 +480,20 @@ def show_profit():
                 font-family: Arial;
                 color: black;
                 text-align: center;
-                margin-bottom=: 0px;
+                margin: 0px;
             }
             div {
                 border: solid green;
                 border-width: thin;
             }
-            p {
+            span {
                 background-color: green;
             }
             </style>
             <div>
-                <p>
+                <span>
                     <h2>息税前利润</h2>
-                </p>
+                </span>
                 <h3>37.1%</h3>
             </div>
             """
