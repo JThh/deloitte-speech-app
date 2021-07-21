@@ -389,20 +389,20 @@ def visualize(string):
             image = Image.open('./assets/profit1-2.png')
             st.image(image)
         with col2:
-            image = Image.open('./assets/profit2-1.png')
-            st.image(image)
             image = Image.open('./assets/profit2-2.png')
+            st.image(image)
+            image = Image.open('./assets/profit2-1.png')
             st.image(image)
         with col3:
             st.write('')
             st.write('')
             st.write('')
-            image = Image.open('./assets/profit3-1.png')
+            image = Image.open('./assets/profit3-2.png')
             st.image(image)
             # st.write('')
             # st.write('')
             # st.write('')
-            image = Image.open('./assets/profit3-2.png')
+            image = Image.open('./assets/profit3-1.png')
             st.image(image)
 
     elif string == '连接BDH':
@@ -571,22 +571,24 @@ def process_text(txt):
         if st.checkbox('启用'):
             col1, col2, col3 = st.beta_columns(3)
             with col1:
+                with st.beta_expander('市场分析'):
+                    st.success('''
+                    过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%；国旗
+                    ''')
+            with col2:
                 with st.beta_expander('数据分析'):
                     st.info('''
                     从图像中可以看到，品类D在过去三年中的销售额占比最高，为17.52%；过去三年中，品类D的最高增长率为4.7%，品类C的最高增长率为3.2%，品类B的最高增长率为2.2%。总的来看，品类A的复合增长率最高，为13%，建议下一阶段增加产品投入。
                     ''')
 
-            with col2:
+            with col3:
                 with st.beta_expander('指标分析'):
                     st.info('''
                     过去季度的销售毛利率为20%，add more。
                     ''')
 
             with col3:
-                with st.beta_expander('市场分析'):
-                    st.info('''
-                    过去季度的销售毛利率为20%，市场同期为15%，比市场高约33%。
-                    ''')
+
         visualize('销售')
 
     elif '纸巾' in txt or '含义' in txt or '区域' in txt:
