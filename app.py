@@ -413,8 +413,10 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
+                border-width: 1px;
+                border-color: green;
             }
-            h4 {
+            h3 {
                 font-family: Arial;
                 color: green;
                 text-align: center;
@@ -431,8 +433,10 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
+                border-width: 1px;
+                border-color: green;                
             }
-            h4 {
+            h3 {
                 font-family: Arial;
                 color: green;
                 text-align: center;
@@ -450,8 +454,10 @@ def show_profit():
                 text-align: center;
                 color: green;
                 font-family: Arial;
+                border-width: 1px;
+                border-color: green;
             }
-            h4 {
+            h3 {
                 font-family: Arial;
                 color: green;
                 text-align: center;
