@@ -342,7 +342,7 @@ def show_profit():
 
     #     # st.plotly_chart(fig, height=400, width=100)
     with col1:
-        fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[3],
+        fig = px.line(df.iloc[-40:,:], x="date", y=df.columns[3],
                     hover_data={"date": "|%B %d, %Y"},
                     title='净利润（月份）',color_discrete_sequence=['green'])
         fig.update_traces(mode='lines+markers')
@@ -364,7 +364,7 @@ def show_profit():
         ), height=400, width=550)
         st.plotly_chart(fig, height=400, width=550)
     with col2:
-        fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
+        fig = px.line(df.iloc[-40:,:], x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
                     title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['blue'])
         fig.update_traces(mode='lines+markers')
@@ -392,19 +392,26 @@ def show_profit():
         # st.success("销售毛利率：37.1%")
         # st.success("营业净利率：37.1%")
         # st.success("息税前利润：37.1%")     
-        fig = go.Figure()
-        fig.add_trace(go.Indicator(
-            value = 37.1,
-            gauge = {
-                'shape': "bullet",
-                'axis' : {'visible': False}}))
-        fig.update_layout(
-            template = {'data' : {'indicator': [{
-                'title': {'text': "销售毛利率"},
-                'mode' : "number+delta+gauge",
-                'delta' : {'reference': 30}}]
-                                }},width=100,height=50) 
-        st.plotly_chart(fig)    
+        # fig = go.Figure()
+        # fig.add_trace(go.Indicator(
+        #     value = 37.1,
+        #     gauge = {
+        #         'shape': "bullet",
+        #         'axis' : {'visible': False}}))
+        # fig.update_layout(
+        #     template = {'data' : {'indicator': [{
+        #         'title': {'text': "销售毛利率"},
+        #         'mode' : "number+delta+gauge",
+        #         'delta' : {'reference': 30}}]
+        #                         }},width=100,height=50) 
+        # st.plotly_chart(fig)    
+
+        components.html(
+            """
+            <h2>销售毛利率</h2>
+            <h4>37.1%</h4>
+            """
+        )
 
     with col2:   
         fig = go.Figure(go.Waterfall(
