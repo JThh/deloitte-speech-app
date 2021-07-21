@@ -426,7 +426,7 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                margin-bottom: -5px;
+                margin-bottom: -20px;
             }
             </style>
             <div>
@@ -455,7 +455,7 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                margin-bottom: -5px;
+                margin-bottom: -20px;
             }
             </style>
             <div>
@@ -485,7 +485,7 @@ def show_profit():
                 border: solid green;
                 border-width: thin;
                 padding: 0px, 5px, 0px, 5px;
-                margin-bottom: -5px;
+                margin-bottom: -20px;
             }
             </style>
             <div>
