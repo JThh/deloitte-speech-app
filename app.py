@@ -332,16 +332,16 @@ def show_category_sale():
     # st.line_chart(chart_data)
 
 def show_profit():
-    col1, col2, col3 = st.beta_columns([2,4,4])
+    col1, col2 = st.beta_columns(2)
     df = px.data.stocks()
 
-    with col1:
-        st.success("销售毛利率：37.1%")
-        st.success("营业净利率：37.1%")
-        st.success("息税前利润：37.1%")
+    # with col1:
+    #     st.success("销售毛利率：37.1%")
+    #     st.success("营业净利率：37.1%")
+    #     st.success("息税前利润：37.1%")
 
-        # st.plotly_chart(fig, height=400, width=100)
-    with col2:
+    #     # st.plotly_chart(fig, height=400, width=100)
+    with col1:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[3],
                     hover_data={"date": "|%B %d, %Y"},
                     title='净利润（月份）',color_discrete_sequence=['green'])
@@ -361,9 +361,9 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=350, width=450)
-        st.plotly_chart(fig, height=350, width=450)
-    with col3:
+        ), height=400, width=500)
+        st.plotly_chart(fig, height=400, width=500)
+    with col2:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
                     hover_data={"date": "|%B %d, %Y"},
                     title='归属于母公司所有者净利润（月份）',color_discrete_sequence=['blue'])
@@ -383,25 +383,33 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=350, width=450)
-        st.plotly_chart(fig, height=350, width=450)
+        ), height=400, width=500)
+        st.plotly_chart(fig, height=400, width=500)
 
-    fig = go.Figure(go.Waterfall(
-        name = "20", orientation = "v",
-        measure = ["relative", "relative", "total", "relative", "relative", "relative","relative","relative","relative","total""relative","total",],
-        x = ["营业收入", "营业成本", "毛利润", "营业税金", "销售费用", "管理费用","财务费用","研发费用","投资收益","利润所得","所得税","净利润"],
-        textposition = "outside",
-        text = ["53M", "-14M", "39M", "-7M", "-6M", "-3M","+1M","-71K","+68K","25M","-6M","19M"],
-        y = [53, -14, 0, -7, -6, -3, 1, -0.071, 0.068, 0, -6, 0],
-        connector = {"line":{"color":"rgb(63, 63, 63)"}},
-    ))
+    col1,col2 = st.beta_columns([1,3])
 
-    fig.update_layout(
-            title = "各个项目增减情况",
-            showlegend = True
-    )
+    with col1:
+        st.success("销售毛利率：37.1%")
+        st.success("营业净利率：37.1%")
+        st.success("息税前利润：37.1%")     
 
-    st.plotly_chart(fig)
+    with col2:   
+        fig = go.Figure(go.Waterfall(
+            name = "20", orientation = "v",
+            measure = ["relative", "relative", "total", "relative", "relative", "relative","relative","relative","relative","total""relative","total",],
+            x = ["营业收入", "营业成本", "毛利润", "营业税金", "销售费用", "管理费用","财务费用","研发费用","投资收益","利润所得","所得税","净利润"],
+            textposition = "outside",
+            text = ["53M", "-14M", "39M", "-7M", "-6M", "-3M","+1M","-71K","+68K","25M","-6M","19M"],
+            y = [53, -14, 0, -7, -6, -3, 1, -0.071, 0.068, 0, -6, 0],
+            connector = {"line":{"color":"rgb(63, 63, 63)"}},
+        ))
+
+        fig.update_layout(
+                title = "各个项目增减情况",
+                showlegend = True
+        )
+
+        st.plotly_chart(fig)
 
 def show_meaning(query):
     if '最好' in query:
