@@ -388,7 +388,7 @@ def show_profit():
 
     fig = go.Figure(go.Waterfall(
         name = "20", orientation = "v",
-        measure = ["total", "relative", "total", "relative", "relative", "relative","relative","relative","relative","total""relative","total",],
+        measure = ["relative", "relative", "total", "relative", "relative", "relative","relative","relative","relative","total""relative","total",],
         x = ["营业收入", "营业成本", "毛利润", "营业税金", "销售费用", "管理费用","财务费用","研发费用","投资收益","利润所得","所得税","净利润"],
         textposition = "outside",
         text = ["53M", "-14M", "39M", "-7M", "-6M", "-3M","+1M","-71K","+68K","25M","-6M","19M"],
