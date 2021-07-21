@@ -385,7 +385,7 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ), height=400, width=500)
+        ), title={'xanchor': 'center'},height=400, width=500)
         st.plotly_chart(fig, height=400, width=500)
     with col3:
         fig = px.line(df.iloc[-20:,:], x="date", y=df.columns[4],
@@ -407,7 +407,7 @@ def show_profit():
             y=1.02,
             xanchor="right",
             x=1
-        ),height=400, width=500)
+        ), title={'xanchor': 'center'},height=400, width=500)
         st.plotly_chart(fig, height=400, width=500)        
 
 def show_meaning(query):
