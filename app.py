@@ -336,9 +336,9 @@ def show_profit():
     df = px.data.stocks()
 
     with col1:
-        st.info("销售毛利率Gross Profit Margin：37.1%")
-        st.info("营业净利率Net Margin：37.1%")
-        st.info("息税前利润EBIT：37.1%")
+        st.success("销售毛利率：37.1%")
+        st.success("营业净利率：37.1%")
+        st.success("息税前利润：37.1%")
 
         # st.plotly_chart(fig, height=400, width=100)
     with col2:
