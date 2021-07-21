@@ -666,7 +666,7 @@ def process_text(txt):
         with st.beta_expander('连接BDH分析'):
             visualize('连接BDH')
 
-    elif '营收' in txt or '收入' in txt and '消毒液' not in txt:
+    elif ('营收' in txt or '收入' in txt) and '消毒液' not in txt:
         visualize('营收')
 
     elif '利润' in txt:
