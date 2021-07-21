@@ -577,7 +577,7 @@ def visualize(string):
         with col1:
             st.subheader('消毒液类在过去三年的营收及利润情况')
             st.write('')
-            image = Image.open('./assets/productA.png')
+            image = Image.open('./assets/newproductA.png')
             st.image(image)
 
             st.subheader('过去三年的指标与成本构成')
