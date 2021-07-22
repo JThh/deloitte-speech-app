@@ -599,8 +599,8 @@ def visualize(string):
                 y=1.02,
                 xanchor="right",
                 x=1
-            ), height=400, width=550)
-            st.plotly_chart(fig, height=400, width=550)
+            ))
+            st.plotly_chart(fig,use_container_width=True)
 
             labels = ['营业成本','营业税金及附加','销售费用','管理费用','研发费用','资产减值损失','财务费用']
             values = [4500, 2500, 1053, 1000,  3500, 500, 400]
@@ -608,9 +608,9 @@ def visualize(string):
             # Use `hole` to create a donut-like pie chart
             fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
             fig.update_layout(
-                title="营业总成本构成",
+                title="营业总成本构成",height=400
             )
-            st.plotly_chart(fig, use_container_width=True)   
+            st.plotly_chart(fig, height=400)   
 
         with col2:
             st.subheader('过去三年的销量情况')
