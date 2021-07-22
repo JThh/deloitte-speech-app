@@ -578,16 +578,68 @@ def visualize(string):
             st.subheader('消毒液类在过去三年的营收及利润情况')
             st.write('')
             image = Image.open('./assets/newproductA.png')
-            st.image(image)
-
-            st.subheader('过去三年的指标与成本构成')
-            st.write('')
-            image = Image.open('./assets/productA_ext.png')
-            st.image(image)            
+            st.image(image)         
 
         with col2:
             st.subheader('过去三年的销量情况')
             show_category_sale()
+
+        col1, col2 = st.beta_columns([1,4])
+
+        with col1:
+            st.write('利润指标')
+            components.html(
+                """
+                <style>
+                h2 {
+                    text-align: center;
+                    color: white;
+                    font-family: Arial;
+                    background-color: green;
+                    margin: 0px;
+                    font-size:0.8em;
+                }
+                h3 {
+                    font-family: Arial;
+                    color: black;
+                    text-align: center;
+                }
+                div {
+                    border: solid green;
+                    border-width: thin;
+                    padding: 0px, 5px, 0px, 5px;
+                    margin-bottom: 15px;
+                }
+                </style>
+                <div>
+                    <h2>销售毛利率</h2>
+                    <h3>37.1%</h3>
+                </div>
+                <div>
+                    <h2>营业净利率</h2>
+                    <h3>37.1%</h3>
+                </div>
+                <div>
+                    <h2>息税前利润</h2>
+                    <h3>37.1%</h3>
+                </div>
+                """
+            ,height=300,width=120)
+
+        with col2:
+            labels = ['营业成本','营业税金及附加','销售费用','管理费用','研发费用','资产减值损失','财务费用']
+            values = [4500, 2500, 1053, 1000,  3500, 500, 400]
+
+            # Use `hole` to create a donut-like pie chart
+            fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+            fig.update_layout(
+                title="营业总成本构成",
+            )
+            st.plotly_chart(fig, use_container_width=True)
+
+
+
+        
 
     elif string == '洗发水':
         st.subheader('洗发水类在过去三年的营收及利润情况')
