@@ -603,8 +603,8 @@ def visualize(string):
                 y=1.02,
                 xanchor="right",
                 x=1
-            ))
-            st.plotly_chart(fig,use_container_width=True)
+            ),width=400)
+            st.plotly_chart(fig,width=400)
 
             labels = ['营业成本','营业税金及附加','销售费用','管理费用','研发费用','资产减值损失','财务费用']
             values = [4500, 2500, 1053, 1000,  3500, 500, 400]
