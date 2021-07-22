@@ -581,10 +581,10 @@ def visualize(string):
             # st.image(image)  
             df = px.data.stocks()
             fig = go.Figure()
-            fig.add_trace(go.Scatter(x=df.iloc[-60:,"date"], y=df.iloc[-60:,3],
+            fig.add_trace(go.Scatter(x=df.loc[-60:,"date"], y=df.iloc[-60:,3],
                                 mode='lines',
                                 name='lines'))
-            fig.add_trace(go.Scatter(x=df.iloc[-60:,"date"], y=df.iloc[-60:,4],
+            fig.add_trace(go.Scatter(x=df.loc[-60:,"date"], y=df.iloc[-60:,4],
                                 mode='lines',
                                 name='lines'))
             # fig.update_traces(mode='lines+markers')
