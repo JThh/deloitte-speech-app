@@ -576,9 +576,31 @@ def visualize(string):
         col1, col2 = st.beta_columns([1.5,1])
         with col1:
             st.subheader('消毒液类在过去三年的营收及利润情况')
-            st.write('')
-            image = Image.open('./assets/newproductA.png')
-            st.image(image)  
+            # st.write('')
+            # image = Image.open('./assets/newproductA.png')
+            # st.image(image)  
+            df = px.data.stocks()
+            fig = px.line(df.iloc[-60:,:], x="date", y=df.columns[3],
+                        hover_data={"date": "|%B %d, %Y"},
+                        title='净利润（月份）',color_discrete_sequence=['green'])
+            fig.update_traces(mode='lines+markers')
+            fig.update_xaxes(
+                title_text='',
+                dtick="M1",
+                tickformat="%b\n%Y",
+                tickangle=45,
+                )
+            fig.update_yaxes(title_text='利润（百万）')
+
+            fig.update_layout(legend=dict(
+                title='',
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1
+            ), height=400, width=550)
+            st.plotly_chart(fig, height=400, width=550)
 
             labels = ['营业成本','营业税金及附加','销售费用','管理费用','研发费用','资产减值损失','财务费用']
             values = [4500, 2500, 1053, 1000,  3500, 500, 400]
