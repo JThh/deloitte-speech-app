@@ -612,9 +612,9 @@ def visualize(string):
             # Use `hole` to create a donut-like pie chart
             fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
             fig.update_layout(
-                title="营业总成本构成"
+                title="营业总成本构成",width=350
             )
-            st.plotly_chart(fig)   
+            st.plotly_chart(fig,width=350)   
 
         with col2:
             st.subheader('过去三年的销量情况')
