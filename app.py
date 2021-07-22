@@ -580,9 +580,13 @@ def visualize(string):
             # image = Image.open('./assets/newproductA.png')
             # st.image(image)  
             df = px.data.stocks()
-            fig = px.line(df.iloc[-60:,:], x="date", y=df.columns[3],
-                        hover_data={"date": "|%B %d, %Y"},
-                        )
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=df.iloc[-60:,"date"], y=df.iloc[-60:,3],
+                                mode='lines',
+                                name='lines'))
+            fig.add_trace(go.Scatter(x=df.iloc[-60:,"date"], y=df.iloc[-60:,4],
+                                mode='lines',
+                                name='lines'))
             # fig.update_traces(mode='lines+markers')
             fig.update_xaxes(
                 title_text='',
