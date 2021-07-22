@@ -582,15 +582,15 @@ def visualize(string):
             df = px.data.stocks()
             fig = px.line(df.iloc[-60:,:], x="date", y=df.columns[3],
                         hover_data={"date": "|%B %d, %Y"},
-                        title='净利润（月份）',color_discrete_sequence=['green'])
-            fig.update_traces(mode='lines+markers')
+                        )
+            # fig.update_traces(mode='lines+markers')
             fig.update_xaxes(
                 title_text='',
                 dtick="M1",
                 tickformat="%b\n%Y",
                 tickangle=45,
                 )
-            fig.update_yaxes(title_text='利润（百万）')
+            # fig.update_yaxes(title_text='营收/利润（百万）')
 
             fig.update_layout(legend=dict(
                 title='',
