@@ -583,10 +583,10 @@ def visualize(string):
             fig = go.Figure()
             fig.add_trace(go.Scatter(x=df.loc[-60:,"date"], y=df.iloc[-60:,3],
                                 mode='lines',
-                                name='lines'))
+                                name='营收'))
             fig.add_trace(go.Scatter(x=df.loc[-60:,"date"], y=df.iloc[-60:,4],
                                 mode='lines',
-                                name='lines'))
+                                name='成本'))
             # fig.update_traces(mode='lines+markers')
             fig.update_xaxes(
                 title_text='',
@@ -612,9 +612,9 @@ def visualize(string):
             # Use `hole` to create a donut-like pie chart
             fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
             fig.update_layout(
-                title="营业总成本构成",height=400
+                title="营业总成本构成"
             )
-            st.plotly_chart(fig, height=400)   
+            st.plotly_chart(fig)   
 
         with col2:
             st.subheader('过去三年的销量情况')
