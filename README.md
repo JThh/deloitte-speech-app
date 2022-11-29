@@ -1,1 +1,1 @@
-# speech-app
+# Deloitte Competition Finalist Project (Speech-App)
