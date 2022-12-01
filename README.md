@@ -8,5 +8,5 @@ Speech recognition application that transforms natural language orders (in both 
 
 * Pitch deck [link](https://docs.google.com/presentation/d/1uuumPO_dkBrCPFkgZ3M-nm9bKmEIWgAXfAKW-hqkC6I/edit?usp=sharing). 
 
-* Web application [link](https://jthh-speech-app-app-8fywoa.streamlit.app/).
+* Web application [link](https://jthh-speech-app-app-8fywoa.streamlit.app/) (enable browser audio).
 
