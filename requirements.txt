@@ -19,7 +19,7 @@ protobuf==3.17.3
 pydeck==0.6.2
 pyOpenSSL==20.0.1
 simplejson==3.17.3
-streamlit==0.84.1
+streamlit==1.13.0
 streamlit_bokeh_events==0.1.2
 unicodedata2==13.0.0.post2
 wincertstore==0.2
