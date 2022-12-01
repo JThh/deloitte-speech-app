@@ -166,7 +166,7 @@ def show_category():
 
         return fig
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.beta_columns(2)
     with col1:
         # fig =go.Figure(go.Sunburst(
         #     labels=["化妆品","眼影","粉底","去屑洗发水","营养洗发水","纸抽","面巾纸","除臭剂","清新喷雾"],
@@ -193,7 +193,7 @@ def show_category():
 def show_revenue(number):
 
     # st.subheader("Revenue Report for past "+str(number)+" years")
-    col1, col2 = st.columns([1.8, 1])
+    col1, col2 = st.beta_columns([1.8, 1])
     with col1:
         data_filter_year = data.loc[data.Date > str(CURRENT_YEAR - number), :]
 
@@ -231,7 +231,7 @@ def show_revenue(number):
         )
         st.plotly_chart(fig, use_container_width=True)
 
-    col1, col2 = st.columns([1, 1])
+    col1, col2 = st.beta_columns([1, 1])
 
     with col1:
         st.write("中国区市场增长分布")
@@ -326,7 +326,7 @@ def show_category_sale():
 
 
 def show_profit():
-    col1, col2 = st.columns(2)
+    col1, col2 = st.beta_columns(2)
     df = px.data.stocks()
     
     with col1:
@@ -374,7 +374,7 @@ def show_profit():
         ), height=400, width=550)
         st.plotly_chart(fig, height=400, width=550)
 
-    col1,col2,col3 = st.columns([1,5,1])
+    col1,col2,col3 = st.beta_columns([1,5,1])
 
     with col1:
         st.write('')
@@ -518,7 +518,7 @@ def visualize(string):
         #     image = Image.open('./assets/revenue_quarter.png')
         #     st.image(image)
     elif string == '成本':
-        col1, col2 = st.columns(2)
+        col1, col2 = st.beta_columns(2)
         with col1:
             image = Image.open('./assets/cost_year.png')
             st.image(image)
@@ -573,7 +573,7 @@ def visualize(string):
     #     show_category_revenue()
 
     elif string == '消毒液':
-        col1, col2 = st.columns([1.5,1])
+        col1, col2 = st.beta_columns([1.5,1])
         with col1:
             st.subheader('消毒液类在过去三年的营收及利润情况')
             # st.write('')
@@ -709,7 +709,7 @@ def process_text(txt):
 
     if '财务' in txt:
         st.text('系统检测到模糊提问：财务分析，已为您返回财务分析涉及的三大报表，您也可以选择连接BDH查看财务分析仪表板')
-        col1, col2, col3, col4 = st.columns([1, 1, 1, 2.5])
+        col1, col2, col3, col4 = st.beta_columns([1, 1, 1, 2.5])
 
         selection = ''
         with col1:
@@ -742,7 +742,7 @@ def process_text(txt):
         st.write('')
         st.write('')
 
-        with st.expander('连接BDH分析'):
+        with st.beta_expander('连接BDH分析'):
             visualize('连接BDH')
 
     elif ('营收' in txt or '收入' in txt) and '消毒液' not in txt:
@@ -755,7 +755,7 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2, col3, col4 = st.columns([1, 1, 2,2])
+        col1, col2, col3, col4 = st.beta_columns([1, 1, 2,2])
 
         selection = ''
         with col1:
@@ -781,7 +781,7 @@ def process_text(txt):
         st.write('')
         st.write('')
 
-        with st.expander('连接BDH分析'):
+        with st.beta_expander('连接BDH分析'):
             visualize('连接BDH')  
 
     elif '成本' in txt:
@@ -798,20 +798,20 @@ def process_text(txt):
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
-            col1, col2, col3 = st.columns(3)
+            col1, col2, col3 = st.beta_columns(3)
             with col1:
-                with st.expander('市场分析'):
+                with st.beta_expander('市场分析'):
                     st.success('''
                     示例：过去季度总体的销售毛利率为20%，市场同期为15%，比市场高约33%；息税前利润率比市场高约15%。
                     ''')
             with col2:
-                with st.expander('数据分析'):
+                with st.beta_expander('数据分析'):
                     st.info('''
                     示例：从图像中可以看到，洗发水类在过去三年中的销售额占比最高，为33.59%；过去三年中，消毒液的平均增长率最高，为14.7%。
                     ''')
 
             with col3:
-                with st.expander('指标分析'):
+                with st.beta_expander('指标分析'):
                     st.info('''
                     示例：过去季度的销售毛利率为20%，营业净利润率为11.7%，息税前利润率为15%。
                     ''')
@@ -828,21 +828,21 @@ def process_text(txt):
 
         st.write('您使用了语音识别服务，是否同时启用自动分析功能？')
         if st.checkbox('启用'):
-            col1, col2, col3 = st.columns(3)
+            col1, col2, col3 = st.beta_columns(3)
             with col1:
-                with st.expander('市场分析'):
+                with st.beta_expander('市场分析'):
                     st.success('''
                     示例：受新冠疫情的影响，消毒液的销售额从2019年Q4至2020年Q2达到近年较高水平，在2020年Q4略有回落。
                     ''')
 
             with col2:
-                with st.expander('数据分析'):
+                with st.beta_expander('数据分析'):
                     st.info('''
                     示例：消毒液类在过去三个季度中营收净增长达30%，利润增长为15%，最高单季度增长率为31.3%。
                     ''')
 
             with col3:
-                with st.expander('指标分析'):
+                with st.beta_expander('指标分析'):
                     st.info('''
                     示例：过去季度的销售毛利率为20%，营业净利润率为11.7%，息税前利润率为15%。
                     ''')
@@ -855,21 +855,21 @@ def process_text(txt):
 
         st.write('您可能还想看：')
 
-        col1, col2 = st.columns([1.2,1])
+        col1, col2 = st.beta_columns([1.2,1])
 
         # selection = ''
         with col1:
             st.write()
-            with st.expander('洗发水'):
+            with st.beta_expander('洗发水'):
                 addRecord('Alex', '洗发水')
                 visualize('洗发水')
-            with st.expander('空气清新剂'):
+            with st.beta_expander('空气清新剂'):
                 addRecord('Alex', '空气清新剂')
                 visualize('空气清新剂')
-            with st.expander('纸巾'):
+            with st.beta_expander('纸巾'):
                 addRecord('Alex', '纸巾')
                 visualize('纸巾')
-            with st.expander('所有产品'):
+            with st.beta_expander('所有产品'):
                 addRecord('Alex', '所有产品')
                 visualize('所有产品')
         
@@ -900,7 +900,7 @@ def main():
     st.sidebar.header("勤答")
 
     result_audio = result_text = ''
-    col1, col2 = st.columns(2)
+    col1, col2 = st.beta_columns(2)
 
     with col1:
         st.write("语音输入按键")
@@ -951,10 +951,10 @@ def main():
         addRecord('Alex', result_text)
         process_text(result_text)
 
-    with st.sidebar.container():
+    with st.sidebar.beta_container():
         st.write('')
 
-    with st.sidebar.expander('聊天记录'):
+    with st.sidebar.beta_expander('聊天记录'):
         try:
             # names, messages, times = zip(*state.chat_list)
             df = pd.DataFrame(
@@ -969,7 +969,7 @@ def main():
             del (state.chat_list[0])
 
 
-    with st.sidebar.expander('近期新闻'):
+    with st.sidebar.beta_expander('近期新闻'):
         components.html(
         """
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -1024,8 +1024,8 @@ def main():
         )
 
     
-    with st.sidebar.expander('分享报告'):
-        col1,col2,col3,col4 = st.columns(4)
+    with st.sidebar.beta_expander('分享报告'):
+        col1,col2,col3,col4 = st.beta_columns(4)
 
         with col1:
             link = '''
