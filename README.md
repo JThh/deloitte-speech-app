@@ -2,7 +2,7 @@
 
 <img width="90%" src="assets/desktop.png"/>
 
-Speech recognition application that transforms natural language orders (in both Chinese and English) into visualized business interfaces. Promising product for future automated data analytics.
+Speech recognition application that transforms natural language orders (in both Chinese and English) into visualized business interfaces. Promising product for automated data analytics in the future.
 
 * Demo video [link](https://drive.google.com/file/d/1zDA6gcEUT7V5F9_qN4k3h8GCqpRL0YdP/view?usp=sharing). 
 
