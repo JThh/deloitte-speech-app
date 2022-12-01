@@ -1,4 +1,4 @@
-# Deloitte Competition Finalist Project
+# Deloitte Competition Finalist Project Demo
 
 <p align="center"><img width="89%" src="assets/desktop.png"/></p>
 
