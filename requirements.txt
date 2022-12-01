@@ -1,7 +1,7 @@
 bokeh==2.4.3
 numpy==1.19.4
 pandas_stubs==1.1.0.12
-typing_extensions==3.7.4.3
+typing-extensions==3.10.0
 Brotli==1.0.9
 plotly==4.14.3
 cryptography==3.4.7
