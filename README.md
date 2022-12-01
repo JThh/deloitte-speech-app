@@ -1,6 +1,6 @@
 # Deloitte Competition Finalist Project
 
-<p align="center"><img width="20%" src="assets/cohortanalyzer_phone.jpg"/><img width="80%" src="assets/cohortanalyzer.jpg"/></p>
+<p align="center"><img width="20%" src="assets/phone.jpg"/><img width="80%" src="assets/desktop.jpg"/></p>
 
 Speech recognition application that transforms natural language orders (in both Chinese and English) into visualized interfaces. 
 
